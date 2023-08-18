@@ -25,11 +25,9 @@ class Penis(commands.Cog):
             random.seed(str(user.id))
 
             if ctx.bot.user.id == user.id:
-                length = 50
-                dongs[user] = "8{}D".format("=" * length)
+                dongs[user] = "8{}D".format("=" * 50)
             elif user.id == 441088103826980885:
-                length = "{()}"
-                dongs[user] = length
+                dongs[user] = "{()}"
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
@@ -42,3 +40,4 @@ class Penis(commands.Cog):
 
         for page in pagify(msg):
             await ctx.send(page)
+            
