@@ -36,7 +36,7 @@ class Penis(commands.Cog):
 
         random.setstate(state)
         #dongs = sorted(dongs.items(), key=lambda x: x[1])
-        dongs = sorted(dongs.items(), key=len))
+        dongs = sorted(dongs.items(), key=len)
 
         for user, dong in dongs:
             msg += "**{}'s size:**\n{}\n".format(user.display_name, dong)
