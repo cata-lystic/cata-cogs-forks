@@ -35,11 +35,8 @@ class Penis(commands.Cog):
                 dongs[user] = "8{}D".format("=" * length)
 
         random.setstate(state)
-        #sorted_values = sorted(dongs.values(), key=lambda x: len(x))
-        #sorted_dongs = {k: v for v, k in zip(sorted_values, dongs.keys())}
-        dongs.sort(dongs.items(), key=len)
         #dongs = sorted(dongs.items(), key=lambda x: x[1])
-        #dongs = sorted(dongs.items(), key=len)
+        dongs = sorted(dongs.items(), key=lambda x: len(x[1]))
 
         for user, dong in dongs:
             msg += "**{}'s size:**\n{}\n".format(user.display_name, dong)
