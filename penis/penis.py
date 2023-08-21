@@ -26,10 +26,10 @@ class Penis(commands.Cog):
 
             if ctx.bot.user.id == user.id:
                 dongs[user] = "8{}D".format("=" * 50)
-            elif user.id == 441088103826980885:
-                dongs[user] = "{()}"
             elif user.id == 1019025452511277116:
                 dongs[user] = "8[][][D"
+            elif user.id == 441088103826980885:
+                dongs[user] = "{()}"
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
