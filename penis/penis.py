@@ -37,7 +37,7 @@ class Penis(commands.Cog):
         random.setstate(state)
         #sorted_values = sorted(dongs.values(), key=lambda x: len(x))
         #sorted_dongs = {k: v for v, k in zip(sorted_values, dongs.keys())}
-        dongs.sort(key=len)
+        dongs.sort(dongs.items(), key=len)
         #dongs = sorted(dongs.items(), key=lambda x: x[1])
         #dongs = sorted(dongs.items(), key=len)
 
