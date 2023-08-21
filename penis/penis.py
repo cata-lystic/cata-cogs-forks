@@ -35,10 +35,13 @@ class Penis(commands.Cog):
                 dongs[user] = "8{}D".format("=" * length)
 
         random.setstate(state)
-        #dongs = sorted(dongs.items(), key=lambda x: x[1])
-        dongs = sorted(dongs.items(), key=len)
+        sorted_values = sorted(dongs.values(), key=lambda x: len(x))
+        sorted_dongs = {k: v for v, k in zip(sorted_values, dongs.keys())}
 
-        for user, dong in dongs:
+        #dongs = sorted(dongs.items(), key=lambda x: x[1])
+        #dongs = sorted(dongs.items(), key=len)
+
+        for user, dong in sorted_dongs:
             msg += "**{}'s size:**\n{}\n".format(user.display_name, dong)
 
         for page in pagify(msg):
