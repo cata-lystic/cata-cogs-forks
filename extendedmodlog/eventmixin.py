@@ -486,7 +486,7 @@ class EventMixin:
             if perp:
                 embed.add_field(name=_("Deleted by"), value=perp)
             if message.attachments:
-                files = "\n".join(f"- {inline(a.filename)}" for a in message.attachments)
+                files = "\n".join(f"- {inline(a.url)}" for a in message.attachments)
                 embed.add_field(name=_("Attachments"), value=files[:1024])
             if replying:
                 embed.add_field(name=_("Replying to:"), value=replying)
