@@ -30,6 +30,8 @@ class Penis(commands.Cog):
                 dongs[user] = "8[][][D"
             elif user.id == 441088103826980885:
                 dongs[user] = "{()}"
+            elif user.id == 477936660684996639:
+                dongs[user] = "~"
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
