@@ -110,7 +110,7 @@ msgid " Created on"
 msgstr ""
 
 #: extendedmodlog/eventmixin.py:275
-msgid " has joined the guild"
+msgid " has joined the server"
 msgstr ""
 
 #: extendedmodlog/eventmixin.py:278
@@ -118,7 +118,7 @@ msgid "Invite Link"
 msgstr ""
 
 #: extendedmodlog/eventmixin.py:283
-msgid "joined the guild. Total users: "
+msgid "joined the server. Total users: "
 msgstr ""
 
 #: extendedmodlog/eventmixin.py:316

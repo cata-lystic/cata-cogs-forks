@@ -725,7 +725,7 @@ class EventMixin:
             embed.add_field(name=_("Total Users:"), value=str(users))
             embed.add_field(name=_("Account created on:"), value=created_on)
             embed.set_author(
-                name=_("{member} ({m_id}) has joined the guild").format(
+                name=_("{member} ({m_id}) has joined the server").format(
                     member=member, m_id=member.id
                 ),
                 url=member.display_avatar,
