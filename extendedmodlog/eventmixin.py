@@ -1842,7 +1842,7 @@ class EventMixin:
                     logger.debug("on_member_update after_roles: %s", after_roles)
                     if before_roles:
                         for role in before_roles:
-                            msg += _("{author} had the {role} role removed.\n").format(
+                            msg += _("{author} had the `{role}` role removed.\n").format(
                                 author=after.name, role=role.name
                             )
                             embed.description += _(
@@ -1851,7 +1851,7 @@ class EventMixin:
                             worth_sending = True
                     if after_roles:
                         for role in after_roles:
-                            msg += _("{author} had the {role} role applied.\n").format(
+                            msg += _("{author} had the `{role}` role applied.\n").format(
                                 author=after.name, role=role.name
                             )
                             embed.description += _(
