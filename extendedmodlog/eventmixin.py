@@ -501,12 +501,11 @@ class EventMixin:
             await channel.send(embed=embed, allowed_mentions=self.allowed_mentions)
         else:
 
+            if message.attachments:
+                files = "\n".join(f"- {a.url}" for a in message.attachments)
+
             clean_msg = message.clean_content[: (1990 - len(infomessage))]
-
-            #if message.attachments:
-            #    files = "\n".join(f"- {a.url}" for a in message.attachments)
-            #    clean_msg += f"\n"+files
-
+            clean_msg += f"\n"+files
             await channel.send(
                 f"{infomessage}\n>>> {clean_msg}", allowed_mentions=self.allowed_mentions
             )
@@ -1400,7 +1399,7 @@ class EventMixin:
                 colour=await self.get_event_colour(guild, "message_edit"),
                 timestamp=before.created_at,
             )
-            #jump_url = f"[Click to see new message]({after.jump_url})"
+            # jump_url = f"[Click to see new message]({after.jump_url})"
             embed.add_field(name=_("After Edit"), value=after.jump_url)
             embed.add_field(name=_("Channel"), value=before.channel.jump_url)
             if replying:
@@ -1416,7 +1415,7 @@ class EventMixin:
             await channel.send(embed=embed, allowed_mentions=self.allowed_mentions)
         else:
             msg = _(
-                "{emoji} {time} **{author}** (`{a_id}`) edited a message"
+                "{emoji} {time} **{author}** (`{a_id}`) edited a message "
                 "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n----------------------------------------"
             ).format(
                 emoji=self.settings[guild.id]["message_edit"]["emoji"],
@@ -1425,7 +1424,7 @@ class EventMixin:
                 a_id=before.author.id,
                 channel=before.channel.mention,
                 before=before.content,
-                after=after.content+"\n"+after.jump_url,
+                after=after.content,
             )
             await channel.send(msg[:2000], allowed_mentions=self.allowed_mentions)
 
