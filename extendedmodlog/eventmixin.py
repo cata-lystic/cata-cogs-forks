@@ -1420,7 +1420,7 @@ class EventMixin:
         else:
             msg = _(
                 "{emoji} {time} **{author}** (`{a_id}`) edited a message "
-                "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n----------------------------------------"
+                "in {channel}.\nBefore:\n```\n{before}```\nAfter:\n```\n{after}```\n----------------------------------------"
             ).format(
                 emoji=self.settings[guild.id]["message_edit"]["emoji"],
                 time=time.strftime(fmt),
