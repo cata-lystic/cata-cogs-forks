@@ -738,7 +738,7 @@ class EventMixin:
         else:
             time = datetime.datetime.now(datetime.timezone.utc)
             msg = _(
-                "{emoji} {time} **{member}**(`{m_id}`) " "joined the guild. Total members: {users}"
+                "{emoji} {time} **{member}**(`{m_id}`) " "joined the server. (Account created {created_on})"
             ).format(
                 emoji=self.settings[guild.id]["user_join"]["emoji"],
                 time=discord.utils.format_dt(time),
