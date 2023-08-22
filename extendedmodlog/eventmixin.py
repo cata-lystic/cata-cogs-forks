@@ -505,11 +505,13 @@ class EventMixin:
             clean_msg = message.clean_content[: (1990 - len(infomessage))]
             if message.attachments:
                 files = "\n".join(f"- {a.url}" for a in message.attachments)
-                clean_msg += f"\n"+files
+                attachments = f"\n"+files
+            else :
+                attachments = ""
 
                 
             await channel.send(
-                f"{infomessage}\n```\n{clean_msg}```\n", allowed_mentions=self.allowed_mentions
+                f"{infomessage}\n```\n{clean_msg}```\n{attachments}", allowed_mentions=self.allowed_mentions
             )
 
     @commands.Cog.listener()
