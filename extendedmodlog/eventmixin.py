@@ -1424,7 +1424,7 @@ class EventMixin:
                 a_id=before.author.id,
                 channel=before.channel.mention,
                 before=before.content,
-                after=after.content+after.jump_url,
+                after=after.content+"\n"+after.jump_url,
             )
             await channel.send(msg[:2000], allowed_mentions=self.allowed_mentions)
 
