@@ -52,5 +52,5 @@ class Penis(commands.Cog):
             msg += "**{}'s size:**\n{}\n".format(user.display_name, dong)
 
         for page in pagify(msg):
-            await ctx.send(page)
+            await ctx.send(f"{page}")
             
