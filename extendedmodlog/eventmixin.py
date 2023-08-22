@@ -1414,9 +1414,8 @@ class EventMixin:
             embed.add_field(name=_("Message ID"), value=inline(str(after.id)))
             await channel.send(embed=embed, allowed_mentions=self.allowed_mentions)
         else:
-            jumper = after.jump_url
             msg = _(
-                "{emoji} {time} **{author}** (`{a_id}`) edited a message {jumper}"
+                "{emoji} {time} **{author}** (`{a_id}`) edited a message"
                 "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n\n----------------------------------------"
             ).format(
                 emoji=self.settings[guild.id]["message_edit"]["emoji"],
@@ -1425,7 +1424,7 @@ class EventMixin:
                 a_id=before.author.id,
                 channel=before.channel.mention,
                 before=before.content,
-                after=after.content,
+                after=after.content+after.jump_url,
             )
             await channel.send(msg[:2000], allowed_mentions=self.allowed_mentions)
 
