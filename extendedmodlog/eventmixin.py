@@ -511,7 +511,7 @@ class EventMixin:
 
                 
             await channel.send(
-                f"{infomessage}\n```\n{clean_msg}```\n{attachments}", allowed_mentions=self.allowed_mentions
+                f"{infomessage}\n```\n{clean_msg}```{attachments}", allowed_mentions=self.allowed_mentions
             )
 
     @commands.Cog.listener()
