@@ -502,10 +502,10 @@ class EventMixin:
         else:
 
             if message.attachments:
-                files = "\n".join(f"- {inline(a.url)}" for a in message.attachments)
+                files = "\n".join(f"- {a.url}" for a in message.attachments)
 
             clean_msg = message.clean_content[: (1990 - len(infomessage))]
-            clean_msg += files
+            clean_msg += f"\n"+files
             await channel.send(
                 f"{infomessage}\n>>> {clean_msg}", allowed_mentions=self.allowed_mentions
             )
