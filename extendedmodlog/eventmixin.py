@@ -1399,7 +1399,7 @@ class EventMixin:
                 colour=await self.get_event_colour(guild, "message_edit"),
                 timestamp=before.created_at,
             )
-            # jump_url = f"[Click to see new message]({after.jump_url})"
+            #jump_url = f"[Click to see new message]({after.jump_url})"
             embed.add_field(name=_("After Edit"), value=after.jump_url)
             embed.add_field(name=_("Channel"), value=before.channel.jump_url)
             if replying:
@@ -1414,8 +1414,9 @@ class EventMixin:
             embed.add_field(name=_("Message ID"), value=inline(str(after.id)))
             await channel.send(embed=embed, allowed_mentions=self.allowed_mentions)
         else:
+            jump_url = f"{after.jump_url}"
             msg = _(
-                "{emoji} {time} **{author}** (`{a_id}`) edited a message {after.jump_url}"
+                "{emoji} {time} **{author}** (`{a_id}`) edited a message {jump_url}"
                 "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n\n----------------------------------------"
             ).format(
                 emoji=self.settings[guild.id]["message_edit"]["emoji"],
