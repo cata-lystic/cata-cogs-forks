@@ -1901,8 +1901,8 @@ class EventMixin:
         if not worth_sending:
             return
         if perp:
-            msg += _("Updated by ") + f"{perp}\n"
-            embed.add_field(name=_("Updated by "), value=perp.mention)
+            msg += _(" Updated by ") + f"{perp}\n"
+            embed.add_field(name=_(" Updated by "), value=perp.mention)
         if reason:
             msg += _("Reason: ") + f"{reason}\n"
             embed.add_field(name=_("Reason"), value=reason, inline=False)
