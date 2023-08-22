@@ -226,7 +226,7 @@ class Poll:
         else:
             votes_msg = f"{self.question}\n\n**Results**\n"
         for e, vote in sorted(self.tally.items(), key=lambda x: len(x[1]), reverse=True):
-            votes_msg += f"{self.emojis[e]}: {len(vote)} {self.tally[str(reaction.emoji)]}\n"
+            votes_msg += f"{self.emojis[e]}: {len(vote)} {self.tally[str(self.emojis[e])]}\n"
         msg += votes_msg
         first = True
         for page in pagify(votes_msg, page_length=1024):
