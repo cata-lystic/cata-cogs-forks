@@ -21,6 +21,12 @@ class Penis(commands.Cog):
         msg = ""
         state = random.getstate()
 
+        dorks = {
+            1019025452511277116: "8[][][D",
+            441088103826980885: "{()}",
+            477936660684996639: "~"
+        }
+
         for user in users:
             random.seed(str(user.id))
 
@@ -32,6 +38,8 @@ class Penis(commands.Cog):
                 dongs[user] = "{()}"
             elif user.id == 477936660684996639:
                 dongs[user] = "~"
+            elif user.id == 328816971317510146:
+                dongs[user] = "<:luneweapon~1:1143367964679213067>"
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
