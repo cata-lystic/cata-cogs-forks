@@ -1415,8 +1415,8 @@ class EventMixin:
             await channel.send(embed=embed, allowed_mentions=self.allowed_mentions)
         else:
             msg = _(
-                "{emoji} {time} **{author}** (`{a_id}`) edited a message "
-                "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n----------------------------------------"
+                "{emoji} {time} **{author}** (`{a_id}`) edited a message {message.jump_url}"
+                "in {channel}.\nBefore:\n> {before}\nAfter:\n> {after}\n\n----------------------------------------"
             ).format(
                 emoji=self.settings[guild.id]["message_edit"]["emoji"],
                 time=time.strftime(fmt),
