@@ -62,7 +62,17 @@ class Converters(commands.Cog):
         try:
             float(convertTo)
             val = float(convertTo)
-            convertTo = None
+
+            # force convertTo to be whichever the opposite of the single value command is
+            forceList = {
+                'c': 'f',
+                'f': 'c',
+                'mi': 'km',
+                'km': 'mi'
+            }
+
+            convertTo = forceList[convertFrom]
+
         except ValueError:
             pass
 
@@ -95,14 +105,11 @@ class Converters(commands.Cog):
             if convertFrom in val_list[i]:
                 validFrom = key_list[i]
 
-            if convertTo != None:
-                if convertTo in val_list[i]:
-                    validTo = key_list[i]
-            else:
-                validTo = ""
+            if convertTo in val_list[i]:
+                validTo = key_list[i]
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            final = f"{validFrom} {validTo}".strip()
+            final = f"{validFrom} {validTo}"
         else:
             return await ctx.send(f"{validFrom} | {validTo} | {val}")
 
@@ -207,10 +214,10 @@ class Converters(commands.Cog):
             calc = val * 1.12
 
         # Celsius to Fahrenheit
-        elif final == "c":
+        elif final == "c f":
             calc = round((val * 1.8) + 32, 1)
         # Fahrenheit to Celsius
-        elif final == "f":
+        elif final == "f c":
             calc = round((val - 32) / 1.8, 1)
         
 
