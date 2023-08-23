@@ -61,6 +61,7 @@ class Converters(commands.Cog):
         # This is because c, f, mi, and km don't require a convertTo
         try:
             float(convertTo)
+
             val = float(convertTo)
 
             # force convertTo to be whichever the opposite of the single value command is
@@ -235,73 +236,6 @@ class Converters(commands.Cog):
     @commands.group(aliases=["converter"])
     async def conv(self, ctx: commands.Context):
         """Some utility converters."""
-
-    @conv.command()
-    async def todate(self, ctx: commands.Context, timestamp: Union[int, float]):
-        """Convert a unix timestamp to a readable datetime."""
-        try:
-            convert = datetime.fromtimestamp(int(timestamp), timezone.utc).strftime(
-                "%Y-%m-%d %H:%M:%S"
-            )
-            g = datetime.fromtimestamp(int(timestamp))
-            curr = datetime.fromtimestamp(int(datetime.now().timestamp()))
-            secs = str((curr - g).total_seconds())
-            seconds = secs[1:][:-2] if "-" in secs else secs[:-2] if ".0" in secs else secs
-            delta = humanize_timedelta(seconds=int(seconds))
-            when = (
-                _("It will be in {}.").format(delta)
-                if g > curr
-                else _("It was {} ago.").format(delta)
-            )
-            await ctx.send(
-                _("Successfully converted `{timestamp}` to `{convert}`\n{when}").format(
-                    timestamp=int(timestamp), convert=convert, when=when
-                )
-            )
-        except (ValueError, OverflowError, OSError):
-            return await ctx.send(_("`{}` is not a valid timestamp.").format(timestamp))
-
-    @conv.command()
-    async def tounix(self, ctx: commands.Context, *, date: str):
-        """
-        Convert a date to a unix timestamp.
-
-        Note: Need to respect this pattern `%Y-%m-%d %H:%M:%S`.
-        Year-month-day Hour:minute:second
-        Minimum to work is Year.
-        """
-        patterns = [
-            "%Y-%m-%d %H:%M:%S",
-            "%Y-%m-%d %H:%M",
-            "%Y-%m-%d %H",
-            "%Y-%m-%d",
-            "%Y-%m",
-            "%Y",
-            "%m",
-            "%d",
-        ]
-        for pattern in patterns:
-            with contextlib.suppress(ValueError):
-                convert = int(datetime.strptime(date, pattern).timestamp())
-        try:
-            given = datetime.fromtimestamp(int(convert))
-        except UnboundLocalError:
-            return await ctx.send(_("`{}` is not a valid timestamp.").format(date))
-        curr = datetime.fromtimestamp(int(datetime.now().timestamp()))
-        secs = str((curr - given).total_seconds())
-        seconds = secs[1:][:-2] if "-" in secs else secs[:-2] if ".0" in secs else secs
-        delta = humanize_timedelta(seconds=int(seconds))
-        when = (
-            _("It will be in {}.").format(delta)
-            if given > curr
-            else _("It was {} ago.").format(delta)
-        )
-
-        await ctx.send(
-            _("Successfully converted `{date}` to `{convert}`\n{when}").format(
-                date=date, convert=convert, when=when
-            )
-        )
 
 
     @conv.group(aliases=['feet', 'foot'])
@@ -555,3 +489,71 @@ class Converters(commands.Cog):
         """Kilometers to miles."""
         output = round((val / 1.609344), 1)
         await ctx.send(_("> {val:,} kilometers is equal to {output:,} miles.").format(val=val, output=output))
+
+
+    @conv.command()
+    async def todate(self, ctx: commands.Context, timestamp: Union[int, float]):
+        """Convert a unix timestamp to a readable datetime."""
+        try:
+            convert = datetime.fromtimestamp(int(timestamp), timezone.utc).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            )
+            g = datetime.fromtimestamp(int(timestamp))
+            curr = datetime.fromtimestamp(int(datetime.now().timestamp()))
+            secs = str((curr - g).total_seconds())
+            seconds = secs[1:][:-2] if "-" in secs else secs[:-2] if ".0" in secs else secs
+            delta = humanize_timedelta(seconds=int(seconds))
+            when = (
+                _("It will be in {}.").format(delta)
+                if g > curr
+                else _("It was {} ago.").format(delta)
+            )
+            await ctx.send(
+                _("Successfully converted `{timestamp}` to `{convert}`\n{when}").format(
+                    timestamp=int(timestamp), convert=convert, when=when
+                )
+            )
+        except (ValueError, OverflowError, OSError):
+            return await ctx.send(_("`{}` is not a valid timestamp.").format(timestamp))
+
+    @conv.command()
+    async def tounix(self, ctx: commands.Context, *, date: str):
+        """
+        Convert a date to a unix timestamp.
+
+        Note: Need to respect this pattern `%Y-%m-%d %H:%M:%S`.
+        Year-month-day Hour:minute:second
+        Minimum to work is Year.
+        """
+        patterns = [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M",
+            "%Y-%m-%d %H",
+            "%Y-%m-%d",
+            "%Y-%m",
+            "%Y",
+            "%m",
+            "%d",
+        ]
+        for pattern in patterns:
+            with contextlib.suppress(ValueError):
+                convert = int(datetime.strptime(date, pattern).timestamp())
+        try:
+            given = datetime.fromtimestamp(int(convert))
+        except UnboundLocalError:
+            return await ctx.send(_("`{}` is not a valid timestamp.").format(date))
+        curr = datetime.fromtimestamp(int(datetime.now().timestamp()))
+        secs = str((curr - given).total_seconds())
+        seconds = secs[1:][:-2] if "-" in secs else secs[:-2] if ".0" in secs else secs
+        delta = humanize_timedelta(seconds=int(seconds))
+        when = (
+            _("It will be in {}.").format(delta)
+            if given > curr
+            else _("It was {} ago.").format(delta)
+        )
+
+        await ctx.send(
+            _("Successfully converted `{date}` to `{convert}`\n{when}").format(
+                date=date, convert=convert, when=when
+            )
+        )
