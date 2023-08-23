@@ -265,6 +265,12 @@ class Converters(commands.Cog):
         # Feet to inches
         elif final == "ft in":
             calc = val * 12
+        # Feet to miles
+        elif final == "ft mi":
+            calc = val / 5280
+        # Feet to kilometers
+        elif final == "ft km":
+            calc = val * 0.0003048
 
         # Meters to feet
         elif final == "me ft":
@@ -275,6 +281,12 @@ class Converters(commands.Cog):
         # Meters to inches
         elif final == "me in":
             calc = val * 39.37
+        # Meters to miles
+        elif final == "me mi":
+            calc = val * 0.000621371
+        # Meters to kilometers
+        elif final == "me km":
+            calc = val / 1000
 
         # Centimeters to feet
         elif final == "cm ft":
@@ -285,6 +297,12 @@ class Converters(commands.Cog):
         # Centimeters to inches
         elif final == "cm in":
             calc = val / 2.54
+        # Centimeters to miles
+        elif final == "cm mi":
+            calc = val * 0.0000062137
+        # Centimeters to kilometers
+        elif final == "cm km":
+            calc = val / 100000
 
         # Inches to feet
         elif final == "in ft":
@@ -295,13 +313,44 @@ class Converters(commands.Cog):
         # Inches to centimeters
         elif final == "in cm":
             calc = val * 2.54
+        # Inches to miles
+        elif final == "in mi":
+            calc = val * 0.000015783
+        # Inches to kilometers
+        elif final == "in km":
+            calc = val * 0.0000254
 
         # Miles to kilometers
         elif final == "mi km":
-            calc = round((val * 1.609344), 1)
+            calc = val * 1.609344
+        # Miles to meters
+        elif final == "mi me":
+            calc = val * 1609.344
+        # Miles to feet
+        elif final == "mi ft":
+            calc = val * 5280
+        # Miles to centimeters
+        elif final == "mi cm":
+            calc = val * 160934.4
+        # Miles to inches
+        elif final == "mi in":
+            calc = val * 63360
+
         # Kilometers to miles
         elif final == "km mi":
-            calc = round((val / 1.609344), 1)
+            calc = val * 0.621371
+        # Kilometers to meters
+        elif final == "km me":
+            calc = val * 1000
+        # Kilometers to feet
+        elif final == "km ft":
+            calc = val * 3280.84
+        # Kilometers to centimeters
+        elif final == "km cm":
+            calc = val * 100000
+        # Kilometers to inches
+        elif final == "km in":
+            calc = val * 39370.1
 
         # Gallons to liters
         elif final == "gal lit":
