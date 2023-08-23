@@ -223,7 +223,7 @@ class Converters(commands.Cog):
     
     # Feet to meters, centimeters, inches by Cata-lystic
     @conv.group(aliases=['ft'])
-    async def feet(self, ctx: commands.Context):
+    async def ft(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
 
@@ -233,27 +233,27 @@ class Converters(commands.Cog):
         `[p]conv ft in` Feet to inches
         """
 
-    @feet.command(name="me", aliases=['meters', 'm'])
+    @ft.command(name="me", aliases=['meters', 'meter', 'm'])
     async def ft_to_me(self, ctx: commands.Context, length: float):
         """Convert feet to meters."""
         m = length * 0.3048
         await ctx.send(_("{length:,} feet is equal to {m:,} meters.").format(length=length, m=m))
     
-    @feet.command(name="cm", aliases=['c', 'centimeters'])
+    @ft.command(name="cm", aliases=['c', 'centimeter', 'centimeters'])
     async def ft_to_cm(self, ctx: commands.Context, length: float):
         """Convert feet to centimeters."""
         cm = length * 30.48
         await ctx.send(_("{length:,} feet is equal to {cm:,} centimeters.").format(length=length, cm=cm))
 
-    @feet.command(name="in", aliases=['inches', 'i'])
+    @ft.command(name="in", aliases=['inches', 'inch', 'i'])
     async def ft_to_in(self, ctx: commands.Context, length: float):
         """Convert feet to inches."""
         i = length * 12
         await ctx.send(_("{length:,} feet is equal to {i:,} inches.").format(length=length, i=i))
 
     # Meters to centimeters, feet, inches by Cata-lystic
-    @conv.group(aliases=['me', 'm'])
-    async def meters(self, ctx: commands.Context):
+    @conv.group(aliases=['meters', 'm'])
+    async def me(self, ctx: commands.Context):
         """
         Convert meters to centimeters, feet, or inches.
 
@@ -263,19 +263,19 @@ class Converters(commands.Cog):
         `[p]conv me in` Meters to inches
         """
 
-    @meters.command(name="cm", aliases=['c', 'centimeters'])
+    @me.command(name="cm", aliases=['c', 'centimeter', 'centimeters'])
     async def me_to_cm(self, ctx: commands.Context, length: float):
         """Convert meters to centimeters."""
         cm = length * 100
         await ctx.send(_("{length:,} meters is equal to {cm:,} centimeters.").format(length=length, cm=cm))
 
-    @meters.command(name="ft", aliases=['feet', 'f'])
+    @me.command(name="ft", aliases=['feet', 'foot', 'f'])
     async def me_to_ft(self, ctx: commands.Context, length: float):
         """Convert meters to feet."""
         ft = length * 3.28084
         await ctx.send(_("{length:,} meters is equal to {ft:,} feet.").format(length=length, ft=ft))
 
-    @meters.command(name="in", aliases=['inches', 'i'])
+    @me.command(name="in", aliases=['inches', 'inch', 'i'])
     async def me_to_in(self, ctx: commands.Context, length: float):
         """Convert meters to inches."""
         i = length * 39.37
@@ -283,7 +283,7 @@ class Converters(commands.Cog):
 
     # Meters to centimeters, feet, inches by Cata-lystic
     @conv.group(aliases=['cm'])
-    async def centimeters(self, ctx: commands.Context):
+    async def cm(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
 
@@ -293,27 +293,27 @@ class Converters(commands.Cog):
         `[p]conv cm in` Centimeters to inches
         """
 
-    @centimeters.command(name="me", aliases=['meters', 'm'])
+    @cm.command(name="me", aliases=['meters', 'meter', 'm'])
     async def cm_to_m(self, ctx: commands.Context, length: float):
         """Convert centimeters to meters."""
         m = length / 100
         await ctx.send(_("{length:,} centimeters is equal to {m:,} meters.").format(length=length, m=m))
     
-    @centimeters.command(name="ft", aliases=['f', 'feet'])
+    @cm.command(name="ft", aliases=['f', 'feet', 'foot'])
     async def cm_to_ft(self, ctx: commands.Context, length: float):
         """Convert centimeters to feet."""
         ft = length / 30.48
         await ctx.send(_("{length:,} centimeters is equal to {ft:,} feet.").format(length=length, ft=ft))
 
-    @centimeters.command(name="in", aliases=['inches', 'i'])
+    @cm.command(name="in", aliases=['inches', 'inch', 'i'])
     async def cm_to_in(self, ctx: commands.Context, length: float):
         """Convert centimeters to inches."""
         i = length / 2.54
         await ctx.send(_("{length:,} centimeters is equal to {i:,} inches.").format(length=length, i=i))
     
     # Inches to centimeters, meters, feet by Cata-lystic
-    @conv.group(aliases=['in', 'i'])
-    async def inches(self, ctx: commands.Context):
+    @conv.group(aliases=['inches', 'in', 'i'])
+    async def inch(self, ctx: commands.Context):
         """
         Convert inches to meters, centimeters, or feet.
 
@@ -323,19 +323,19 @@ class Converters(commands.Cog):
         `[p]conv in cm` Inches to centimeters
         """
     
-    @inches.command(name="ft", aliases=['f', 'feet'])
+    @inch.command(name="ft", aliases=['f', 'feet', 'foot'])
     async def in_to_ft(self, ctx: commands.Context, length: float):
         """Convert inches to feet."""
         ft = length / 12
         await ctx.send(_("{length:,} inches is equal to {ft:,} feet.").format(length=length, ft=ft))
 
-    @inches.command(name="me", aliases=['meters', 'm'])
+    @inch.command(name="me", aliases=['meter', 'meters', 'm'])
     async def in_to_m(self, ctx: commands.Context, length: float):
         """Convert inches to meters."""
         m = length * 0.0254
         await ctx.send(_("{length:,} inches is equal to {m:,} meters.").format(length=length, m=m))
 
-    @inches.command(name="cm", aliases=['c', 'centimeters'])
+    @inch.command(name="cm", aliases=['c', 'centimeters'])
     async def in_to_cm(self, ctx: commands.Context, length: float):
         """Convert inches to centimeters."""
         cm = length * 2.54
