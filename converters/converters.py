@@ -66,19 +66,20 @@ class Converters(commands.Cog):
         # Loop through each list in the dictionary and see if it exists.
         # if it does, return the index
 
-        validKey1 = None
-        validKey2 = None
+        validFrom = "Invalid convertFrom"
+        validTo = "Invalid convertTo"
+
         for i in range(len(val_list)):
             if convertFrom in val_list[i]:
-                validKey1 = key_list[i]
+                validFrom = key_list[i]
 
             if convertTo in val_list[i]:
-                validKey2 = key_list[i]
+                validTo = key_list[i]
         
-        validKey1 = "Invalid converter" if validKey1 == None else validKey1
-        validKey2 = "Invalid converter" if validKey2 == None else validKey2
-
-        await ctx.send(f"{validKey1} | {validKey2}")
+        if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
+            await ctx.send("OK!")
+        else:
+            await ctx.send(f"{validKey1} | {validKey2}")
 
 
 
