@@ -77,13 +77,22 @@ class Converters(commands.Cog):
                 validTo = key_list[i]
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            validConversion = f"{validFrom} {validTo}"
+            val = f"{validFrom} {validTo}"
             await ctx.send(validConversion)
         else:
-            await ctx.send(f"{validFrom} | {validTo}")
+            return await ctx.send(f"{validFrom} | {validTo}")
 
+        # Here is the massive if/elif statement for each possible conversion
+        if val == "lb kg":
+            calc = round((val * 0.45359237), 1)
+            msg = ("> {val:,} pounds is equal to {calc:,} kilograms.").format(val=val, calc=calc)
+        elif val == "kg lb":
+            calc = round((val / 0.45359237), 1)
+            msg = ("> {val:,} kilograms is equal to {calc:,} pounds.").format(val=val, calc=calc)
+        else:
+            msg = "Invalid set of conversions"
 
-
+        return await ctx.send(f"{msg}")
 
 
 
