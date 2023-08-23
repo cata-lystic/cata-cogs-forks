@@ -49,7 +49,7 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo: None, val: float):
+    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float=60):
         """Master converter.
         
         Weight: lb, kg, oz, gr, ton, tonne
