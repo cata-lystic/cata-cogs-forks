@@ -116,6 +116,16 @@ class Converters(commands.Cog):
         # Grams to ounces
         elif final == "gr oz":
             calc = val / 28.3495
+        # Ounces to pounds
+        elif final == "oz lb":
+            calc = val / 16
+        # Ounces to kilograms
+        elif final == "oz kg":
+            calc = val / 35.274
+        # Ounces to grams
+        elif final == "oz gr":
+            calc = val * 28.35
+        
 
         
 
