@@ -297,7 +297,7 @@ class Converters(commands.Cog):
     async def in_to_ft(self, ctx: commands.Context, length: float):
         """Convert inches to feet."""
         ft = length / 12
-        await ctx.send(_("{length:,} inches is equal to {cm:,} feet.").format(length=length, ft=ft))
+        await ctx.send(_("{length:,} inches is equal to {ft:,} feet.").format(length=length, ft=ft))
 
     @inches.command(name="me", aliases=['meters', 'm'])
     async def in_to_m(self, ctx: commands.Context, length: float):
