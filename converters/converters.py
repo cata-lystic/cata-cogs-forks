@@ -59,7 +59,7 @@ class Converters(commands.Cog):
         valid = {
             'lb': ['pounds', 'lb', 'lbs', 'pound'],
             'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-            'oz': ['ounces', 'ounce'],
+            'oz': ['ounces', 'ounce', 'os'],
             'gr': ['grams', 'gr', 'gram']
         }
 
@@ -101,6 +101,21 @@ class Converters(commands.Cog):
         # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
+        # Kilograms to ounces
+        elif final == "kg oz":
+            calc = val * 35.2739619
+        # Kilograms to grams
+        elif final == "kg gr":
+            calc = val * 1000
+        # Grams to kilograms
+        elif final == "gr kg":
+            calc = val / 1000
+        # Grams to pounds
+        elif final == "gr lb":
+            calc = val / 453.592
+        # Grams to ounces
+        elif final == "gr oz":
+            calc = val / 28.3495
 
         
 
@@ -204,63 +219,6 @@ class Converters(commands.Cog):
         )
         await ctx.send(msg)
 
-    @conv.group(aliases=['pound', 'pounds'])
-    async def lb(self, ctx: commands.Context):
-        """
-        Pounds to kilograms, ounces, and grams.
-
-        Usage:
-        `[p]conv lb kg` Pounds to kilograms
-        `[p]conv lb oz` Pounds to ounces
-        `[p]conv lb g` Pounds to grams
-        """
-
-    @lb.command(name="kg")
-    async def lb_to_kg(self, ctx: commands.Context, val: float):
-        """Pounds to kilograms."""
-        output = round((val * 0.45359237), 1)
-        await ctx.send(_("> {val:,} pounds is equal to {output:,} kilograms.").format(val=val, output=output))
-
-    @lb.command(name="oz", aliases=['ounce', 'ounces'])
-    async def lb_to_oz(self, ctx: commands.Context, val: float):
-        """Pounds to ounces."""
-        output = val * 16
-        await ctx.send(_("> {val:,} pounds is equal to {output:,} ounces.").format(val=val, output=output))
-
-    @lb.command(name="g", aliases=['gr', 'gram', 'grams'])
-    async def lb_to_g(self, ctx: commands.Context, val: float):
-        """Pounds to grams."""
-        output = val * 453.592
-        await ctx.send(_("> {val:,} pounds is equal to {output:,} grams.").format(val=val, output=output))
-
-    @conv.group(aliases=['kilograms', 'kilogram', 'kilo'])
-    async def kg(self, ctx: commands.Context):
-        """
-        Kilograms to pounds, ounces, and grams
-
-        Usage:
-        `[p]conv kg lb`
-        `[p]conv kg oz`
-        `[p]conv kg g`
-        """
-
-    @kg.command(name="lb")
-    async def kg_to_pounds(self, ctx: commands.Context, val: float):
-        """Kilograms to pounds."""
-        output = round((val / 0.45359237), 1)
-        await ctx.send(_("> {val:,} kilograms is equal to {output:,} pounds.").format(val=val, output=output))
-
-    @kg.command(name="oz", aliases=['ounce', 'ounces'])
-    async def kg_to_oz(self, ctx: commands.Context, val: float):
-        """Kilograms to ounces."""
-        output = val * 35.2739619
-        await ctx.send(_("> {val:,} kilograms is equal to {output:,} ounces.").format(val=val, output=output))
-
-    @kg.command(name="g", aliases=['gr', 'gram', 'grams'])
-    async def kg_to_g(self, ctx: commands.Context, val: float):
-        """Kilograms to grams."""
-        output = val * 1000
-        await ctx.send(_("> {val:,} kilograms is equal to {output:,} grams.").format(val=val, output=output))
 
 
     @conv.group(aliases=['feet', 'foot'])
