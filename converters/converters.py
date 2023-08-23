@@ -49,7 +49,7 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo):
+    async def con(self, ctx: commands.Context, convertFrom, convertTo, val):
         """Master converter."""
 
         # List of valid conversions
@@ -77,15 +77,15 @@ class Converters(commands.Cog):
                 validTo = key_list[i]
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            val = f"{validFrom} {validTo}"
+            final = f"{validFrom} {validTo}"
         else:
-            return await ctx.send(f"{validFrom} | {validTo}")
+            return await ctx.send(f"{validFrom} | {validTo} | {val}")
 
         # Here is the massive if/elif statement for each possible conversion
-        if val == "lb kg":
+        if final == "lb kg":
             calc = round((val * 0.45359237), 1)
             msg = ("> {val:,} pounds is equal to {calc:,} kilograms.").format(val=val, calc=calc)
-        elif val == "kg lb":
+        elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
             msg = ("> {val:,} kilograms is equal to {calc:,} pounds.").format(val=val, calc=calc)
         else:
