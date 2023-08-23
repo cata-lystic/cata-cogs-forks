@@ -281,8 +281,8 @@ class Converters(commands.Cog):
         i = length * 39.37
         await ctx.send(_("{length:,} meters is equal to {i:,} inches.").format(length=length, i=i))
 
-    # Meters to centimeters, feet, inches by Cata-lystic
-    @conv.group(aliases=['centimeters', 'centimeter', 'c'])
+    # Centimeters to meters, feet, inches by Cata-lystic
+    @conv.group(aliases=['centimeters', 'centimeter'])
     async def cm(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
