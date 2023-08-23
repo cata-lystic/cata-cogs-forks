@@ -810,7 +810,7 @@ class EventMixin:
             if reason:
                 embed.add_field(name=_("Reason"), value=str(reason), inline=False)
             embed.set_author(
-                name=_("{member} ({m_id}) has left the guild").format(
+                name=_("{member} ({m_id}) has left the server").format(
                     member=member, m_id=member.id
                 ),
                 url=member.display_avatar,
@@ -821,7 +821,7 @@ class EventMixin:
         else:
             time = datetime.datetime.now(datetime.timezone.utc)
             msg = _(
-                "{emoji} {time} **{member}**(`{m_id}`) left the guild. Total members: {users}"
+                "{emoji} {time} **{member}**(`{m_id}`) left the server. Total members: {users}"
             ).format(
                 emoji=self.settings[guild.id]["user_left"]["emoji"],
                 time=discord.utils.format_dt(time),
