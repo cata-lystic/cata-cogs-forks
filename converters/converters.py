@@ -52,10 +52,14 @@ class Converters(commands.Cog):
     async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float):
         """Master converter."""
 
+        if (convertFrom == convertTo):
+            return ctx.send("You can't convert the same unit")
+
         # List of valid conversions
         valid = {
             'lb': ['pounds', 'lb', 'lbs', 'pound'],
             'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
+            'oz': ['ounces', 'ounce'],
             'gr': ['grams', 'gr', 'gram']
         }
 
@@ -88,10 +92,17 @@ class Converters(commands.Cog):
         # Pounds to kilograms
         if final == "lb kg":
             calc = round((val * 0.45359237), 1)
-            
+        # Pounds to ounces
+        elif final == "lb oz":
+            calc = val * 16
+        # Pounds to grams
+        elif final == "lb gr":
+            calc = val * 453.592
         # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
+
+        
 
         if calc != "":
             con1 = valid[validFrom][0]
