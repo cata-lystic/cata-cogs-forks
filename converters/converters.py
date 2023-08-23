@@ -193,28 +193,12 @@ class Converters(commands.Cog):
         elif final == "tonne ton":
             calc = val * 1.12
 
-
-         @conv.command(aliases=["celsius"])
-    async def c(self, ctx: commands.Context, val: float):
-        """Celsius to Fahrenheit."""
-        output = round((val * 1.8) + 32, 1)
-        msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
-            val=val, output=output
-        )
-        await ctx.send(msg)
-
-    @conv.command(aliases=["fahrenheit"])
-    async def f(self, ctx: commands.Context, val: float):
-        """Fahrenheit to Celsius."""
-        output = round((val - 32) / 1.8, 1)
-        msg = _("> {val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
-            val=val, output=output
-        )
-        await ctx.send(msg)
-
-
-        
-
+        # Celsius to Fahrenheit
+        elif final == "c":
+            calc = round((val * 1.8) + 32, 1)
+        # Fahrenheit to Celsius
+        elif final == "f":
+            calc = round((val - 32) / 1.8, 1)
         
 
         if calc != "":
