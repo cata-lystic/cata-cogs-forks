@@ -394,6 +394,37 @@ class Converters(commands.Cog):
         output = val / 8
         await ctx.send(_("{val:,} fluid ounces is equal to {output:,} cups.").format(val=val, output=output))
 
+
+    @conv.group(aliases=['cups'])
+    async def cup(self, ctx: commands.Context):
+        """
+        Cups to liters, gallons, and fluid ounces
+
+        Usage:
+        `[p]conv cup lit` Cups to liters
+        `[p]conv cup gal` Cups to gallons
+        `[p]conv cup oz` Cups to fluid ounces
+        """
+    
+    @cup.command(name="lit", aliases=['liters', 'liter', 'li'])
+    async def cup_to_lit(self, ctx: commands.Context, val: float):
+        """Cups to liters."""
+        output = val * 0.236588
+        await ctx.send(_("{val:,} cups is equal to {output:,} liters.").format(val=val, output=output))
+
+    @cup.command(name="gal", aliases=['gallon', 'gallons', 'gals'])
+    async def cup_to_gal(self, ctx: commands.Context, val: float):
+        """Cups to gallons."""
+        output = val * 0.0625
+        await ctx.send(_("{val:,} cups is equal to {output:,} gallons.").format(val=val, output=output))
+
+    @cup.command(name="oz", aliases=['floz', 'fluidounces', 'fluidounce'])
+    async def cup_to_floz(self, ctx: commands.Context, val: float):
+        """Cups to fluid ounces."""
+        output = val * 8
+        await ctx.send(_("{val:,} cups is equal to {output:,} fluid ounces.").format(val=val, output=output))
+
+
     @conv.command()
     async def mi(self, ctx: commands.Context, val: float):
         """Miles to kilometers."""
