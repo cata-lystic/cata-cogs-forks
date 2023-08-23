@@ -141,19 +141,19 @@ class Converters(commands.Cog):
     async def lb_to_kg(self, ctx: commands.Context, val: float):
         """Pounds to kilograms."""
         output = round((val * 0.45359237), 1)
-        await ctx.send(_("{val:,} pounds is equal to {output:,} kilograms.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} pounds is equal to {output:,} kilograms.").format(val=val, output=output))
 
     @lb.command(name="oz", aliases=['ounce', 'ounces'])
     async def lb_to_oz(self, ctx: commands.Context, val: float):
         """Pounds to ounces."""
         output = val * 16
-        await ctx.send(_("{val:,} pounds is equal to {output:,} ounces.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} pounds is equal to {output:,} ounces.").format(val=val, output=output))
 
     @lb.command(name="g", aliases=['gr', 'gram', 'grams'])
     async def lb_to_g(self, ctx: commands.Context, val: float):
         """Pounds to grams."""
         output = val * 453.592
-        await ctx.send(_("{val:,} pounds is equal to {output:,} grams.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} pounds is equal to {output:,} grams.").format(val=val, output=output))
 
     @conv.group(aliases=['kilograms', 'kilogram', 'kilo'])
     async def kg(self, ctx: commands.Context):
@@ -170,19 +170,19 @@ class Converters(commands.Cog):
     async def kg_to_pounds(self, ctx: commands.Context, val: float):
         """Kilograms to pounds."""
         output = round((val / 0.45359237), 1)
-        await ctx.send(_("{val:,} kilograms is equal to {output:,} pounds.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} kilograms is equal to {output:,} pounds.").format(val=val, output=output))
 
     @kg.command(name="oz", aliases=['ounce', 'ounces'])
     async def kg_to_oz(self, ctx: commands.Context, val: float):
         """Kilograms to ounces."""
         output = val * 35.2739619
-        await ctx.send(_("{val:,} kilograms is equal to {output:,} ounces.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} kilograms is equal to {output:,} ounces.").format(val=val, output=output))
 
     @kg.command(name="g", aliases=['gr', 'gram', 'grams'])
     async def kg_to_g(self, ctx: commands.Context, val: float):
         """Kilograms to grams."""
         output = val * 1000
-        await ctx.send(_("{val:,} kilograms is equal to {output:,} grams.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} kilograms is equal to {output:,} grams.").format(val=val, output=output))
 
 
     @conv.group(aliases=['feet', 'foot'])
@@ -200,19 +200,19 @@ class Converters(commands.Cog):
     async def ft_to_me(self, ctx: commands.Context, val: float):
         """Feet to meters."""
         output = val * 0.3048
-        await ctx.send(_("{val:,} feet is equal to {output:,} meters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} feet is equal to {output:,} meters.").format(val=val, output=output))
     
     @ft.command(name="cm", aliases=['c', 'centimeter', 'centimeters'])
     async def ft_to_cm(self, ctx: commands.Context, val: float):
         """Feet to centimeters."""
         output = val * 30.48
-        await ctx.send(_("{val:,} feet is equal to {output:,} centimeters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} feet is equal to {output:,} centimeters.").format(val=val, output=output))
 
     @ft.command(name="in", aliases=['inches', 'inch', 'i'])
     async def ft_to_in(self, ctx: commands.Context, val: float):
         """Feet to inches."""
         output = val * 12
-        await ctx.send(_("{val:,} feet is equal to {output:,} inches.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} feet is equal to {output:,} inches.").format(val=val, output=output))
 
 
     @conv.group(aliases=['meters', 'meter', 'm'])
@@ -230,19 +230,19 @@ class Converters(commands.Cog):
     async def me_to_cm(self, ctx: commands.Context, val: float):
         """Meters to centimeters."""
         output = val * 100
-        await ctx.send(_("{val:,} meters is equal to {output:,} centimeters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} meters is equal to {output:,} centimeters.").format(val=val, output=output))
 
     @me.command(name="ft", aliases=['feet', 'foot', 'f'])
     async def me_to_ft(self, ctx: commands.Context, val: float):
         """Meters to feet."""
         output = val * 3.28084
-        await ctx.send(_("{val:,} meters is equal to {output:,} feet.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} meters is equal to {output:,} feet.").format(val=val, output=output))
 
     @me.command(name="in", aliases=['inches', 'inch', 'i'])
     async def me_to_in(self, ctx: commands.Context, val: float):
         """Meters to inches."""
         output = val * 39.37
-        await ctx.send(_("{val:,} meters is equal to {output:,} inches.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} meters is equal to {output:,} inches.").format(val=val, output=output))
 
 
     @conv.group(aliases=['centimeters', 'centimeter'])
@@ -260,19 +260,19 @@ class Converters(commands.Cog):
     async def cm_to_m(self, ctx: commands.Context, val: float):
         """Centimeters to meters."""
         output = val / 100
-        await ctx.send(_("{val:,} centimeters is equal to {output:,} meters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} centimeters is equal to {output:,} meters.").format(val=val, output=output))
     
     @cm.command(name="ft", aliases=['f', 'feet', 'foot'])
     async def cm_to_ft(self, ctx: commands.Context, val: float):
         """Centimeters to feet."""
         output = val / 30.48
-        await ctx.send(_("{val:,} centimeters is equal to {output:,} feet.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} centimeters is equal to {output:,} feet.").format(val=val, output=output))
 
     @cm.command(name="in", aliases=['inches', 'inch', 'i'])
     async def cm_to_in(self, ctx: commands.Context, val: float):
         """Centimeters to inches."""
         output = val / 2.54
-        await ctx.send(_("{val:,} centimeters is equal to {output:,} inches.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} centimeters is equal to {output:,} inches.").format(val=val, output=output))
     
 
     @conv.group(aliases=['inches', 'in', 'i'])
@@ -290,19 +290,19 @@ class Converters(commands.Cog):
     async def in_to_ft(self, ctx: commands.Context, val: float):
         """Inches to feet."""
         output = val / 12
-        await ctx.send(_("{val:,} inches is equal to {output:,} feet.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} inches is equal to {output:,} feet.").format(val=val, output=output))
 
     @inch.command(name="me", aliases=['meter', 'meters', 'm'])
     async def in_to_m(self, ctx: commands.Context, val: float):
         """Inches to meters."""
         output = val * 0.0254
-        await ctx.send(_("{val:,} inches is equal to {output:,} meters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} inches is equal to {output:,} meters.").format(val=val, output=output))
 
     @inch.command(name="cm", aliases=['c', 'centimeters'])
     async def in_to_cm(self, ctx: commands.Context, val: float):
         """Inches to centimeters."""
         output = val * 2.54
-        await ctx.send(_("{val:,} inches is equal to {output:,} centimeters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} inches is equal to {output:,} centimeters.").format(val=val, output=output))
 
 
     @conv.group(aliases=['gallon', 'gallons'])
@@ -320,19 +320,19 @@ class Converters(commands.Cog):
     async def gal_to_lit(self, ctx: commands.Context, val: float):
         """Gallons to liters."""
         output = val * 3.78541
-        await ctx.send(_("{val:,} gallons is equal to {output:,} liters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} gallons is equal to {output:,} liters.").format(val=val, output=output))
 
     @gal.command(name="oz", aliases=['floz', 'ounce', 'fluidounce'])
     async def gal_to_oz(self, ctx: commands.Context, val: float):
         """Gallons to fluid ounces."""
         output = val * 128
-        await ctx.send(_("{val:,} gallons is equal to {output:,} fluid ounces.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} gallons is equal to {output:,} fluid ounces.").format(val=val, output=output))
 
     @gal.command(name="cup", aliases=['cups'])
     async def gal_to_cup(self, ctx: commands.Context, val: float):
         """Gallons to cups."""
         output = val * 16
-        await ctx.send(_("{val:,} gallons is equal to {output:,} cups.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} gallons is equal to {output:,} cups.").format(val=val, output=output))
 
 
     @conv.group(aliases=['liter', 'liters'])
@@ -350,19 +350,19 @@ class Converters(commands.Cog):
     async def lit_to_gal(self, ctx: commands.Context, val: float):
         """Liters to gallons."""
         output = val * 0.264172
-        await ctx.send(_("{val:,} liters is equal to {output:,} gallons.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} liters is equal to {output:,} gallons.").format(val=val, output=output))
 
     @lit.command(name="oz", aliases=['floz', 'ounce', 'fluidounce'])
     async def lit_to_oz(self, ctx: commands.Context, val: float):
         """Liters to fluid ounces."""
         output = val * 33.814
-        await ctx.send(_("{val:,} liters is equal to {output:,} fluid ounces.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} liters is equal to {output:,} fluid ounces.").format(val=val, output=output))
 
     @lit.command(name="cup", aliases=['cups'])
     async def lit_to_cup(self, ctx: commands.Context, val: float):
         """Liters to cups."""
         output = val * 4.22675
-        await ctx.send(_("{val:,} liters is equal to {output:,} cups.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} liters is equal to {output:,} cups.").format(val=val, output=output))
     
 
     @conv.group(aliases=['fluidounce', 'fluidoz', 'fluidounces'])
@@ -380,19 +380,19 @@ class Converters(commands.Cog):
     async def floz_to_lit(self, ctx: commands.Context, val: float):
         """Fluid ounces to liters."""
         output = val / 33.814
-        await ctx.send(_("{val:,} fluid ounces is equal to {output:,} liters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} fluid ounces is equal to {output:,} liters.").format(val=val, output=output))
 
     @floz.command(name="gal", aliases=['gallon', 'gallons', 'gals'])
     async def floz_to_gal(self, ctx: commands.Context, val: float):
         """Fluid ounces to gallons."""
         output = val / 128
-        await ctx.send(_("{val:,} fluid ounces is equal to {output:,} gallons.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} fluid ounces is equal to {output:,} gallons.").format(val=val, output=output))
 
     @floz.command(name="cup", aliases=['cups'])
     async def floz_to_cup(self, ctx: commands.Context, val: float):
         """Fluid ounces to cups."""
         output = val / 8
-        await ctx.send(_("{val:,} fluid ounces is equal to {output:,} cups.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} fluid ounces is equal to {output:,} cups.").format(val=val, output=output))
 
 
     @conv.group(aliases=['cups'])
@@ -410,29 +410,29 @@ class Converters(commands.Cog):
     async def cup_to_lit(self, ctx: commands.Context, val: float):
         """Cups to liters."""
         output = val * 0.236588
-        await ctx.send(_("{val:,} cups is equal to {output:,} liters.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} cups is equal to {output:,} liters.").format(val=val, output=output))
 
     @cup.command(name="gal", aliases=['gallon', 'gallons', 'gals'])
     async def cup_to_gal(self, ctx: commands.Context, val: float):
         """Cups to gallons."""
         output = val * 0.0625
-        await ctx.send(_("{val:,} cups is equal to {output:,} gallons.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} cups is equal to {output:,} gallons.").format(val=val, output=output))
 
     @cup.command(name="oz", aliases=['floz', 'fluidounces', 'fluidounce'])
     async def cup_to_floz(self, ctx: commands.Context, val: float):
         """Cups to fluid ounces."""
         output = val * 8
-        await ctx.send(_("{val:,} cups is equal to {output:,} fluid ounces.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} cups is equal to {output:,} fluid ounces.").format(val=val, output=output))
 
 
     @conv.command()
     async def mi(self, ctx: commands.Context, val: float):
         """Miles to kilometers."""
         output = round((val * 1.609344), 1)
-        await ctx.send(_("{val:,} miles is equal to {output:,} kilometers.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} miles is equal to {output:,} kilometers.").format(val=val, output=output))
 
     @conv.command()
     async def km(self, ctx: commands.Context, val: float):
         """Kilometers to miles."""
         output = round((val / 1.609344), 1)
-        await ctx.send(_("{val:,} kilometers is equal to {output:,} miles.").format(val=val, output=output))
+        await ctx.send(_("> {val:,} kilometers is equal to {output:,} miles.").format(val=val, output=output))
