@@ -222,7 +222,7 @@ class Converters(commands.Cog):
 
     
     # Feet to meters, centimeters, inches by Cata-lystic
-    @conv.group(aliases=['ft'])
+    @conv.group(aliases=['feet', 'foot', 'f'])
     async def ft(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
@@ -252,7 +252,7 @@ class Converters(commands.Cog):
         await ctx.send(_("{length:,} feet is equal to {i:,} inches.").format(length=length, i=i))
 
     # Meters to centimeters, feet, inches by Cata-lystic
-    @conv.group(aliases=['meters', 'm'])
+    @conv.group(aliases=['meters', 'meter', 'm'])
     async def me(self, ctx: commands.Context):
         """
         Convert meters to centimeters, feet, or inches.
@@ -282,7 +282,7 @@ class Converters(commands.Cog):
         await ctx.send(_("{length:,} meters is equal to {i:,} inches.").format(length=length, i=i))
 
     # Meters to centimeters, feet, inches by Cata-lystic
-    @conv.group(aliases=['cm'])
+    @conv.group(aliases=['centimeters', 'centimeter', 'c'])
     async def cm(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
