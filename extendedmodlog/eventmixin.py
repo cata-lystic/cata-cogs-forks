@@ -747,13 +747,14 @@ class EventMixin:
         else:
             time = datetime.datetime.now(datetime.timezone.utc)
             msg = _(
-                "{emoji} {time} **{member}**(`{m_id}`) " "joined the server. (Account created {created_on})"
+                "{emoji} {time} **{member}**(`{m_id}`) " "joined the server. (Account created {created})"
             ).format(
                 emoji=self.settings[guild.id]["user_join"]["emoji"],
                 time=discord.utils.format_dt(time),
                 member=member,
                 m_id=member.id,
                 users=users,
+                created=created_on
             )
             await channel.send(msg, allowed_mentions=self.allowed_mentions)
 
