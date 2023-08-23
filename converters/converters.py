@@ -89,7 +89,11 @@ class Converters(commands.Cog):
             'ton': ['tons', 'ton', 'uston'],
             'tonne': ['tonnes', 'tonne', 'ukton'],
             'c': ['Celsius', 'c', 'celsius'],
-            'f': ['Fahrenheit', 'f', 'fahrenheit']
+            'f': ['Fahrenheit', 'f', 'fahrenheit'],
+            'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
+            'me': ['meters', 'me', 'meter'],
+            'in': ['inches', 'in', 'inch'],
+            'cm': ['centimeters', 'cm', 'centi', 'centimeter']
         }
 
         # Check to make sure chosen conversions are valid
@@ -220,7 +224,18 @@ class Converters(commands.Cog):
         # Fahrenheit to Celsius
         elif final == "f c":
             calc = round((val - 32) / 1.8, 1)
-        
+
+
+        # Feet to meters
+        elif final == "ft me":
+            calc = val * 0.3048
+        # Feet to centimeters
+        elif final == "ft cm":
+            calc = val * 30.48
+        # Feet to inches
+        elif final == "ft in":
+            calc = val * 12
+    
 
         if calc != "":
             con1 = valid[validFrom][0]
@@ -236,36 +251,6 @@ class Converters(commands.Cog):
     @commands.group(aliases=["converter"])
     async def conv(self, ctx: commands.Context):
         """Some utility converters."""
-
-
-    @conv.group(aliases=['feet', 'foot'])
-    async def ft(self, ctx: commands.Context):
-        """
-        Feet to meters, centimeters, or inches.
-
-        Usage:
-        `[p]conv ft me` Feet to meters
-        `[p]conv ft cm` Feet to centimeters
-        `[p]conv ft in` Feet to inches
-        """
-
-    @ft.command(name="me", aliases=['meters', 'meter', 'm'])
-    async def ft_to_me(self, ctx: commands.Context, val: float):
-        """Feet to meters."""
-        output = val * 0.3048
-        await ctx.send(_("> {val:,} feet is equal to {output:,} meters.").format(val=val, output=output))
-    
-    @ft.command(name="cm", aliases=['c', 'centimeter', 'centimeters'])
-    async def ft_to_cm(self, ctx: commands.Context, val: float):
-        """Feet to centimeters."""
-        output = val * 30.48
-        await ctx.send(_("> {val:,} feet is equal to {output:,} centimeters.").format(val=val, output=output))
-
-    @ft.command(name="in", aliases=['inches', 'inch', 'i'])
-    async def ft_to_in(self, ctx: commands.Context, val: float):
-        """Feet to inches."""
-        output = val * 12
-        await ctx.send(_("> {val:,} feet is equal to {output:,} inches.").format(val=val, output=output))
 
 
     @conv.group(aliases=['meters', 'meter', 'm'])
