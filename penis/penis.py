@@ -32,14 +32,8 @@ class Penis(commands.Cog):
 
             if ctx.bot.user.id == user.id:
                 dongs[user] = "8{}D".format("=" * 50)
-            elif user.id == 1019025452511277116:
-                dongs[user] = "8[][][D"
-            elif user.id == 441088103826980885:
-                dongs[user] = "{()}"
-            elif user.id == 477936660684996639:
-                dongs[user] = "~"
-            elif user.id == 328816971317510146:
-                dongs[user] = "<:luneweapon~1:1143367964679213067>"
+            elif (user.id in dorks):
+                dongs[user] = dorks[user.id]
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
