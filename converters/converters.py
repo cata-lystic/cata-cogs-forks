@@ -37,6 +37,29 @@ class Converters(commands.Cog):
     async def convs(self, ctx):
         await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
 
+
+    # This is work on a unified command that will allow any values to be input and calculated as long as they belong to the same category.
+
+    # Instead of a separate menu item for each measurement, commands will be taken like
+    # .con gal lit  // true, gallons and liters can be converted
+    # .con cm in    // true, centimeters and inches can be converted
+    # .con gal in   // false, gallons and inches can't be converted
+
+
+
+
+    @commands.command()
+    async def con(self, ctx: commands.Context, conv1, conv2):
+        """Master converter."""
+        await ctx.send(f"{conv1} | {conv2}")
+
+
+
+
+
+
+
+
     @commands.group(aliases=["converter"])
     async def conv(self, ctx: commands.Context):
         """Some utility converters."""
