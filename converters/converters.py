@@ -99,7 +99,7 @@ class Converters(commands.Cog):
                 if convertTo in val_list[i]:
                     validTo = key_list[i]
             else:
-                convertTo = ""
+                validTo = ""
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
             final = f"{validFrom} {validTo}".strip()
