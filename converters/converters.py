@@ -121,7 +121,7 @@ class Converters(commands.Cog):
     async def celsius_to_fahrenheit(self, ctx: commands.Context, val: float):
         """Celsius to Fahrenheit."""
         output = round((val * 1.8) + 32, 1)
-        msg = _("{val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
+        msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
             val=val, output=output
         )
         await ctx.send(msg)
@@ -139,7 +139,7 @@ class Converters(commands.Cog):
     async def fahrenheit_to_celsius(self, ctx: commands.Context, val: float):
         """Fahrenheit to Celsius."""
         output = round((val - 32) / 1.8, 1)
-        msg = _("{val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
+        msg = _("> {val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
             val=val, output=output
         )
         await ctx.send(msg)
