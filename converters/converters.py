@@ -71,7 +71,7 @@ class Converters(commands.Cog):
             else:
                 validKey = 'Invalid conversion'
 
-        ctx.send(validKey)
+        await ctx.send(validKey)
 
 
 
