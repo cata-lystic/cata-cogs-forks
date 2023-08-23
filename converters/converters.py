@@ -60,7 +60,9 @@ class Converters(commands.Cog):
             'lb': ['pounds', 'lb', 'lbs', 'pound'],
             'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
             'oz': ['ounces', 'ounce', 'os'],
-            'gr': ['grams', 'gr', 'gram']
+            'gr': ['grams', 'gr', 'gram'],
+            'ton': ['tons', 'uston'],
+            'tonne': ['tonnes', 'ukton']
         }
 
         # Check to make sure chosen conversions are valid
@@ -98,6 +100,13 @@ class Converters(commands.Cog):
         # Pounds to grams
         elif final == "lb gr":
             calc = val * 453.592
+        # Pounds to tons (US)
+        elif final == "lb ton":
+            calc = val / 2000
+        # Pounds to tonnes (UK)
+        elif final == "lb tonne":
+            calc = val / 2204.62
+
         # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
@@ -107,6 +116,13 @@ class Converters(commands.Cog):
         # Kilograms to grams
         elif final == "kg gr":
             calc = val * 1000
+        # Kilograms to tons (US)
+        elif final == "kg ton":
+            calc = val / 907.185
+        # Kilograms to tonnes (UK)
+        elif final == "kg tonne":
+            calc = val / 1016.05
+
         # Grams to kilograms
         elif final == "gr kg":
             calc = val / 1000
@@ -116,6 +132,7 @@ class Converters(commands.Cog):
         # Grams to ounces
         elif final == "gr oz":
             calc = val / 28.3495
+
         # Ounces to pounds
         elif final == "oz lb":
             calc = val / 16
