@@ -821,7 +821,7 @@ class EventMixin:
         else:
             time = datetime.datetime.now(datetime.timezone.utc)
             msg = _(
-                "{emoji} {time} **{member}**(`{m_id}`) left the server. Total members: {users}"
+                "{emoji} {time} **{member}**(`{m_id}`) left the server."
             ).format(
                 emoji=self.settings[guild.id]["user_left"]["emoji"],
                 time=discord.utils.format_dt(time),
