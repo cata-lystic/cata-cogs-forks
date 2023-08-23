@@ -111,11 +111,15 @@ class Converters(commands.Cog):
         # Loop through each list in the dictionary and see if it exists.
         # if it does, return the index
 
-        validFrom = "Invalid convertFrom"
-        validTo = "Invalid convertTo"
-        category = "None"
-        for cat, vals in valid.items():
+        validFrom = "" # Converting from
+        validTo = "" # Converting to
+        categoryFrom = "" # Conversion category
+        categoryTo = ""
+        errorMsg = ""
 
+        # Loop through 'valid' dictionary to see if convertFrom and convertTo
+        # match a value in the subdict
+        for cat, vals in valid.items():
 
             # Check to make sure chosen conversions are valid
             key_list = list(valid[cat].keys())
@@ -130,10 +134,18 @@ class Converters(commands.Cog):
                     validTo = key_list[i]
                     categoryTo = cat
         
-        if categoryFrom == categoryTo and validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            final = f"{validFrom} {validTo}"
+        if validFrom == "":
+            errorMsg = f"Error: `{validFrom}` is not a valid unit."
+        elif validTo == "":
+            errorMsg = f"Error: `{validTo}` is not a valid unit."
+        elif categoryFrom != categoryTo:
+            errorMsg = f"Error: Cannot convert from `{categoryFrom}` to `{categoryTo}`."
         else:
-            return await ctx.send(f"{validFrom} | {validTo} | {val}")
+            final = f"{validFrom} {validTo}"
+
+        # Return error if found
+        if errorMsg != "":
+            return await ctx.send(errorMsg)
 
         # Here is the massive if/elif statement for each possible conversion
         
