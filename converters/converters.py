@@ -309,7 +309,7 @@ class Converters(commands.Cog):
     async def in_to_cm(self, ctx: commands.Context, length: float):
         """Convert inches to centimeters."""
         cm = length * 2.54
-        await ctx.send(_("{length:,} inches is equal to {i:,} centimeters.").format(length=length, cm=cm))
+        await ctx.send(_("{length:,} inches is equal to {cm:,} centimeters.").format(length=length, cm=cm))
     
 
     @conv.group()
