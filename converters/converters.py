@@ -209,7 +209,6 @@ class Converters(commands.Cog):
     async def kg(self, ctx: commands.Context):
         """
         Convert kilograms to pounds.
-        See correct usage bellow.
 
         Usage:
         `[p]conv kg lb`
@@ -226,13 +225,12 @@ class Converters(commands.Cog):
     @conv.group(aliases=['ft'])
     async def feet(self, ctx: commands.Context):
         """
-        Convert feet to meters or centimeters.
-        See correct usage bellow.
+        Convert feet to meters, centimeters, or inches.
 
         Usage:
-        `[p]conv ft m`
-        `[p]conv ft cm`
-        `[p]conv ft i`
+        `[p]conv ft m` Feet to meters
+        `[p]conv ft cm` Feet to centimeters
+        `[p]conv ft i` Feet to inches
         """
 
     @feet.command(name="m", aliases=['meters', 'me'])
@@ -248,10 +246,40 @@ class Converters(commands.Cog):
         await ctx.send(_("{length:,} feet is equal to {cm:,} centimeters.").format(length=length, cm=cm))
 
     @feet.command(name="i", aliases=['inches', 'in'])
-    async def ft_to_i(self, ctx: commands.Context, length: float):
+    async def ft_to_in(self, ctx: commands.Context, length: float):
         """Convert feet to inches."""
         i = length * 12
         await ctx.send(_("{length:,} feet is equal to {i:,} inches.").format(length=length, i=i))
+
+    # Meters to centimeters, feet, inches by Cata-lystic
+    @conv.group(aliases=['cm'])
+    async def cm(self, ctx: commands.Context):
+        """
+        Convert feet to meters, centimeters, or inches.
+
+        Usage:
+        `[p]conv cm m` Centimeters to meters
+        `[p]conv cm ft` Centimeters to feet
+        `[p]conv cm i` Centimeters to inches
+        """
+
+    @cm.command(name="m", aliases=['meters', 'me'])
+    async def cm_to_m(self, ctx: commands.Context, length: float):
+        """Convert centimeters to meters."""
+        m = length / 100
+        await ctx.send(_("{length:,} centimeters is equal to {m:,} meters.").format(length=length, m=m))
+    
+    @cm.command(name="ft", aliases=['f', 'feet'])
+    async def cm_to_ft(self, ctx: commands.Context, length: float):
+        """Convert centimeters to feet."""
+        cm = length / 30.48
+        await ctx.send(_("{length:,} centimeters is equal to {cm:,} centimeters.").format(length=length, cm=cm))
+
+    @cm.command(name="i", aliases=['inches', 'in'])
+    async def cm_to_in(self, ctx: commands.Context, length: float):
+        """Convert centimeters to inches."""
+        i = length / 2.54
+        await ctx.send(_("{length:,} centimeters is equal to {i:,} inches.").format(length=length, i=i))
     
     @conv.group()
     async def mi(self, ctx: commands.Context):
