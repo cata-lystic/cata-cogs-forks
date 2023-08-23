@@ -101,7 +101,7 @@ class Converters(commands.Cog):
                 'cm': ['centimeters', 'cm', 'centi', 'centimeter']
             },
             'liquid': {
-                'gal': ['gallons', 'gal', 'gals', 'gallon]'],
+                'gal': ['gallons', 'gal', 'gals', 'gallon']'],
                 'lit': ['liters', 'lit', 'liter'],
                 'floz': ['fluid ounces', 'floz', 'fluidounce', 'fluidounces'],
                 'cup': ['cups', 'cup']
