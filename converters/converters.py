@@ -95,6 +95,7 @@ class Converters(commands.Cog):
             'in': ['inches', 'in', 'inch'],
             'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
             'gal': ['gallons', 'gal', 'gals', 'gallon]'],
+            'lit': ['liters', 'lit', 'liter'],
             'floz': ['fluid ounces', 'floz', 'fluidounce', 'fluidounces'],
             'cup': ['cups', 'cup']
         }
