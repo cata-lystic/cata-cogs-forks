@@ -106,13 +106,12 @@ class Converters(commands.Cog):
     @conv.group(aliases=["celsius"])
     async def c(self, ctx: commands.Context):
         """
-        Convert degree Celsius to Fahrenheit or Kelvin.
+        Convert degree Celsius to Fahrenheit.
         See correct usage bellow.
 
         Usage:
         To Fahrenheit: `[p]conv celsius fahrenheit`
-        To Kelvin: `[p]conv celsius kelvin`
-        (You can also use `[p]conv c f` or `[p]conv c k`)
+        (You can also use `[p]conv c f`)
         """
 
     @c.command(name="f", aliases=["fahrenheit"])
@@ -124,23 +123,15 @@ class Converters(commands.Cog):
         )
         await ctx.send(msg)
 
-    @c.command(name="k", aliases=["kelvin"])
-    async def celsius_to_kelvin(self, ctx: commands.Context, temperature: float):
-        """Convert degree Celsius to Kelvin."""
-        kelvin = round(temperature + 273.15, 1)
-        msg = _("{temp:,}° Celsius is equal to {k:,}° Kelvin.").format(temp=temperature, k=kelvin)
-        await ctx.send(msg)
-
     @conv.group(aliases=["fahrenheit"])
     async def f(self, ctx: commands.Context):
         """
-        Convert Fahrenheit degree to Celsius or Kelvin.
+        Convert Fahrenheit degree to Celsius.
         See correct usage bellow.
 
         Usage:
         To Celsius: `[p]conv fahrenheit celsius`
-        To Kelvin: `[p]conv fahrenheit kelvin`
-        (You can also use `[p]conv f c` or `[p]conv f k`)
+        (You can also use `[p]conv f c`)
         """
 
     @f.command(name="celsius", aliases=["c"])
@@ -149,43 +140,6 @@ class Converters(commands.Cog):
         celsius = round((temperature - 32) / 1.8, 1)
         msg = _("{temp:,}° Fahrenheit is equal to {c:,}° Celsius.").format(
             temp=temperature, c=celsius
-        )
-        await ctx.send(msg)
-
-    @f.command(name="kelvin", aliases=["k"])
-    async def fahrenheit_to_kelvin(self, ctx: commands.Context, temperature: float):
-        """Convert Fahrenheit degree to Kelvin."""
-        kelvin = round((temperature - 32) * (5 / 9) + 273.15, 1)
-        msg = _("{temp:,}° Fahrenheit is equal to {k:,}° Kelvin.").format(
-            temp=temperature, k=kelvin
-        )
-        await ctx.send(msg)
-
-    @conv.group(aliases=["k"])
-    async def kelvin(self, ctx: commands.Context):
-        """
-        Convert Kelvin degree to Celsius or Fahrenheit.
-        See correct usage bellow.
-
-        Usage:
-        To Celsius: `[p]conv kelvin celsius`
-        To Fahrenheit: `[p]conv kelvin fahrenheit`
-        (You can also use `[p]conv f c` or `[p]conv f k`)
-        """
-
-    @kelvin.command(name="celsius", aliases=["c"])
-    async def kelvin_to_celsius(self, ctx: commands.Context, temperature: float):
-        """Convert Kelvin degree to Celsius."""
-        celsius = round(temperature - 273.15, 1)
-        msg = _("{temp:,}° Kelvin is equal to {c:,}° Celsius.").format(temp=temperature, c=celsius)
-        await ctx.send(msg)
-
-    @kelvin.command(name="fahrenheit", aliases=["f"])
-    async def kelvin_to_fahrenheit(self, ctx: commands.Context, temperature: float):
-        """Convert Kelvin degree to Fahrenheit."""
-        fahrenheit = round((temperature - 273.15) * (9 / 5) + 32, 1)
-        msg = _("{temp:,}° Kelvin is equal to {f:,}° Fahrenheit.").format(
-            temp=temperature, f=fahrenheit
         )
         await ctx.send(msg)
 
