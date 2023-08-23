@@ -98,7 +98,9 @@ class Converters(commands.Cog):
                 'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
                 'me': ['meters', 'me', 'meter'],
                 'in': ['inches', 'in', 'inch'],
-                'cm': ['centimeters', 'cm', 'centi', 'centimeter']
+                'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
+                'mi': ['miles', 'mi', 'mile'],
+                'km': ['kilometers', 'km', 'kilometer, kilom']
             },
             'liquid': {
                 'gal': ['gallons', 'gal', 'gals', 'gallon'],
