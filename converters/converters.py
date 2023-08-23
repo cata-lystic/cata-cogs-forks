@@ -56,7 +56,7 @@ class Converters(commands.Cog):
         
         Temp: c, f"""
 
-        if type(convertTo) == int or type(convertTo) == float:
+        if convertTo.isdigit() or type(convertTo) == int or type(convertTo) == float:
             return await ctx.send("To is a number")
 
         if (convertFrom == convertTo):
