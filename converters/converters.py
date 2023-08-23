@@ -63,11 +63,10 @@ class Converters(commands.Cog):
         key_list = list(valid.keys())
         val_list = list(valid.values())
         await ctx.send(val_list)
-        if convertFrom in val_list:
-            index = val_list.index(convertFrom)
-            await ctx.send(key_list[index])
-        else:
-            await ctx.send("Value not found")
+
+        for i in range(len(val_list)):
+            if convertFrom in val_list[i]:
+                await ctx.send(key_list[i])
 
 
 
