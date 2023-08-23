@@ -65,8 +65,8 @@ class Converters(commands.Cog):
 
         # Loop through each list in the dictionary and see if it exists.
         # if it does, return the index
-        validKey1 = ""
-        validKey2 = ""
+        validKey1 = "Invalid converter 1"
+        validKey2 = "Invalid converter 2"
         for i in range(len(val_list)):
             if convertFrom in val_list[i]:
                 validKey1 = key_list[i]
