@@ -49,11 +49,24 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, conv1, conv2):
+    async def con(self, ctx: commands.Context, convertFrom, convertTo):
         """Master converter."""
-        await ctx.send(f"{conv1} | {conv2}")
 
+        # List of valid conversions
+        valid = {
+            'lb': ['lb', 'lbs', 'pound', 'pounds'],
+            'kg': ['kg', 'kgs', 'kilo', 'kilos', 'kilogram', 'kilograms'],
+            'gr': ['gr', 'gram', 'grams']
+        }
 
+        # Check to make sure chosen conversions are valid
+        key_list = list(valid.keys())
+        val_list = list(valid.values())
+        if convertFrom in val_list:
+            index = val_list.index(convertFrom)
+            await ctx.send(key_list[index])
+        else:
+            await ctx.send("Value not found")
 
 
 
