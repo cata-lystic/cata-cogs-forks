@@ -718,7 +718,7 @@ class EventMixin:
         # https://github.com/Cog-Creators/Red-DiscordBot/blob/develop/cogs/general.py
         user_created = int(member.created_at.timestamp())
 
-        created_on = "<t:{user_created}>\n(<t:{user_created}:R>)".format(user_created=user_created)
+        created_on = "<t:{user_created}> (<t:{user_created}:R>)".format(user_created=user_created)
 
         possible_link = await self.get_invite_link(member)
         if embed_links:
