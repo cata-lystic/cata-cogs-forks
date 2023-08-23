@@ -49,7 +49,7 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo, val):
+    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float):
         """Master converter."""
 
         # List of valid conversions
