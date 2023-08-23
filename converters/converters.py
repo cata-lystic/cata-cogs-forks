@@ -113,19 +113,22 @@ class Converters(commands.Cog):
 
         validFrom = "Invalid convertFrom"
         validTo = "Invalid convertTo"
-        for category, vals in valid.items():
+        category = "None"
+        for cat, vals in valid.items():
 
 
             # Check to make sure chosen conversions are valid
-            key_list = list(valid[category].keys())
-            val_list = list(valid[category].values())
+            key_list = list(valid[cat].keys())
+            val_list = list(valid[cat].values())
 
             for i in range(len(val_list)):
                 if convertFrom in val_list[i]:
                     validFrom = key_list[i]
+                    category = cat
 
                 if convertTo in val_list[i]:
                     validTo = key_list[i]
+                    category = cat
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
             final = f"{validFrom} {validTo}"
@@ -291,8 +294,8 @@ class Converters(commands.Cog):
 
 
         if calc != "":
-            con1 = valid[validFrom][0]
-            con2 = valid[validTo][0]
+            con1 = valid[category][validFrom][0]
+            con2 = valid[category][validTo][0]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
