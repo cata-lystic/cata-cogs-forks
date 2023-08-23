@@ -68,13 +68,9 @@ class Converters(commands.Cog):
         for i in range(len(val_list)):
             if convertFrom in val_list[i]:
                 validKey1 = key_list[i]
-            else:
-                validKey1 = 'Invalid conversion'
 
             if convertTo in val_list[i]:
                 validKey2 = key_list[i]
-            else:
-                validKey2 = 'Invalid conversion'
 
         await ctx.send(f"{validKey1} | {validKey2}")
 
