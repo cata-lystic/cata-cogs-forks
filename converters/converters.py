@@ -59,8 +59,11 @@ class Converters(commands.Cog):
         # Check if convertTo is a digit/int/float
         # If it is, use converTo as the val
         # This is because c, f, mi, and km don't require a convertTo
-        if convertTo.isdigit() or type(convertTo) == int or type(convertTo) == float:
-            return await ctx.send("To is a number")
+        try:
+            float(convertTo)
+            return await ctx.send("convertTo is a number")
+        except ValueError:
+            return await ctx.send("converTo is NOT a number")
 
         if (convertFrom == convertTo):
             return await ctx.send("You can't convert the same unit")
