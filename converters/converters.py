@@ -106,12 +106,10 @@ class Converters(commands.Cog):
     @conv.group(aliases=["celsius"])
     async def c(self, ctx: commands.Context):
         """
-        Convert degree Celsius to Fahrenheit.
-        See correct usage bellow.
+        Convert Celsius to Fahrenheit.
 
         Usage:
-        To Fahrenheit: `[p]conv celsius fahrenheit`
-        (You can also use `[p]conv c f`)
+        `[p]conv c f`
         """
 
     @c.command(name="f", aliases=["fahrenheit"])
@@ -126,12 +124,10 @@ class Converters(commands.Cog):
     @conv.group(aliases=["fahrenheit"])
     async def f(self, ctx: commands.Context):
         """
-        Convert Fahrenheit degree to Celsius.
-        See correct usage bellow.
+        Convert Fahrenheit to Celsius.
 
         Usage:
-        To Celsius: `[p]conv fahrenheit celsius`
-        (You can also use `[p]conv f c`)
+        `[p]conv f c`
         """
 
     @f.command(name="celsius", aliases=["c"])
@@ -172,20 +168,34 @@ class Converters(commands.Cog):
         g = mass * 453.592
         await ctx.send(_("{mass:,} pounds is equal to {g:,} grams.").format(mass=mass, g=g))
 
-    @conv.group()
+    @conv.group(aliases=['kilograms', 'kilogram', 'kilo'])
     async def kg(self, ctx: commands.Context):
         """
-        Convert kilograms to pounds.
+        Convert kilograms to pounds, ounces, and grams
 
         Usage:
         `[p]conv kg lb`
+        `[p]conv kg oz`
+        `[p]conv kg g`
         """
 
     @kg.command(name="lb")
     async def kg_to_pounds(self, ctx: commands.Context, mass: float):
         """Convert kilograms to pounds."""
         lb = round((mass / 0.45359237), 1)
-        await ctx.send(_("{mass:,} kg is equal to {lb:,} lb.").format(mass=mass, lb=lb))
+        await ctx.send(_("{mass:,} kilograms is equal to {lb:,} pounds.").format(mass=mass, lb=lb))
+
+    @kg.command(name="oz", aliases=['ounce', 'ounces'])
+    async def kg_to_oz(self, ctx: commands.Context, mass: float):
+        """Convert kilograms to ounces."""
+        oz = mass * 35.2739619
+        await ctx.send(_("{mass:,} kilograms is equal to {oz:,} ounces.").format(mass=mass, oz=oz))
+
+    @kg.command(name="g", aliases=['gr', 'gram', 'grams'])
+    async def kg_to_g(self, ctx: commands.Context, mass: float):
+        """Convert kilograms to grams."""
+        g = mass * 1000
+        await ctx.send(_("{mass:,} kilograms is equal to {g:,} grams.").format(mass=mass, g=g))
 
 
     @conv.group(aliases=['feet', 'foot'])
