@@ -108,26 +108,24 @@ class Converters(commands.Cog):
             }
         }
 
-        for category, vals in valid.items():
-
-            
-
-        # Check to make sure chosen conversions are valid
-        key_list = list(valid.keys())
-        val_list = list(valid.values())
-
         # Loop through each list in the dictionary and see if it exists.
         # if it does, return the index
 
         validFrom = "Invalid convertFrom"
         validTo = "Invalid convertTo"
+        for category, vals in valid.items():
 
-        for i in range(len(val_list)):
-            if convertFrom in val_list[i]:
-                validFrom = key_list[i]
 
-            if convertTo in val_list[i]:
-                validTo = key_list[i]
+            # Check to make sure chosen conversions are valid
+            key_list = list(valid[category].keys())
+            val_list = list(valid[category].values())
+
+            for i in range(len(val_list)):
+                if convertFrom in val_list[i]:
+                    validFrom = key_list[i]
+
+                if convertTo in val_list[i]:
+                    validTo = key_list[i]
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
             final = f"{validFrom} {validTo}"
