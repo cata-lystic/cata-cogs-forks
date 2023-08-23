@@ -228,9 +228,9 @@ class Converters(commands.Cog):
         Convert feet to meters, centimeters, or inches.
 
         Usage:
-        `[p]conv ft m` Feet to meters
+        `[p]conv ft me` Feet to meters
         `[p]conv ft cm` Feet to centimeters
-        `[p]conv ft i` Feet to inches
+        `[p]conv ft in` Feet to inches
         """
 
     @feet.command(name="me", aliases=['meters', 'm'])
@@ -258,9 +258,9 @@ class Converters(commands.Cog):
         Convert feet to meters, centimeters, or inches.
 
         Usage:
-        `[p]conv cm m` Centimeters to meters
+        `[p]conv cm me` Centimeters to meters
         `[p]conv cm ft` Centimeters to feet
-        `[p]conv cm i` Centimeters to inches
+        `[p]conv cm in` Centimeters to inches
         """
 
     @centimeters.command(name="me", aliases=['meters', 'm'])
@@ -288,9 +288,9 @@ class Converters(commands.Cog):
         Convert feet to meters, centimeters, or inches.
 
         Usage:
-        `[p]conv i f` Inches to feet
-        `[p]conv i m` Inches to meters
-        `[p]conv i c` Inches to centimeters
+        `[p]conv in ft` Inches to feet
+        `[p]conv in me` Inches to meters
+        `[p]conv in cm` Inches to centimeters
         """
     
     @inches.command(name="ft", aliases=['f', 'feet'])
