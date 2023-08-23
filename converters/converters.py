@@ -79,7 +79,7 @@ class Converters(commands.Cog):
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
             await ctx.send("OK!")
         else:
-            await ctx.send(f"{validKey1} | {validKey2}")
+            await ctx.send(f"{validFrom} | {validTo}")
 
 
 
