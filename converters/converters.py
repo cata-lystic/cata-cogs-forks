@@ -56,14 +56,15 @@ class Converters(commands.Cog):
         
         Temp: c, f"""
 
-        # Check if convertTo is a digit/int/float
-        # If it is, use converTo as the val
+        # Check if convertTo is a number/float
+        # If it is, use convertTo as the val
         # This is because c, f, mi, and km don't require a convertTo
         try:
             float(convertTo)
-            return await ctx.send("convertTo is a number")
+            val = float(convertTo)
+            convertTo = None
         except ValueError:
-            return await ctx.send("converTo is NOT a number")
+            pass
 
         if (convertFrom == convertTo):
             return await ctx.send("You can't convert the same unit")
@@ -94,11 +95,14 @@ class Converters(commands.Cog):
             if convertFrom in val_list[i]:
                 validFrom = key_list[i]
 
-            if convertTo in val_list[i]:
-                validTo = key_list[i]
+            if convertTo != None:
+                if convertTo in val_list[i]:
+                    validTo = key_list[i]
+            else:
+                convertTo = ""
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            final = f"{validFrom} {validTo}"
+            final = f"{validFrom} {validTo}".strip()
         else:
             return await ctx.send(f"{validFrom} | {validTo} | {val}")
 
