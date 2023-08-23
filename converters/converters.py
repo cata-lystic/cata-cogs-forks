@@ -62,8 +62,9 @@ class Converters(commands.Cog):
         # Check to make sure chosen conversions are valid
         key_list = list(valid.keys())
         val_list = list(valid.values())
-        await ctx.send(val_list)
 
+        # Loop through each list in the dictionary and see if it exists.
+        # if it does, return the index
         for i in range(len(val_list)):
             if convertFrom in val_list[i]:
                 await ctx.send(key_list[i])
