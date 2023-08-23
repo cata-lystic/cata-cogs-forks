@@ -93,7 +93,10 @@ class Converters(commands.Cog):
             'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
             'me': ['meters', 'me', 'meter'],
             'in': ['inches', 'in', 'inch'],
-            'cm': ['centimeters', 'cm', 'centi', 'centimeter']
+            'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
+            'gal': ['gallons', 'gal', 'gals', 'gallon]'],
+            'floz': ['fluid ounces', 'floz', 'fluidounce', 'fluidounces'],
+            'cup': ['cups', 'cup']
         }
 
         # Check to make sure chosen conversions are valid
@@ -265,6 +268,16 @@ class Converters(commands.Cog):
         elif final == "in cm":
             calc = val * 2.54
 
+        # Gallons to liters
+        elif final == "gal lit":
+            calc = val * 3.78541
+        # Gallons to fluid ounces
+        elif final == "gal floz":
+            calc = val * 128
+        # Gallons to cups
+        elif final == "gal cup":
+            calc = val * 16
+
 
         if calc != "":
             con1 = valid[validFrom][0]
@@ -283,35 +296,7 @@ class Converters(commands.Cog):
     
 
 
-    @conv.group(aliases=['gallon', 'gallons'])
-    async def gal(self, ctx: commands.Context):
-        """
-        Gallons to liters, fluid ounces, and cups
-
-        Usage:
-        `[p]conv gal lit` Gallons to liters
-        `[p]conv gal oz` Gallons to fluid ounces
-        `[p]conv gal cup` Gallons to cups
-        """
     
-    @gal.command(name="lit", aliases=['liters', 'liter', 'li'])
-    async def gal_to_lit(self, ctx: commands.Context, val: float):
-        """Gallons to liters."""
-        output = val * 3.78541
-        await ctx.send(_("> {val:,} gallons is equal to {output:,} liters.").format(val=val, output=output))
-
-    @gal.command(name="oz", aliases=['floz', 'ounce', 'fluidounce'])
-    async def gal_to_oz(self, ctx: commands.Context, val: float):
-        """Gallons to fluid ounces."""
-        output = val * 128
-        await ctx.send(_("> {val:,} gallons is equal to {output:,} fluid ounces.").format(val=val, output=output))
-
-    @gal.command(name="cup", aliases=['cups'])
-    async def gal_to_cup(self, ctx: commands.Context, val: float):
-        """Gallons to cups."""
-        output = val * 16
-        await ctx.send(_("> {val:,} gallons is equal to {output:,} cups.").format(val=val, output=output))
-
 
     @conv.group(aliases=['liter', 'liters'])
     async def lit(self, ctx: commands.Context):
