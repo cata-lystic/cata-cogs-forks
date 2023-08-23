@@ -108,17 +108,8 @@ class Converters(commands.Cog):
             )
         )
 
-    @conv.group(aliases=["celsius"])
-    async def c(self, ctx: commands.Context):
-        """
-        Celsius to Fahrenheit.
-
-        Usage:
-        `[p]conv c f`
-        """
-
-    @c.command(name="f", aliases=["fahrenheit"])
-    async def celsius_to_fahrenheit(self, ctx, val: float):
+    @conv.command(aliases=["celsius"])
+    async def c(self, ctx: commands.Context, val: float):
         """Celsius to Fahrenheit."""
         output = round((val * 1.8) + 32, 1)
         msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
@@ -126,17 +117,8 @@ class Converters(commands.Cog):
         )
         await ctx.send(msg)
 
-    @conv.group(aliases=["fahrenheit"])
-    async def f(self, ctx: commands.Context):
-        """
-        Fahrenheit to Celsius.
-
-        Usage:
-        `[p]conv f c`
-        """
-
-    @f.command(name="celsius", aliases=["c"])
-    async def fahrenheit_to_celsius(self, ctx: commands.Context, val: float):
+    @conv.command(aliases=["fahrenheit"])
+    async def f(self, ctx: commands.Context, val: float):
         """Fahrenheit to Celsius."""
         output = round((val - 32) / 1.8, 1)
         msg = _("> {val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
