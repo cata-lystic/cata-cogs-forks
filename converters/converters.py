@@ -54,9 +54,9 @@ class Converters(commands.Cog):
 
         # List of valid conversions
         valid = {
-            'lb': ['lb', 'lbs', 'pound', 'pounds'],
-            'kg': ['kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram', 'kilograms'],
-            'gr': ['gr', 'gram', 'grams']
+            'lb': ['pounds', 'lb', 'lbs', 'pound'],
+            'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
+            'gr': ['grams', 'gr', 'gram']
         }
 
         # Check to make sure chosen conversions are valid
@@ -88,8 +88,8 @@ class Converters(commands.Cog):
         # Pounds to kilograms
         if final == "lb kg":
             calc = round((val * 0.45359237), 1)
-            con1 = "pounds"
-            con2 = "kilograms"
+            con1 = valid[validFrom][0]
+            con2 = valid[validTo][0]
         # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
