@@ -97,7 +97,7 @@ class Converters(commands.Cog):
             con2 = "pounds"
             
         if calc != "":
-            msg = ("> {val:,} {con1:,} is equal to {calc:,} {con2:,}.").format(val=val, calc=calc, con1=con1, con2=con2)
+            msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
 
