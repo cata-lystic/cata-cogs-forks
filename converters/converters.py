@@ -158,19 +158,19 @@ class Converters(commands.Cog):
     @lb.command(name="kg")
     async def lb_to_kg(self, ctx: commands.Context, val: float):
         """Pounds to kilograms."""
-        output = round((mass * 0.45359237), 1)
+        output = round((val * 0.45359237), 1)
         await ctx.send(_("{val:,} pounds is equal to {output:,} kilograms.").format(val=val, output=output))
 
     @lb.command(name="oz", aliases=['ounce', 'ounces'])
     async def lb_to_oz(self, ctx: commands.Context, val: float):
         """Pounds to ounces."""
-        output = mass * 16
+        output = val * 16
         await ctx.send(_("{val:,} pounds is equal to {output:,} ounces.").format(val=val, output=output))
 
     @lb.command(name="g", aliases=['gr', 'gram', 'grams'])
     async def lb_to_g(self, ctx: commands.Context, val: float):
         """Pounds to grams."""
-        output = mass * 453.592
+        output = val * 453.592
         await ctx.send(_("{val:,} pounds is equal to {output:,} grams.").format(val=val, output=output))
 
     @conv.group(aliases=['kilograms', 'kilogram', 'kilo'])
