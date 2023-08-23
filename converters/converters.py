@@ -68,6 +68,8 @@ class Converters(commands.Cog):
         for i in range(len(val_list)):
             if convertFrom in val_list[i]:
                 await ctx.send(key_list[i])
+            else:
+                await ctx.send('Invalid conversion')
 
 
 
