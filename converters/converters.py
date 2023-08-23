@@ -143,21 +143,35 @@ class Converters(commands.Cog):
         )
         await ctx.send(msg)
 
-    @conv.group()
+    @conv.group(aliases=['pound', 'pounds'])
     async def lb(self, ctx: commands.Context):
         """
         Convert pounds to kilograms.
         See correct usage bellow.
 
         Usage:
-        `[p]conv lb kg`
+        `[p]conv lb kg` Pounds to kilograms
+        `[p]conv lb oz` Pounds to ounces
+        `[p]conv lb g` Pounds to grams
         """
 
     @lb.group(name="kg")
     async def lb_to_kg(self, ctx: commands.Context, mass: float):
         """Convert pounds to kilograms."""
         kg = round((mass * 0.45359237), 1)
-        await ctx.send(_("{mass:,} lb is equal to {kg:,} kg.").format(mass=mass, kg=kg))
+        await ctx.send(_("{mass:,} pounds is equal to {kg:,} kilograms.").format(mass=mass, kg=kg))
+
+    @lb.group(name="oz", aliases=['ounce', 'ounces'])
+    async def lb_to_oz(self, ctx: commands.Context, mass: float):
+        """Convert pounds to ounces."""
+        oz = mass * 16
+        await ctx.send(_("{mass:,} pounds is equal to {oz:,} ounces.").format(mass=mass, oz=oz))
+
+    @lb.group(name="g", aliases=['gr', 'gram', 'grams'])
+    async def lb_to_g(self, ctx: commands.Context, mass: float):
+        """Convert pounds to grams."""
+        g = mass * 453.592
+        await ctx.send(_("{mass:,} pounds is equal to {g:,} grams.").format(mass=mass, g=g))
 
     @conv.group()
     async def kg(self, ctx: commands.Context):
@@ -174,8 +188,6 @@ class Converters(commands.Cog):
         lb = round((mass / 0.45359237), 1)
         await ctx.send(_("{mass:,} kg is equal to {lb:,} lb.").format(mass=mass, lb=lb))
 
-    
-    # Feet to meters, centimeters, inches by Cata-lystic
     @conv.group(aliases=['feet', 'foot'])
     async def ft(self, ctx: commands.Context):
         """
@@ -205,7 +217,7 @@ class Converters(commands.Cog):
         i = length * 12
         await ctx.send(_("{length:,} feet is equal to {i:,} inches.").format(length=length, i=i))
 
-    # Meters to centimeters, feet, inches by Cata-lystic
+
     @conv.group(aliases=['meters', 'meter', 'm'])
     async def me(self, ctx: commands.Context):
         """
@@ -235,7 +247,7 @@ class Converters(commands.Cog):
         i = length * 39.37
         await ctx.send(_("{length:,} meters is equal to {i:,} inches.").format(length=length, i=i))
 
-    # Centimeters to meters, feet, inches by Cata-lystic
+
     @conv.group(aliases=['centimeters', 'centimeter'])
     async def cm(self, ctx: commands.Context):
         """
@@ -265,7 +277,7 @@ class Converters(commands.Cog):
         i = length / 2.54
         await ctx.send(_("{length:,} centimeters is equal to {i:,} inches.").format(length=length, i=i))
     
-    # Inches to centimeters, meters, feet by Cata-lystic
+
     @conv.group(aliases=['inches', 'in', 'i'])
     async def inch(self, ctx: commands.Context):
         """
