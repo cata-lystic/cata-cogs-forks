@@ -222,7 +222,7 @@ class Converters(commands.Cog):
 
     
     # Feet to meters, centimeters, inches by Cata-lystic
-    @conv.group(aliases=['feet', 'foot', 'f'])
+    @conv.group(aliases=['feet', 'foot'])
     async def ft(self, ctx: commands.Context):
         """
         Convert feet to meters, centimeters, or inches.
