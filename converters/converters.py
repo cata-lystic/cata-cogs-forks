@@ -55,7 +55,7 @@ class Converters(commands.Cog):
         # List of valid conversions
         valid = {
             'lb': ['lb', 'lbs', 'pound', 'pounds'],
-            'kg': ['kg', 'kgs', 'kilo', 'kilos', 'kilogram', 'kilograms'],
+            'kg': ['kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram', 'kilograms'],
             'gr': ['gr', 'gram', 'grams']
         }
 
@@ -77,7 +77,7 @@ class Converters(commands.Cog):
                 validTo = key_list[i]
         
         if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
-            validConversion = "{validFrom} {validTo}"
+            validConversion = f"{validFrom} {validTo}"
             await ctx.send(validConversion)
         else:
             await ctx.send(f"{validFrom} | {validTo}")
