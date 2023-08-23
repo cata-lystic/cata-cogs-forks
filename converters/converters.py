@@ -154,6 +154,38 @@ class Converters(commands.Cog):
         # Ounces to tonnes (UK)
         elif final == "oz tonne":
             calc = val / 35840
+
+        # Tons (US) to pounds
+        elif final == "ton lb":
+            calc = val * 2000
+        # Tons to kilograms
+        elif final == "ton kg":
+            calc = val * 907.185
+        # Tons to ounces
+        elif final == "ton oz":
+            calc = val * 32000
+        # Tons to grams
+        elif final == "ton gr":
+            calc = val * 907185
+        # Tons to tonnes (UK)
+        elif final == "ton tonne":
+            calc = val * 0.892857
+
+        # Tonnes (UK) to pounds
+        elif final == "tonne lb":
+            calc = val * 2240
+        # Tonnes to kilograms
+        elif final == "tonne kg":
+            calc = val * 1016.05
+        # Tonnes to ounces
+        elif final == "tonne oz":
+            calc = val * 35840
+        # Tonnes to grams
+        elif final == "tonne gr":
+            calc = val * 1016050
+        # Tonnes to tons (US)
+        elif final == "tonne ton":
+            calc = val * 1.12
         
 
         
