@@ -88,15 +88,14 @@ class Converters(commands.Cog):
         # Pounds to kilograms
         if final == "lb kg":
             calc = round((val * 0.45359237), 1)
-            con1 = valid[validFrom][0]
-            con2 = valid[validTo][0]
+            
         # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
-            con1 = "kilograms"
-            con2 = "pounds"
-            
+
         if calc != "":
+            con1 = valid[validFrom][0]
+            con2 = valid[validTo][0]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
