@@ -118,7 +118,7 @@ class Converters(commands.Cog):
         """
 
     @c.command(name="f", aliases=["fahrenheit"])
-    async def celsius_to_fahrenheit(self, ctx: commands.Context, val: float):
+    async def celsius_to_fahrenheit(self, ctx, val: float):
         """Celsius to Fahrenheit."""
         output = round((val * 1.8) + 32, 1)
         msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
