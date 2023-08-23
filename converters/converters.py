@@ -124,13 +124,13 @@ class Converters(commands.Cog):
             for i in range(len(val_list)):
                 if convertFrom in val_list[i]:
                     validFrom = key_list[i]
-                    category = cat
+                    categoryFrom = cat
 
                 if convertTo in val_list[i]:
                     validTo = key_list[i]
-                    category = cat
+                    categoryTo = cat
         
-        if validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
+        if categoryFrom == categoryTo and validFrom != "Invalid convertFrom" and validTo != "Invalid convertTo":
             final = f"{validFrom} {validTo}"
         else:
             return await ctx.send(f"{validFrom} | {validTo} | {val}")
@@ -294,8 +294,8 @@ class Converters(commands.Cog):
 
 
         if calc != "":
-            con1 = valid[category][validFrom][0]
-            con2 = valid[category][validTo][0]
+            con1 = valid[categoryTo][validFrom][0]
+            con2 = valid[categoryTo][validTo][0]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
