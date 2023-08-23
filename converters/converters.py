@@ -49,15 +49,18 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float=60):
+    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Master converter.
         
         Weight: lb, kg, oz, gr, ton, tonne
         
         Temp: c, f"""
 
+        if (type(convertTo) == "float"):
+            return await ctx.send("To is a number")
+
         if (convertFrom == convertTo):
-            return ctx.send("You can't convert the same unit")
+            return await ctx.send("You can't convert the same unit")
 
         # List of valid conversions
         valid = {
