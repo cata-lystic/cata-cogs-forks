@@ -82,14 +82,24 @@ class Converters(commands.Cog):
             return await ctx.send(f"{validFrom} | {validTo} | {val}")
 
         # Here is the massive if/elif statement for each possible conversion
+        
+        calc = ""
+
+        # Pounds to kilograms
         if final == "lb kg":
             calc = round((val * 0.45359237), 1)
-            msg = ("> {val:,} pounds is equal to {calc:,} kilograms.").format(val=val, calc=calc)
+            con1 = "pounds"
+            con2 = "kilograms"
+        # Kilograms to pounds
         elif final == "kg lb":
             calc = round((val / 0.45359237), 1)
-            msg = ("> {val:,} kilograms is equal to {calc:,} pounds.").format(val=val, calc=calc)
+            con1 = "kilograms"
+            con2 = "pounds"
+            
+        if calc != "":
+            msg = ("> {val:,} {con1:,} is equal to {calc:,} {con2:,}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
-            msg = "Invalid set of conversions"
+            msg = "Invalid set of conversions."
 
         return await ctx.send(f"{msg}")
 
