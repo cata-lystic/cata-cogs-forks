@@ -222,7 +222,7 @@ class Converters(commands.Cog):
         await ctx.send(_("{mass:,} kg is equal to {lb:,} lb.").format(mass=mass, lb=lb))
 
     
-    # Feet to meters or centimeters by Cata-lystic
+    # Feet to meters, centimeters, inches by Cata-lystic
     @conv.group(aliases=['ft'])
     async def feet(self, ctx: commands.Context):
         """
@@ -232,13 +232,20 @@ class Converters(commands.Cog):
         Usage:
         `[p]conv ft m`
         `[p]conv ft cm`
+        `[p]conv ft i`
         """
 
-    @feet.command(name="m", aliases=['meters'])
+    @feet.command(name="m", aliases=['meters', 'me'])
     async def ft_to_m(self, ctx: commands.Context, length: float):
         """Convert feet to meters."""
         m = length * 0.3048
         await ctx.send(_("{length:,} feet is equal to {m:,} meters.").format(length=length, m=m))
+    
+    @feet.command(name="cm", aliases=['c', 'centimeters'])
+    async def ft_to_cm(self, ctx: commands.Context, length: float):
+        """Convert feet to centimeters."""
+        cm = length * 30.48
+        await ctx.send(_("{length:,} feet is equal to {cm:,} centimeters.").format(length=length, cm=cm))
 
     @feet.command(name="i", aliases=['inches', 'in'])
     async def ft_to_i(self, ctx: commands.Context, length: float):
