@@ -75,7 +75,7 @@ class Converters(commands.Cog):
             convertTo = forceList[convertFrom]
 
         except ValueError:
-            pass
+            placeholder = None
 
         if (convertFrom == convertTo):
             return await ctx.send("You can't convert the same unit")
