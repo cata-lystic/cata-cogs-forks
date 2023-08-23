@@ -225,7 +225,6 @@ class Converters(commands.Cog):
         elif final == "f c":
             calc = round((val - 32) / 1.8, 1)
 
-
         # Feet to meters
         elif final == "ft me":
             calc = val * 0.3048
@@ -235,7 +234,37 @@ class Converters(commands.Cog):
         # Feet to inches
         elif final == "ft in":
             calc = val * 12
-    
+
+        # Meters to feet
+        elif final == "me ft":
+            calc = val * 3.28084
+        # Meters to centimeters
+        elif final == "me cm":
+            calc = val * 100
+        # Meters to inches
+        elif final == "me in":
+            calc = val * 39.37
+
+        # Centimeters to feet
+        elif final == "cm ft":
+            calc = val / 30.48
+        # Centimeters to meters
+        elif final == "cm me":
+            calc = val / 100
+        # Centimeters to inches
+        elif final == "cm in":
+            calc = val / 2.54
+
+        # Inches to feet
+        elif final == "in ft":
+            calc = val / 12
+        # Inches to meters
+        elif final == "in me":
+            calc = val * 0.0254
+        # Inches to centimeters
+        elif final == "in cm":
+            calc = val * 2.54
+
 
         if calc != "":
             con1 = valid[validFrom][0]
@@ -251,96 +280,7 @@ class Converters(commands.Cog):
     @commands.group(aliases=["converter"])
     async def conv(self, ctx: commands.Context):
         """Some utility converters."""
-
-
-    @conv.group(aliases=['meters', 'meter', 'm'])
-    async def me(self, ctx: commands.Context):
-        """
-        Meters to centimeters, feet, and inches.
-
-        Usage:
-        `[p]conv me cm` Meters to centimeters
-        `[p]conv me ft` Meters to feet
-        `[p]conv me in` Meters to inches
-        """
-
-    @me.command(name="cm", aliases=['c', 'centimeter', 'centimeters'])
-    async def me_to_cm(self, ctx: commands.Context, val: float):
-        """Meters to centimeters."""
-        output = val * 100
-        await ctx.send(_("> {val:,} meters is equal to {output:,} centimeters.").format(val=val, output=output))
-
-    @me.command(name="ft", aliases=['feet', 'foot', 'f'])
-    async def me_to_ft(self, ctx: commands.Context, val: float):
-        """Meters to feet."""
-        output = val * 3.28084
-        await ctx.send(_("> {val:,} meters is equal to {output:,} feet.").format(val=val, output=output))
-
-    @me.command(name="in", aliases=['inches', 'inch', 'i'])
-    async def me_to_in(self, ctx: commands.Context, val: float):
-        """Meters to inches."""
-        output = val * 39.37
-        await ctx.send(_("> {val:,} meters is equal to {output:,} inches.").format(val=val, output=output))
-
-
-    @conv.group(aliases=['centimeters', 'centimeter'])
-    async def cm(self, ctx: commands.Context):
-        """
-        Centimeters to meters, feet, and inches.
-
-        Usage:
-        `[p]conv cm me` Centimeters to meters
-        `[p]conv cm ft` Centimeters to feet
-        `[p]conv cm in` Centimeters to inches
-        """
-
-    @cm.command(name="me", aliases=['meters', 'meter', 'm'])
-    async def cm_to_m(self, ctx: commands.Context, val: float):
-        """Centimeters to meters."""
-        output = val / 100
-        await ctx.send(_("> {val:,} centimeters is equal to {output:,} meters.").format(val=val, output=output))
     
-    @cm.command(name="ft", aliases=['f', 'feet', 'foot'])
-    async def cm_to_ft(self, ctx: commands.Context, val: float):
-        """Centimeters to feet."""
-        output = val / 30.48
-        await ctx.send(_("> {val:,} centimeters is equal to {output:,} feet.").format(val=val, output=output))
-
-    @cm.command(name="in", aliases=['inches', 'inch', 'i'])
-    async def cm_to_in(self, ctx: commands.Context, val: float):
-        """Centimeters to inches."""
-        output = val / 2.54
-        await ctx.send(_("> {val:,} centimeters is equal to {output:,} inches.").format(val=val, output=output))
-    
-
-    @conv.group(aliases=['inches', 'in', 'i'])
-    async def inch(self, ctx: commands.Context):
-        """
-        Inches to meters, centimeters, and feet.
-
-        Usage:
-        `[p]conv in ft` Inches to feet
-        `[p]conv in me` Inches to meters
-        `[p]conv in cm` Inches to centimeters
-        """
-    
-    @inch.command(name="ft", aliases=['f', 'feet', 'foot'])
-    async def in_to_ft(self, ctx: commands.Context, val: float):
-        """Inches to feet."""
-        output = val / 12
-        await ctx.send(_("> {val:,} inches is equal to {output:,} feet.").format(val=val, output=output))
-
-    @inch.command(name="me", aliases=['meter', 'meters', 'm'])
-    async def in_to_m(self, ctx: commands.Context, val: float):
-        """Inches to meters."""
-        output = val * 0.0254
-        await ctx.send(_("> {val:,} inches is equal to {output:,} meters.").format(val=val, output=output))
-
-    @inch.command(name="cm", aliases=['c', 'centimeters'])
-    async def in_to_cm(self, ctx: commands.Context, val: float):
-        """Inches to centimeters."""
-        output = val * 2.54
-        await ctx.send(_("> {val:,} inches is equal to {output:,} centimeters.").format(val=val, output=output))
 
 
     @conv.group(aliases=['gallon', 'gallons'])
