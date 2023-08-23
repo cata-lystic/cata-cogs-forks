@@ -316,19 +316,19 @@ class Converters(commands.Cog):
         `[p]conv gal oz` Gallons to fluid ounces
         """
     
-    @inch.command(name="lit", aliases=['liters', 'liter', 'li'])
+    @gal.command(name="lit", aliases=['liters', 'liter', 'li'])
     async def gal_to_lit(self, ctx: commands.Context, val: float):
         """Gallons to liters."""
         output = val * 3.78541
         await ctx.send(_("{val:,} gallons is equal to {output:,} liters.").format(val=val, output=output))
 
-    @inch.command(name="oz", aliases=['floz', 'ounce', 'fluidounce'])
+    @gal.command(name="oz", aliases=['floz', 'ounce', 'fluidounce'])
     async def gal_to_oz(self, ctx: commands.Context, val: float):
         """Gallons to fluid ounces."""
         output = val * 128
         await ctx.send(_("{val:,} gallons is equal to {output:,} fluid ounces.").format(val=val, output=output))
 
-    @inch.command(name="cup", aliases=['cups'])
+    @gal.command(name="cup", aliases=['cups'])
     async def gal_to_cup(self, ctx: commands.Context, val: float):
         """Gallons to cups."""
         output = val * 16
