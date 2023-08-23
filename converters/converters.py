@@ -138,7 +138,7 @@ class Converters(commands.Cog):
             errorMsg = f"Error: `{validFrom}` is not a valid unit."
         elif validTo == "":
             errorMsg = f"Error: `{validTo}` is not a valid unit."
-        elif categoryFrom != categoryTo:
+        elif categoryFrom != categoryTo or categoryFrom == "" or categoryTo == "":
             errorMsg = f"Error: Cannot convert from `{categoryFrom}` to `{categoryTo}`."
         else:
             final = f"{validFrom} {validTo}"
