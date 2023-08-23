@@ -84,7 +84,7 @@ class Converters(commands.Cog):
         valid = {
             'lb': ['pounds', 'lb', 'lbs', 'pound'],
             'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-            'oz': ['ounces', 'oz' 'ounce', 'os'],
+            'oz': ['ounces', 'oz', 'ounce', 'os'],
             'gr': ['grams', 'gr', 'gram'],
             'ton': ['tons', 'ton', 'uston'],
             'tonne': ['tonnes', 'tonne', 'ukton'],
