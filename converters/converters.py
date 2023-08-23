@@ -108,6 +108,10 @@ class Converters(commands.Cog):
             }
         }
 
+        for category, vals in valid.items():
+
+            
+
         # Check to make sure chosen conversions are valid
         key_list = list(valid.keys())
         val_list = list(valid.values())
