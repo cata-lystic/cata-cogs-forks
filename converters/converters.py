@@ -218,7 +218,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['meters', 'meter', 'm'])
     async def me(self, ctx: commands.Context):
         """
-        Meters to centimeters, feet, or inches.
+        Meters to centimeters, feet, and inches.
 
         Usage:
         `[p]conv me cm` Meters to centimeters
@@ -248,7 +248,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['centimeters', 'centimeter'])
     async def cm(self, ctx: commands.Context):
         """
-        Centimeters to meters, feet, or inches.
+        Centimeters to meters, feet, and inches.
 
         Usage:
         `[p]conv cm me` Centimeters to meters
@@ -278,7 +278,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['inches', 'in', 'i'])
     async def inch(self, ctx: commands.Context):
         """
-        Inches to meters, centimeters, or feet.
+        Inches to meters, centimeters, and feet.
 
         Usage:
         `[p]conv in ft` Inches to feet
@@ -308,7 +308,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['gallon', 'gallons'])
     async def gal(self, ctx: commands.Context):
         """
-        Gallons to liters, fluid ounces, cups
+        Gallons to liters, fluid ounces, and cups
 
         Usage:
         `[p]conv gal lit` Gallons to liters
@@ -338,7 +338,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['liter', 'liters'])
     async def lit(self, ctx: commands.Context):
         """
-        Liters to gallons, fluid ounces, cups
+        Liters to gallons, fluid ounces, and cups
 
         Usage:
         `[p]conv lit gal` Liters to gallons
