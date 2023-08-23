@@ -328,7 +328,7 @@ class Converters(commands.Cog):
         output = val * 128
         await ctx.send(_("{val:,} gallons is equal to {output:,} fluid ounces.").format(val=val, output=output))
 
-    @inch.command(name="cup", aliases=['c', 'cups'])
+    @inch.command(name="cup", aliases=['cups'])
     async def gal_to_cup(self, ctx: commands.Context, val: float):
         """Gallons to cups."""
         output = val * 16
