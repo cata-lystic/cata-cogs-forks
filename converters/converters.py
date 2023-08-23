@@ -146,8 +146,7 @@ class Converters(commands.Cog):
     @conv.group(aliases=['pound', 'pounds'])
     async def lb(self, ctx: commands.Context):
         """
-        Convert pounds to kilograms.
-        See correct usage bellow.
+        Convert pounds to kilograms, ounces, and grams.
 
         Usage:
         `[p]conv lb kg` Pounds to kilograms
@@ -187,6 +186,7 @@ class Converters(commands.Cog):
         """Convert kilograms to pounds."""
         lb = round((mass / 0.45359237), 1)
         await ctx.send(_("{mass:,} kg is equal to {lb:,} lb.").format(mass=mass, lb=lb))
+
 
     @conv.group(aliases=['feet', 'foot'])
     async def ft(self, ctx: commands.Context):
