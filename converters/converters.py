@@ -237,9 +237,14 @@ class Converters(commands.Cog):
     @feet.command(name="m", aliases=['meters'])
     async def ft_to_m(self, ctx: commands.Context, length: float):
         """Convert feet to meters."""
-        #m = round((length * 1.609344), 1)
         m = length * 0.3048
-        await ctx.send(_("{length:,} ft is equal to {m:,} meters.").format(length=length, m=m))
+        await ctx.send(_("{length:,} feet is equal to {m:,} meters.").format(length=length, m=m))
+
+    @feet.command(name="i", aliases=['inches', 'in'])
+    async def ft_to_i(self, ctx: commands.Context, length: float):
+        """Convert feet to inches."""
+        i = length * 12
+        await ctx.send(_("{length:,} feet is equal to {i:,} inches.").format(length=length, i=i))
     
     @conv.group()
     async def mi(self, ctx: commands.Context):
