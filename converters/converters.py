@@ -49,8 +49,12 @@ class Converters(commands.Cog):
 
 
     @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float):
-        """Master converter."""
+    async def con(self, ctx: commands.Context, convertFrom, convertTo: None, val: float):
+        """Master converter.
+        
+        Weight: lb, kg, oz, gr, ton, tonne
+        
+        Temp: c, f"""
 
         if (convertFrom == convertTo):
             return ctx.send("You can't convert the same unit")
@@ -62,7 +66,9 @@ class Converters(commands.Cog):
             'oz': ['ounces', 'oz' 'ounce', 'os'],
             'gr': ['grams', 'gr', 'gram'],
             'ton': ['tons', 'ton', 'uston'],
-            'tonne': ['tonnes', 'tonne', 'ukton']
+            'tonne': ['tonnes', 'tonne', 'ukton'],
+            'c': ['Celsius', 'c', 'celsius'],
+            'f': ['Fahrenheit', 'f', 'fahrenheit']
         }
 
         # Check to make sure chosen conversions are valid
@@ -186,6 +192,27 @@ class Converters(commands.Cog):
         # Tonnes to tons (US)
         elif final == "tonne ton":
             calc = val * 1.12
+
+
+         @conv.command(aliases=["celsius"])
+    async def c(self, ctx: commands.Context, val: float):
+        """Celsius to Fahrenheit."""
+        output = round((val * 1.8) + 32, 1)
+        msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
+            val=val, output=output
+        )
+        await ctx.send(msg)
+
+    @conv.command(aliases=["fahrenheit"])
+    async def f(self, ctx: commands.Context, val: float):
+        """Fahrenheit to Celsius."""
+        output = round((val - 32) / 1.8, 1)
+        msg = _("> {val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
+            val=val, output=output
+        )
+        await ctx.send(msg)
+
+
         
 
         
@@ -271,25 +298,6 @@ class Converters(commands.Cog):
                 date=date, convert=convert, when=when
             )
         )
-
-    @conv.command(aliases=["celsius"])
-    async def c(self, ctx: commands.Context, val: float):
-        """Celsius to Fahrenheit."""
-        output = round((val * 1.8) + 32, 1)
-        msg = _("> {val:,}° Celsius is equal to {output:,}° Fahrenheit.").format(
-            val=val, output=output
-        )
-        await ctx.send(msg)
-
-    @conv.command(aliases=["fahrenheit"])
-    async def f(self, ctx: commands.Context, val: float):
-        """Fahrenheit to Celsius."""
-        output = round((val - 32) / 1.8, 1)
-        msg = _("> {val:,}° Fahrenheit is equal to {output:,}° Celsius.").format(
-            val=val, output=output
-        )
-        await ctx.send(msg)
-
 
 
     @conv.group(aliases=['feet', 'foot'])
