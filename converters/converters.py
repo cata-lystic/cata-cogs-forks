@@ -132,6 +132,12 @@ class Converters(commands.Cog):
         # Grams to ounces
         elif final == "gr oz":
             calc = val / 28.3495
+        # Grams to tons (US)
+        elif final == "gr ton":
+            calc = val / 907185
+        # Grams to tonnes (UK)
+        elif final == "gr tonne":
+            calc = val / 1016000
 
         # Ounces to pounds
         elif final == "oz lb":
@@ -142,6 +148,12 @@ class Converters(commands.Cog):
         # Ounces to grams
         elif final == "oz gr":
             calc = val * 28.35
+        # Ounces to tons (US)
+        elif final == "oz ton":
+            calc = val / 32000
+        # Ounces to tonnes (UK)
+        elif final == "oz tonne":
+            calc = val / 35840
         
 
         
