@@ -305,34 +305,14 @@ class Converters(commands.Cog):
         await ctx.send(_("{val:,} inches is equal to {output:,} centimeters.").format(val=val, output=output))
     
 
-    @conv.group()
-    async def mi(self, ctx: commands.Context):
-        """
-        Miles to kilometers.
-        See correct usage bellow.
-
-        Usage:
-        `[p]conv mi km`
-        """
-
-    @mi.command(name="km")
-    async def mi_to_km(self, ctx: commands.Context, val: float):
+    @conv.command()
+    async def mi(self, ctx: commands.Context, val: float):
         """Miles to kilometers."""
         output = round((val * 1.609344), 1)
         await ctx.send(_("{val:,} miles is equal to {output:,} kilometers.").format(val=val, output=output))
 
-    @conv.group()
-    async def km(self, ctx: commands.Context):
-        """
-        Kilometers to miles.
-        See correct usage bellow.
-
-        Usage:
-        `[p]conv km mi`
-        """
-
-    @km.command(name="mi")
-    async def km_to_mi(self, ctx: commands.Context, val: float):
+    @conv.command()
+    async def km(self, ctx: commands.Context, val: float):
         """Kilometers to miles."""
         output = round((val / 1.609344), 1)
         await ctx.send(_("{val:,} kilometers is equal to {output:,} miles.").format(val=val, output=output))
