@@ -59,10 +59,10 @@ class Converters(commands.Cog):
         valid = {
             'lb': ['pounds', 'lb', 'lbs', 'pound'],
             'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-            'oz': ['ounces', 'ounce', 'os'],
+            'oz': ['ounces', 'oz' 'ounce', 'os'],
             'gr': ['grams', 'gr', 'gram'],
-            'ton': ['tons', 'uston'],
-            'tonne': ['tonnes', 'ukton']
+            'ton': ['tons', 'ton', 'uston'],
+            'tonne': ['tonnes', 'tonne', 'ukton']
         }
 
         # Check to make sure chosen conversions are valid
