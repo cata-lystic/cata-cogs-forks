@@ -82,22 +82,30 @@ class Converters(commands.Cog):
 
         # List of valid conversions
         valid = {
-            'lb': ['pounds', 'lb', 'lbs', 'pound'],
-            'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-            'oz': ['ounces', 'oz', 'ounce', 'os'],
-            'gr': ['grams', 'gr', 'gram'],
-            'ton': ['tons', 'ton', 'uston'],
-            'tonne': ['tonnes', 'tonne', 'ukton'],
-            'c': ['Celsius', 'c', 'celsius'],
-            'f': ['Fahrenheit', 'f', 'fahrenheit'],
-            'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
-            'me': ['meters', 'me', 'meter'],
-            'in': ['inches', 'in', 'inch'],
-            'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
-            'gal': ['gallons', 'gal', 'gals', 'gallon]'],
-            'lit': ['liters', 'lit', 'liter'],
-            'floz': ['fluid ounces', 'floz', 'fluidounce', 'fluidounces'],
-            'cup': ['cups', 'cup']
+            'weight': {
+                'lb': ['pounds', 'lb', 'lbs', 'pound'],
+                'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
+                'oz': ['ounces', 'oz', 'ounce', 'os'],
+                'gr': ['grams', 'gr', 'gram'],
+                'ton': ['tons', 'ton', 'uston'],
+                'tonne': ['tonnes', 'tonne', 'ukton']
+            },
+            'temp': {
+                'c': ['Celsius', 'c', 'celsius'],
+                'f': ['Fahrenheit', 'f', 'fahrenheit']
+            },
+            'distance': {
+                'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
+                'me': ['meters', 'me', 'meter'],
+                'in': ['inches', 'in', 'inch'],
+                'cm': ['centimeters', 'cm', 'centi', 'centimeter']
+            },
+            'liquid': {
+                'gal': ['gallons', 'gal', 'gals', 'gallon]'],
+                'lit': ['liters', 'lit', 'liter'],
+                'floz': ['fluid ounces', 'floz', 'fluidounce', 'fluidounces'],
+                'cup': ['cups', 'cup']
+            }
         }
 
         # Check to make sure chosen conversions are valid
