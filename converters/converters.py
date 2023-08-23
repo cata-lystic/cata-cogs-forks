@@ -56,7 +56,7 @@ class Converters(commands.Cog):
         
         Temp: c, f"""
 
-        if (type(convertTo) == "float"):
+        if type(convertTo) == int or type(convertTo) == float:
             return await ctx.send("To is a number")
 
         if (convertFrom == convertTo):
@@ -102,7 +102,7 @@ class Converters(commands.Cog):
 
         # Pounds to kilograms
         if final == "lb kg":
-            calc = round((val * 0.45359237), 1)
+            calc = val * 0.45359237
         # Pounds to ounces
         elif final == "lb oz":
             calc = val * 16
@@ -118,7 +118,7 @@ class Converters(commands.Cog):
 
         # Kilograms to pounds
         elif final == "kg lb":
-            calc = round((val / 0.45359237), 1)
+            calc = val / 0.45359237
         # Kilograms to ounces
         elif final == "kg oz":
             calc = val * 35.2739619
