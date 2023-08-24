@@ -17,7 +17,8 @@ class Convertunits(commands.Cog):
         self.config = Config.get_conf(self, identifier=13374488281923, force_registration=True)
 
         default_global = {
-            "round": 2
+            "round": 10,
+            "disabled": {}
         }
 
         self.config.register_global(**default_global)
@@ -199,6 +200,18 @@ class Convertunits(commands.Cog):
         
         await self.config.round.set(val)
         return await ctx.send(f"Round set to {val}")
+
+    @convset.command(name='disable')
+    async def disable(self, ctx, command):
+        """Round Output
+        Example: .convset disable k
+        """
+        
+        current = await self.config.disabled()
+        current.update(command)
+
+        await self.config.disabled.set(current)
+        return await ctx.send(f"Unit disabled.")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
