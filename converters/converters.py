@@ -15,10 +15,10 @@ import contextlib
 
 #@cog_i18n(_)
 class Converters(commands.Cog):
-    """Some converters."""
+    """Convert Units"""
 
-    __author__ = "Predä"
-    __version__ = "0.3.10"
+    __author__ = "Cata-lystic"
+    __version__ = "0.1"
 
     async def red_delete_data_for_user(self, **kwargs):
         """Nothing to delete."""
@@ -28,7 +28,7 @@ class Converters(commands.Cog):
         self.bot = bot
 
     def format_help_for_context(self, ctx: commands.Context) -> str:
-        """Thanks Sinbad!"""
+        """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
@@ -38,15 +38,7 @@ class Converters(commands.Cog):
         await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
 
 
-    # This is work on a unified command that will allow any values to be input and calculated as long as they belong to the same category.
-
-    # Instead of a separate menu item for each measurement, commands will be taken like
-    # .con gal lit  // true, gallons and liters can be converted
-    # .con cm in    // true, centimeters and inches can be converted
-    # .con gal in   // false, gallons and inches can't be converted
-
-
-    @commands.command()
+    @commands.command(aliases=['con'])
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
@@ -55,12 +47,12 @@ class Converters(commands.Cog):
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
         **Distance**
         `ft` Feet, `me` Meters, `in` Inches
-        `cm` Centimeters, `mi`* Miles, `km`* Kilometers
+        `cm` Centimeters, `mi` Miles, `km` Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
         `cup` Cups, `qt` Quarts, `pint` Pints
         **Temperature**
-        `c`* Celsius, `f`* Fahrenheit
+        `c` Celsius, `f` Fahrenheit, `k` Kelvin
         
         **Examples**
         .conv lb kg 45
@@ -101,8 +93,9 @@ class Converters(commands.Cog):
                 'tonne': ['tonnes', 'tonne', 'ukton']
             },
             'temp': {
-                'c': ['Celsius', 'c', 'celsius'],
-                'f': ['Fahrenheit', 'f', 'fahrenheit']
+                'c': ['Celsius', 'c', 'celsius', 'cel'],
+                'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
+                'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
             },
             'distance': {
                 'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
@@ -264,9 +257,15 @@ class Converters(commands.Cog):
         # Celsius to Fahrenheit
         elif final == "c f":
             calc = round((val * 1.8) + 32, 1)
+        # Celsius to Kelvin
+        elif final == "c k":
+            calc = val + 273.15
         # Fahrenheit to Celsius
         elif final == "f c":
             calc = round((val - 32) / 1.8, 1)
+        # Fahrenheit to Kelvin
+        elif final == "f k":
+            calc = (val + 459.67) * 5/9
 
         # Feet to meters
         elif final == "ft me":
