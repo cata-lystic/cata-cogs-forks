@@ -1,6 +1,6 @@
 import discord
 from redbot.core.bot import Red
-from redbot.core import commands
+from redbot.core import Config, commands
 
 class Convertunits(commands.Cog):
     """Convert Units"""
@@ -14,6 +14,7 @@ class Convertunits(commands.Cog):
 
     def __init__(self, bot: Red):
         self.bot = bot
+        self.config = Config.get_conf(self, identifier=13374488281923, force_registration=True)
 
         default_global = {
             "round": 2
