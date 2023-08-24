@@ -46,7 +46,7 @@ class Converters(commands.Cog):
     # .con gal in   // false, gallons and inches can't be converted
 
 
-    @commands.group.(aliases=['conv'])
+    @commands.group(aliases=['conv'])
     async def convert(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Master converter.
         
