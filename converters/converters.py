@@ -363,6 +363,12 @@ class Converters(commands.Cog):
         # Gallons to cups
         elif final == "gal cup":
             calc = val * 16
+        # Gallons to pints
+        elif final == "gal pint":
+            calc = val * 8
+        # Gallons to quarts
+        elif final == "gal qt":
+            calc = val * 4
 
         # Liters to gallons
         elif final == "lit gal":
@@ -373,6 +379,12 @@ class Converters(commands.Cog):
         # Liters to cups
         elif final == "lit cup":
             calc = val * 4.22675
+        # Liters to pints
+        elif final == "lit pint":
+            calc = val * 2.11337642
+        # Liters to quarts
+        elif final == "lit qt":
+            calc = val / 1.05668821
 
         # Fluid ounces to gallons
         elif final == "floz gal":
@@ -383,6 +395,12 @@ class Converters(commands.Cog):
         # Fluid ounces to cups
         elif final == "floz cup":
             calc = val / 8
+        # Fluid ounces to pints
+        elif final == "floz pint":
+            calc = val / 16
+        # Fluid ounces to quarts
+        elif final == "floz qt":
+            calc = val / 32
 
         # Cups to gallons
         elif final == "cup gal":
@@ -393,6 +411,12 @@ class Converters(commands.Cog):
         # Cups to fluid ounces
         elif final == "cup floz":
             calc = val * 8
+        # Cups to pints
+        elif final == "cup pint":
+            calc = val / 2
+        # Cups to quarts
+        elif final == "cup qt":
+            calc = val / 4
 
         # Quarts to gallons
         elif final == "qt gal":
@@ -409,6 +433,22 @@ class Converters(commands.Cog):
         # Quarts to fluid ounces
         elif final == "qt floz":
             calc = val * 32
+
+        # Pints to gallons
+        elif final == "pint gal":
+            calc = val / 8
+        # Pints to liters
+        elif final == "pint lit":
+            calc = val * 0.473176
+        # Pints to cups
+        elif final == "pint cup":
+            calc = val * 2
+        # Pints to fluid ounces
+        elif final == "pint floz":
+            calc = val * 16
+        # Pints to quarts
+        elif final == "pint qt":
+            calc = val / 2
 
 
 
