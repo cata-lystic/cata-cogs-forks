@@ -171,7 +171,7 @@ class Convertunits(commands.Cog):
 
     # Functions
     @commands.command()
-    async def convset(self, ctx):
+    async def convset(self, ctx, something):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
