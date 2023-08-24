@@ -189,7 +189,7 @@ class Convertunits(commands.Cog):
         return formatted_help_text
 
     # Functions
-    @commands.group()
+    @commands.group(name='convset')
     async def convset(self, ctx, command):
         """Convertunits Settings
         
