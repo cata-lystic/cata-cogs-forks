@@ -106,7 +106,9 @@ class Converters(commands.Cog):
                 'gal': ['gallons', 'gal', 'gals', 'gallon'],
                 'lit': ['liters', 'lit', 'liter'],
                 'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
-                'cup': ['cups', 'cup']
+                'cup': ['cups', 'cup'],
+                'qt': ['quarts', 'qt', 'quart'],
+                'pint': ['pints', 'pint', 'pi']
             }
         }
 
@@ -391,6 +393,22 @@ class Converters(commands.Cog):
         # Cups to fluid ounces
         elif final == "cup floz":
             calc = val * 8
+
+        # Quarts to gallons
+        elif final == "qt gal":
+            calc = val / 4
+        # Quarts to liters
+        elif final == "qt lit":
+            calc = val * 0.946353
+        # Quarts to pints
+        elif final == "qt pint":
+            calc = val * 2
+        # Quarts to cups
+        elif final == "qt cup":
+            calc = val * 4
+        # Quarts to fluid ounces
+        elif final == "qt floz":
+            calc = val * 32
 
 
 
