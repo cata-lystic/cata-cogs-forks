@@ -2,7 +2,7 @@ import discord
 from redbot.core.bot import Red
 from redbot.core import commands
 
-class Converters(commands.Cog):
+class Convertunits(commands.Cog):
     """Convert Units"""
 
     __author__ = "Cata-lystic"

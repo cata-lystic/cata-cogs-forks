@@ -1,0 +1,10 @@
+{
+  "author": ["Cata-lystic"],
+  "install_msg": "Thank you for installing! Type [p]conv to convert units",
+  "name": "Convertunits",
+  "short": "Weight, distance, liquid, and temp converters.",
+  "description": "Convert between weight, distance, liquid, and temperature.",
+  "tags": ["convert", "converter", "units", "tools"],
+  "min_bot_version" : "3.5.0",
+  "end_user_data_statement": "This cog does not persistently store data or metadata about users."
+}
