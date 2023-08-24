@@ -62,11 +62,9 @@ class Converters(commands.Cog):
         **Temperature**
         `c`* Celsius, `f`* Fahrenheit
         
-        Example: .conv lb kg 45
-
-        * = can be used alone
-        Example: .conv c 45 (Converts 45 C to F)"""
-        
+        **Examples**
+        .conv lb kg 45
+        .conv c 30"""        
 
         # Check if convertTo is a number/float
         # If it is, use convertTo as the val
