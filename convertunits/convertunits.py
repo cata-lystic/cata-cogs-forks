@@ -298,10 +298,10 @@ class Convertunits(commands.Cog):
             "ml cup": val / 236.5882365
         }
 
-        round = await self.config.round()
+        rounding = await self.config.round()
 
         if units in formulas:
-            return round(formulas[units], round)
+            return round(formulas[units], rounding)
         else:
             return None
     
