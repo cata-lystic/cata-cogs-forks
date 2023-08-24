@@ -85,7 +85,7 @@ class Convertunits(commands.Cog):
 
 
     @commands.command(name="example", help=testing())
-    async def example_command(self, ctx):
+    async def example_command(self, ctx, something):
         await ctx.send("This is an example command.")
 
     @commands.command(name="change_help")
