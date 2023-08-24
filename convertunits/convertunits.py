@@ -80,7 +80,6 @@ class Convertunits(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
-
     @commands.command(aliases=['con', 'convertunits'])
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
@@ -171,6 +170,9 @@ class Convertunits(commands.Cog):
     
 
     # Functions
+    @commands.command()
+    async def convset(self, ctx):
+        return "Testing"
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
