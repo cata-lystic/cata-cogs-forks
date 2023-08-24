@@ -460,7 +460,7 @@ class Converters(commands.Cog):
 
         return await ctx.send(f"{msg}")
 
-    @conv.command()
+    @convert.command()
     async def todate(self, ctx: commands.Context, timestamp: Union[int, float]):
         """Convert a unix timestamp to a readable datetime."""
         try:
@@ -485,7 +485,7 @@ class Converters(commands.Cog):
         except (ValueError, OverflowError, OSError):
             return await ctx.send(_("`{}` is not a valid timestamp.").format(timestamp))
 
-    @conv.command()
+    @convert.command()
     async def tounix(self, ctx: commands.Context, *, date: str):
         """
         Convert a date to a unix timestamp.
