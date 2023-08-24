@@ -73,11 +73,145 @@ class Converters(commands.Cog):
             'gal': 'lit',
             'lit': 'gal'
         }
+        
 
     def format_help_for_context(self, ctx: commands.Context) -> str:
         """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
+    
+    def formula(self, ctx, convFrom, convTo, val: float):
+
+        # Combine units
+        units = f"{convFrom} {convTo}"
+
+        formulas = {
+            "lb kg": val * 0.45359237, # Pounds
+            "lb oz": val * 16,
+            "lb gr": val * 453.592,
+            "lb ton": val / 2000,
+            "lb tonne": val / 2204.62,
+            "kg lb": val / 0.45359237, # Kilograms
+            "kg oz": val * 35.2739619,
+            "kg gr": val * 1000,
+            "kg ton": val / 907.185,
+            "kg tonne": val / 1016.05,
+            "gr lb": val / 453.592, # Grams
+            "gr kg": val / 1000,
+            "gr oz": val / 28.3495,
+            "gr ton": val / 907185,
+            "gr tonne": val / 1016000,
+            "oz lb": val / 16, # Ounces
+            "oz kg": val / 35.274,
+            "oz gr": val * 28.35,
+            "oz ton": val / 32000,
+            "oz tonne": val / 35840,
+            "ton lb": val * 2000, # Tons (US)
+            "ton kg": val * 907.185,
+            "ton oz": val * 32000,
+            "ton gr": val * 907185,
+            "ton tonne": val * 0.892857, # Tonnes (UK)
+            "tonne lb": val * 2240,
+            "tonne kg": val * 1016.05,
+            "tonne oz": val * 35840,
+            "tonne gr": val * 1016050,
+            "tonne ton": val * 1.12,
+            "f c": round((val - 32) / 1.8, 1), # Fahrenheit
+            "f k": (val + 459.67) * 5/9,
+            "c f": round((val * 1.8) + 32, 1), # Celsius
+            "c k": val + 273.15,
+            "k c": val - 273.15,
+            "k f": val * 9/5 - 459.67,
+            "ft me": val * 0.3048, # Feet
+            "ft cm": val * 30.48,
+            "ft in": val * 12,
+            "ft mi": val / 5280,
+            "ft km": val * 0.0003048,
+            "ft mm": val * 304.8,
+            "me ft": val * 3.28084, # Meters
+            "me cm": val * 100,
+            "me in": val * 39.37,
+            "me mi": val * 0.000621371,
+            "me km": val / 1000,
+            "me mm": val * 1609344,
+            "cm ft": val / 30.48, # Centimeters
+            "cm me": val / 100,
+            "cm in": val / 2.54,
+            "cm mi": val * 0.0000062137,
+            "cm km": val / 100000,
+            "cm mm": val * 10,
+            "in ft": val / 12, # Inches
+            "in me": val * 0.0254,
+            "in cm": val * 2.54,
+            "in mi": val * 0.000015783,
+            "in km": val * 0.0000254,
+            "in mm": val * 25.4,
+            "mi km": val * 1.609344, # Miles
+            "mi me": val * 1609.344,
+            "mi ft": val * 5280,
+            "mi cm": val * 160934.4,
+            "mi in": val * 63360,
+            "mi mm": val * 1609344,
+            "km mi": val * 0.621371, # Kilometers
+            "km me": val * 1000,
+            "km ft": val * 3280.84,
+            "km cm": val * 100000,
+            "km in": val * 39370.1,
+            "km mm": val * 1000000,
+            "mm mi": val / 1609344, # Millimeters
+            "mm km": val / 1000000,
+            "mm ft": val * 0.00328084,
+            "mm cm": val / 10,
+            "mm in": val * 0.0393701,
+            "mm me": val / 1000,
+            "gal lit": val * 3.78541, # Gallons
+            "gal floz": val * 128,
+            "gal cup": val * 16,
+            "gal pint": val * 8,
+            "gal qt": val * 4,
+            "gal ml": val * 3785.411784,
+            "lit gal": val * 0.264172, # Liters
+            "lit floz": val * 33.814,
+            "lit cup": val * 4.22675,
+            "lit pint": val * 2.11337642,
+            "lit qt": val / 1.05668821,
+            "lit ml": val * 1000,
+            "floz gal": val / 128, # Fluid Ounces
+            "floz lit": val / 33.814,
+            "floz cup": val / 8,
+            "floz pint": val / 16,
+            "floz qt": val / 32,
+            "floz ml": val * 29.5735296,
+            "cup gal": val * 0.0625, # Cups
+            "cup lit": val * 0.236588,
+            "cup floz": val * 8,
+            "cup pint": val / 2,
+            "cup qt":  val / 4,
+            "cup ml": val * 236.5882365,
+            "qt gal": val / 4, # Quarts
+            "qt lit": val * 0.946353,
+            "qt pint": val * 2,
+            "qt cup": val * 4,
+            "qt floz": val * 32,
+            "qt ml": val * 946.352946,
+            "pint gal": val / 8, # Pints
+            "pint lit": val * 0.473176,
+            "pint cup": val * 2,
+            "pint floz": val * 16,
+            "pint qt": val / 2,
+            "pint ml": val * 473.176473,
+            "ml gal": val * 0.000264172, # Milliliters
+            "ml lit": val / 1000,
+            "ml floz": val * 0.033814,
+            "ml qt": val / 946.352946,
+            "ml pint": val * 0.0021133764,
+            "ml cup": val / 236.5882365
+        }
+
+        if units in formulas:
+            return formulas[units]
+        else:
+            return None
     
 
     # List aliases
@@ -87,10 +221,6 @@ class Converters(commands.Cog):
 
     @commands.command(aliases=['convtest'])
     async def convt(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
-
-        formulas = {
-            "lb kg": val * 0.45359237
-        }
 
         result = f"{convertFrom} {convertTo}"
         finalresult = formulas[result]
@@ -174,392 +304,11 @@ class Converters(commands.Cog):
 
         # Here is the massive if/elif statement for each possible conversion
         
-        calc = ""
+        calc = self.formula(validFrom, validTo, val)
 
-        # Pounds to kilograms
-        if final == "lb kg":
-            calc = val * 0.45359237
-        # Pounds to ounces
-        elif final == "lb oz":
-            calc = val * 16
-        # Pounds to grams
-        elif final == "lb gr":
-            calc = val * 453.592
-        # Pounds to tons (US)
-        elif final == "lb ton":
-            calc = val / 2000
-        # Pounds to tonnes (UK)
-        elif final == "lb tonne":
-            calc = val / 2204.62
+        # Calc forrmulas here?
 
-        # Kilograms to pounds
-        elif final == "kg lb":
-            calc = val / 0.45359237
-        # Kilograms to ounces
-        elif final == "kg oz":
-            calc = val * 35.2739619
-        # Kilograms to grams
-        elif final == "kg gr":
-            calc = val * 1000
-        # Kilograms to tons (US)
-        elif final == "kg ton":
-            calc = val / 907.185
-        # Kilograms to tonnes (UK)
-        elif final == "kg tonne":
-            calc = val / 1016.05
-
-        # Grams to kilograms
-        elif final == "gr kg":
-            calc = val / 1000
-        # Grams to pounds
-        elif final == "gr lb":
-            calc = val / 453.592
-        # Grams to ounces
-        elif final == "gr oz":
-            calc = val / 28.3495
-        # Grams to tons (US)
-        elif final == "gr ton":
-            calc = val / 907185
-        # Grams to tonnes (UK)
-        elif final == "gr tonne":
-            calc = val / 1016000
-
-        # Ounces to pounds
-        elif final == "oz lb":
-            calc = val / 16
-        # Ounces to kilograms
-        elif final == "oz kg":
-            calc = val / 35.274
-        # Ounces to grams
-        elif final == "oz gr":
-            calc = val * 28.35
-        # Ounces to tons (US)
-        elif final == "oz ton":
-            calc = val / 32000
-        # Ounces to tonnes (UK)
-        elif final == "oz tonne":
-            calc = val / 35840
-
-        # Tons (US) to pounds
-        elif final == "ton lb":
-            calc = val * 2000
-        # Tons to kilograms
-        elif final == "ton kg":
-            calc = val * 907.185
-        # Tons to ounces
-        elif final == "ton oz":
-            calc = val * 32000
-        # Tons to grams
-        elif final == "ton gr":
-            calc = val * 907185
-        # Tons to tonnes (UK)
-        elif final == "ton tonne":
-            calc = val * 0.892857
-
-        # Tonnes (UK) to pounds
-        elif final == "tonne lb":
-            calc = val * 2240
-        # Tonnes to kilograms
-        elif final == "tonne kg":
-            calc = val * 1016.05
-        # Tonnes to ounces
-        elif final == "tonne oz":
-            calc = val * 35840
-        # Tonnes to grams
-        elif final == "tonne gr":
-            calc = val * 1016050
-        # Tonnes to tons (US)
-        elif final == "tonne ton":
-            calc = val * 1.12
-
-        # Celsius to Fahrenheit
-        elif final == "c f":
-            calc = round((val * 1.8) + 32, 1)
-        # Celsius to Kelvin
-        elif final == "c k":
-            calc = val + 273.15
-        # Fahrenheit to Celsius
-        elif final == "f c":
-            calc = round((val - 32) / 1.8, 1)
-        # Fahrenheit to Kelvin
-        elif final == "f k":
-            calc = (val + 459.67) * 5/9
-        # Kelvin to Celsius
-        elif final == "k c":
-            calc = val - 273.15
-        # Kelvin to Fahrenheit
-        elif final == "k f":
-            calc = val * 9/5 - 459.67
-
-        # Feet to meters
-        elif final == "ft me":
-            calc = val * 0.3048
-        # Feet to centimeters
-        elif final == "ft cm":
-            calc = val * 30.48
-        # Feet to inches
-        elif final == "ft in":
-            calc = val * 12
-        # Feet to miles
-        elif final == "ft mi":
-            calc = val / 5280
-        # Feet to kilometers
-        elif final == "ft km":
-            calc = val * 0.0003048
-        # Feet to millimeters
-        elif final == "ft mm":
-            calc = val * 304.8
-
-        # Meters to feet
-        elif final == "me ft":
-            calc = val * 3.28084
-        # Meters to centimeters
-        elif final == "me cm":
-            calc = val * 100
-        # Meters to inches
-        elif final == "me in":
-            calc = val * 39.37
-        # Meters to miles
-        elif final == "me mi":
-            calc = val * 0.000621371
-        # Meters to kilometers
-        elif final == "me km":
-            calc = val / 1000
-        # Meters to millimeters
-        elif final == "me mm":
-            calc = val * 1609344
-
-        # Centimeters to feet
-        elif final == "cm ft":
-            calc = val / 30.48
-        # Centimeters to meters
-        elif final == "cm me":
-            calc = val / 100
-        # Centimeters to inches
-        elif final == "cm in":
-            calc = val / 2.54
-        # Centimeters to miles
-        elif final == "cm mi":
-            calc = val * 0.0000062137
-        # Centimeters to kilometers
-        elif final == "cm km":
-            calc = val / 100000
-        # Centimeters to millimeters
-        elif final == "cm mm":
-            calc = val * 10
-
-        # Inches to feet
-        elif final == "in ft":
-            calc = val / 12
-        # Inches to meters
-        elif final == "in me":
-            calc = val * 0.0254
-        # Inches to centimeters
-        elif final == "in cm":
-            calc = val * 2.54
-        # Inches to miles
-        elif final == "in mi":
-            calc = val * 0.000015783
-        # Inches to kilometers
-        elif final == "in km":
-            calc = val * 0.0000254
-        # Inches to millimeters
-        elif final == "in mm":
-            calc = val * 25.4
-
-        # Miles to kilometers
-        elif final == "mi km":
-            calc = val * 1.609344
-        # Miles to meters
-        elif final == "mi me":
-            calc = val * 1609.344
-        # Miles to feet
-        elif final == "mi ft":
-            calc = val * 5280
-        # Miles to centimeters
-        elif final == "mi cm":
-            calc = val * 160934.4
-        # Miles to inches
-        elif final == "mi in":
-            calc = val * 63360
-        # Miles to millimeters
-        elif final == "mi mm":
-            calc = val * 1609344
-
-        # Kilometers to miles
-        elif final == "km mi":
-            calc = val * 0.621371
-        # Kilometers to meters
-        elif final == "km me":
-            calc = val * 1000
-        # Kilometers to feet
-        elif final == "km ft":
-            calc = val * 3280.84
-        # Kilometers to centimeters
-        elif final == "km cm":
-            calc = val * 100000
-        # Kilometers to inches
-        elif final == "km in":
-            calc = val * 39370.1
-        # Kilometers to millimeters
-        elif final == "km mm":
-            calc = val * 1000000
-
-        # Millimeters to miles
-        elif final == "mm mi":
-            calc = val / 1609344
-        # Millimeters to kilometers
-        elif final == "mm km":
-            calc = val / 1000000
-        # Millimeters to feet
-        elif final == "mm ft":
-            calc = val * 0.00328084
-        # Millimeters to centimeters
-        elif final == "mm cm":
-            calc = val / 10
-        # Millimeters to inches
-        elif final == "mm in":
-            calc = val * 0.0393701
-        # Millimeters to meters
-        elif final == "mm me":
-            calc = val / 1000
-
-        # Gallons to liters
-        elif final == "gal lit":
-            calc = val * 3.78541
-        # Gallons to fluid ounces
-        elif final == "gal floz":
-            calc = val * 128
-        # Gallons to cups
-        elif final == "gal cup":
-            calc = val * 16
-        # Gallons to pints
-        elif final == "gal pint":
-            calc = val * 8
-        # Gallons to quarts
-        elif final == "gal qt":
-            calc = val * 4
-        # Gallons to milliliters
-        elif final == "gal ml":
-            calc = val * 3785.411784
-
-        # Liters to gallons
-        elif final == "lit gal":
-            calc = val * 0.264172
-        # Liters to fluid ounces
-        elif final == "lit floz":
-            calc = val * 33.814
-        # Liters to cups
-        elif final == "lit cup":
-            calc = val * 4.22675
-        # Liters to pints
-        elif final == "lit pint":
-            calc = val * 2.11337642
-        # Liters to quarts
-        elif final == "lit qt":
-            calc = val / 1.05668821
-        # Liters to milliliters
-        elif final == "lit ml":
-            calc = val * 1000
-
-        # Fluid ounces to gallons
-        elif final == "floz gal":
-            calc = val / 128
-        # Fluid ounces to liters
-        elif final == "floz lit":
-            calc = val / 33.814
-        # Fluid ounces to cups
-        elif final == "floz cup":
-            calc = val / 8
-        # Fluid ounces to pints
-        elif final == "floz pint":
-            calc = val / 16
-        # Fluid ounces to quarts
-        elif final == "floz qt":
-            calc = val / 32
-        # Fluid ounces to milliliters
-        elif final == "floz ml":
-            calc = val * 29.5735296
-
-        # Cups to gallons
-        elif final == "cup gal":
-            calc = val * 0.0625
-        # Cups to liters
-        elif final == "cup lit":
-            calc = val * 0.236588
-        # Cups to fluid ounces
-        elif final == "cup floz":
-            calc = val * 8
-        # Cups to pints
-        elif final == "cup pint":
-            calc = val / 2
-        # Cups to quarts
-        elif final == "cup qt":
-            calc = val / 4
-        # Cups to milliliters
-        elif final == "cup ml":
-            calc = val * 236.5882365
-
-        # Quarts to gallons
-        elif final == "qt gal":
-            calc = val / 4
-        # Quarts to liters
-        elif final == "qt lit":
-            calc = val * 0.946353
-        # Quarts to pints
-        elif final == "qt pint":
-            calc = val * 2
-        # Quarts to cups
-        elif final == "qt cup":
-            calc = val * 4
-        # Quarts to fluid ounces
-        elif final == "qt floz":
-            calc = val * 32
-        # Quarts to milliliters
-        elif final == "qt ml":
-            calc = val * 946.352946
-
-        # Pints to gallons
-        elif final == "pint gal":
-            calc = val / 8
-        # Pints to liters
-        elif final == "pint lit":
-            calc = val * 0.473176
-        # Pints to cups
-        elif final == "pint cup":
-            calc = val * 2
-        # Pints to fluid ounces
-        elif final == "pint floz":
-            calc = val * 16
-        # Pints to quarts
-        elif final == "pint qt":
-            calc = val / 2
-        # Pints to milliliters
-        elif final == "pint ml":
-            calc = val * 473.176473
-
-
-        # Milliliters to gallons
-        elif final == "ml gal":
-            calc = val * 0.000264172
-        # Milliliters to liters
-        elif final == "ml lit":
-            calc = val / 1000
-        # Milliliters to fluid ounces
-        elif final == "ml floz":
-            calc = val * 0.033814
-        # Milliliters to quarts
-        elif final == "ml qt":
-            calc = val / 946.352946
-        # Milliliters to pints
-        elif final == "ml pint":
-            calc = val * 0.0021133764
-        # Milliliters to cups
-        elif final == "ml cup":
-            calc = val / 236.5882365
-
-
-        if calc != "":
+        if calc != None:
             con1 = self.valid[categoryTo][validFrom][0]
             con2 = self.valid[categoryTo][validTo][0]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
