@@ -27,45 +27,58 @@ class Converters(commands.Cog):
     def __init__(self, bot: Red):
         self.bot = bot
 
+        # List of valid conversions
+        self.valid = {
+            'weight': {
+                'lb': ['pounds', 'lb', 'lbs', 'pound'],
+                'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
+                'oz': ['ounces', 'oz', 'ounce', 'os'],
+                'gr': ['grams', 'gr', 'gram'],
+                'ton': ['tons', 'ton', 'uston'],
+                'tonne': ['tonnes', 'tonne', 'ukton']
+            },
+            'temp': {
+                'c': ['Celsius', 'c', 'celsius', 'cel'],
+                'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
+                'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
+            },
+            'distance': {
+                'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
+                'me': ['meters', 'me', 'meter'],
+                'in': ['inches', 'in', 'inch'],
+                'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
+                'mi': ['miles', 'mi', 'mile'],
+                'km': ['kilometers', 'km', 'kilometer, kilom'],
+                'mm': ['millimeters', 'mm', 'millim']
+            },
+            'liquid': {
+                'gal': ['gallons', 'gal', 'gals', 'gallon'],
+                'lit': ['liters', 'lit', 'liter'],
+                'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
+                'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
+                'cup': ['cups', 'cup'],
+                'qt': ['quarts', 'qt', 'quart'],
+                'pint': ['pints', 'pint', 'pi']
+            }
+        }
+
+        # force convertTo to be whichever the opposite of the single value command is
+        self.forceList = {
+            'c': 'f',
+            'f': 'c',
+            'mi': 'km',
+            'km': 'mi',
+            'lb': 'kg',
+            'kg': 'lb',
+            'gal': 'lit',
+            'lit': 'gal'
+        }
+
     def format_help_for_context(self, ctx: commands.Context) -> str:
         """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
     
-    # List of valid conversions
-    self.valid = {
-        'weight': {
-            'lb': ['pounds', 'lb', 'lbs', 'pound'],
-            'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-            'oz': ['ounces', 'oz', 'ounce', 'os'],
-            'gr': ['grams', 'gr', 'gram'],
-            'ton': ['tons', 'ton', 'uston'],
-            'tonne': ['tonnes', 'tonne', 'ukton']
-        },
-        'temp': {
-            'c': ['Celsius', 'c', 'celsius', 'cel'],
-            'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
-            'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
-        },
-        'distance': {
-            'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
-            'me': ['meters', 'me', 'meter'],
-            'in': ['inches', 'in', 'inch'],
-            'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
-            'mi': ['miles', 'mi', 'mile'],
-            'km': ['kilometers', 'km', 'kilometer, kilom'],
-            'mm': ['millimeters', 'mm', 'millim']
-        },
-        'liquid': {
-            'gal': ['gallons', 'gal', 'gals', 'gallon'],
-            'lit': ['liters', 'lit', 'liter'],
-            'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
-            'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
-            'cup': ['cups', 'cup'],
-            'qt': ['quarts', 'qt', 'quart'],
-            'pint': ['pints', 'pint', 'pi']
-        }
-    }
 
     # List aliases
     @commands.command()
@@ -101,19 +114,7 @@ class Converters(commands.Cog):
 
             val = float(convertTo)
 
-            # force convertTo to be whichever the opposite of the single value command is
-            forceList = {
-                'c': 'f',
-                'f': 'c',
-                'mi': 'km',
-                'km': 'mi',
-                'lb': 'kg',
-                'kg': 'lb',
-                'gal': 'lit',
-                'lit': 'gal'
-            }
-
-            convertTo = forceList[convertFrom]
+            convertTo = self.forceList[convertFrom]
 
         except ValueError:
             pass
