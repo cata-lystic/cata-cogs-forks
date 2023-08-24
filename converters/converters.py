@@ -389,6 +389,10 @@ class Converters(commands.Cog):
         # Gallons to quarts
         elif final == "gal qt":
             calc = val * 4
+        # Gallons to milliliters
+        elif final == "gal ml":
+            calc = val * 3785.411784
+
 
         # Liters to gallons
         elif final == "lit gal":
@@ -405,6 +409,9 @@ class Converters(commands.Cog):
         # Liters to quarts
         elif final == "lit qt":
             calc = val / 1.05668821
+        # Liters to milliliters
+        elif final == "lit ml":
+            calc = val * 1000
 
         # Fluid ounces to gallons
         elif final == "floz gal":
@@ -421,6 +428,9 @@ class Converters(commands.Cog):
         # Fluid ounces to quarts
         elif final == "floz qt":
             calc = val / 32
+        # Fluid ounces to milliliters
+        elif final == "floz ml":
+            calc = val * 29.5735296
 
         # Cups to gallons
         elif final == "cup gal":
@@ -437,6 +447,9 @@ class Converters(commands.Cog):
         # Cups to quarts
         elif final == "cup qt":
             calc = val / 4
+        # Cups to milliliters
+        elif final == "cup ml":
+            calc = val * 236.5882365
 
         # Quarts to gallons
         elif final == "qt gal":
@@ -453,6 +466,9 @@ class Converters(commands.Cog):
         # Quarts to fluid ounces
         elif final == "qt floz":
             calc = val * 32
+        # Quarts to milliliters
+        elif final == "qt ml":
+            calc = val * 946.352946
 
         # Pints to gallons
         elif final == "pint gal":
@@ -469,6 +485,10 @@ class Converters(commands.Cog):
         # Pints to quarts
         elif final == "pint qt":
             calc = val / 2
+        # Pints to milliliters
+        elif final == "pint ml":
+            calc = val * 473.176473
+
 
         # Milliliters to gallons
         elif final == "ml gal":
