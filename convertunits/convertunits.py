@@ -189,8 +189,6 @@ class Convertunits(commands.Cog):
         """Convertunits Settings
         
         Test"""
-        rounding = await self.config.round()
-        ctx.send(f"{rounding}")
 
     @convset.command(name='round')
     async def conv_round(self, ctx, val: int):
@@ -205,7 +203,7 @@ class Convertunits(commands.Cog):
     async def conv_showsettings(self, ctx):
         """Current Settings
         """
-        msg = "**Current Settings**\n\n"
+        msg = "**Current Settings**\n"
 
         round = await self.config.round()
         msg += f"Round: {round}\n"
@@ -232,7 +230,7 @@ class Convertunits(commands.Cog):
 
         # Make sure this is a valid command
         isValid = False
-        valid = await self.valid.items()
+        valid = self.valid.items()
         for key, subdict in valid:
             if command in subdict:
                 isValid = True
