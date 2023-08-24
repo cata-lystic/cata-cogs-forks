@@ -222,7 +222,12 @@ class Convertunits(commands.Cog):
         current = await self.config.disabled()
 
         # Make sure this is a valid command
-        if command not in self.valid.keys():
+        isValid = False
+        for key, subdict in self.valid.items():
+            if command in subdict:
+                isValid = True
+
+        if isValid == False:
             return await ctx.send(f"`{command}` is not a valid unit.")
 
         if command in current:
