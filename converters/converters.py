@@ -1,19 +1,7 @@
 import discord
-
 from redbot.core.bot import Red
 from redbot.core import commands
-#from redbot.core.i18n import Translator, cog_i18n
-from redbot.core.utils.chat_formatting import humanize_timedelta
 
-from typing import Union
-from datetime import datetime, timezone
-
-import contextlib
-
-#_ = Translator("Converters", __file__)
-
-
-#@cog_i18n(_)
 class Converters(commands.Cog):
     """Convert Units"""
 
@@ -27,38 +15,46 @@ class Converters(commands.Cog):
     def __init__(self, bot: Red):
         self.bot = bot
 
-        # List of valid conversions
+
+        """
+        List of valid units
+        
+        The First two values in the unit keyword's list are the singular and plural
+        versions of the unit. These will be used in the final output
+
+        Note: Always include the keyword in the list
+        """
         self.valid = {
             'weight': {
-                'lb': ['pounds', 'lb', 'lbs', 'pound'],
-                'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-                'oz': ['ounces', 'oz', 'ounce', 'os'],
-                'gr': ['grams', 'gr', 'gram'],
-                'ton': ['tons', 'ton', 'uston'],
-                'tonne': ['tonnes', 'tonne', 'ukton']
+                'lb': ['pound', 'pounds', 'lb', 'lbs'],
+                'kg': ['kilogram', 'kilograms', 'kg', 'kgs', 'kilo', 'kilos'],
+                'oz': ['ounce', 'ounces', 'oz', 'os'],
+                'gr': ['gram', 'grams', 'gr', 'grm'],
+                'ton': ['ton', 'tons', 'uston'],
+                'tonne': ['tonne', 'tonnes', 'ukton']
             },
             'temp': {
-                'c': ['Celsius', 'c', 'celsius', 'cel'],
-                'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
-                'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
+                'c': ['Celsius', 'Celsius', 'c', 'celsius', 'cel'],
+                'f': ['Fahrenheit', 'Fahrenheit', 'f', 'fahrenheit', 'fah'],
+                'k': ['Kelvin', 'Kelvin', 'k', 'kelvin', 'kelv', 'kel']
             },
             'distance': {
-                'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
-                'me': ['meters', 'me', 'meter'],
-                'in': ['inches', 'in', 'inch'],
-                'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
-                'mi': ['miles', 'mi', 'mile'],
-                'km': ['kilometers', 'km', 'kilometer, kilom'],
-                'mm': ['millimeters', 'mm', 'millim']
+                'ft': ['foot', 'feet', 'ft', 'feets', 'foots'],
+                'me': ['meter', 'meters', 'me', 'met'],
+                'in': ['inch', 'inches', 'in'],
+                'cm': ['centimeter', 'centimeters', 'cm', 'centi'],
+                'mi': ['mile', 'miles', 'mi'],
+                'km': ['kilometer', 'kilometers', 'km', 'kilom'],
+                'mm': ['millimeter', 'millimeters', 'mm', 'millim']
             },
             'liquid': {
-                'gal': ['gallons', 'gal', 'gals', 'gallon'],
-                'lit': ['liters', 'lit', 'liter'],
-                'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
-                'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
-                'cup': ['cups', 'cup'],
-                'qt': ['quarts', 'qt', 'quart'],
-                'pint': ['pints', 'pint', 'pi']
+                'gal': ['gallon', 'gallons', 'gal', 'gals'],
+                'lit': ['liter', 'liters', 'lit'],
+                'ml': ['milliliter', 'milliliters', 'ml', 'millil'],
+                'floz': ['fluid ounce', 'fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
+                'cup': ['cup', 'cups', 'cp'],
+                'qt': ['quart', 'quarts', 'qt'],
+                'pint': ['pint', 'pints', 'pi', 'pin', 'pnt']
             }
         }
 
@@ -80,6 +76,106 @@ class Converters(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
     
+
+    # List aliases
+    @commands.command()
+    async def convs(self, ctx):
+        await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
+
+    @commands.command(aliases=['con'])
+    async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
+        """Convert Units
+        
+        **Weight**
+        `lb` Pounds, `kg` Kilograms, `oz` Ounces
+        `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
+        **Distance**
+        `ft` Feet, `me` Meters, `in` Inches, `mm` Millimeters
+        `cm` Centimeters, `mi` Miles, `km` Kilometers
+        **Liquid**
+        `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
+        `cup` Cups, `qt` Quarts, `pint` Pints, `ml` Milliliters
+        **Temperature**
+        `c` Celsius, `f` Fahrenheit, `k` Kelvin
+        
+        **Examples**
+        .conv lb kg 45
+        .conv c 30"""        
+
+        # Check if convertTo is a number/float
+        # If it is, use convertTo as the val
+        # This is because c, f, mi, and km don't require a convertTo
+        try:
+            float(convertTo)
+
+            val = float(convertTo)
+
+            convertTo = self.forceList[convertFrom]
+
+        except ValueError:
+            pass
+
+        if (convertFrom == convertTo):
+            return await ctx.send("You can't convert the same unit")
+
+        # Loop through each list in the dictionary and see if it exists.
+        # if it does, return the index
+
+        validFrom = "" # Converting from
+        validTo = "" # Converting to
+        categoryFrom = "" # Conversion category
+        categoryTo = ""
+        errorMsg = ""
+
+        # Loop through 'valid' dictionary to see if convertFrom and convertTo
+        # match a value in the subdict
+        for cat, vals in self.valid.items():
+
+            # Check to make sure chosen conversions are valid
+            key_list = list(self.valid[cat].keys())
+            val_list = list(self.valid[cat].values())
+
+            for i in range(len(val_list)):
+                if convertFrom in val_list[i]:
+                    validFrom = key_list[i]
+                    categoryFrom = cat
+
+                if convertTo in val_list[i]:
+                    validTo = key_list[i]
+                    categoryTo = cat
+        
+        if validFrom == "":
+            errorMsg = f"Error: `{convertFrom}` is not a valid unit."
+        elif validTo == "":
+            errorMsg = f"Error: `{convertTo}` is not a valid unit."
+        elif categoryFrom != categoryTo or categoryFrom == "" or categoryTo == "":
+            errorMsg = f"Error: Cannot convert from `{categoryFrom}` to `{categoryTo}`."
+        else:
+            final = f"{validFrom} {validTo}"
+
+        # Return error if found
+        if errorMsg != "":
+            return await ctx.send(errorMsg)
+
+        # Here is the massive if/elif statement for each possible conversion
+        
+        calc = self.formula(validFrom, validTo, val)
+
+        # Calc forrmulas here?
+
+        if calc != None:
+            con1 = self.valid[categoryTo][validFrom][0]
+            con2 = self.valid[categoryTo][validTo][0]
+            msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
+        else:
+            msg = "Invalid set of conversions."
+
+        return await ctx.send(f"{msg}")
+    
+
+    # Functions
+
+    # Formula (Calculate conversion)
     def formula(self, convFrom, convTo, val: float):
 
         # Combine units
@@ -213,106 +309,3 @@ class Converters(commands.Cog):
         else:
             return None
     
-
-    # List aliases
-    @commands.command()
-    async def convs(self, ctx):
-        await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
-
-    @commands.command(aliases=['convtest'])
-    async def convt(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
-
-        result = f"{convertFrom} {convertTo}"
-        finalresult = formulas[result]
-
-        return await ctx.send(finalresult)
-
-    @commands.command(aliases=['con'])
-    async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
-        """Convert Units
-        
-        **Weight**
-        `lb` Pounds, `kg` Kilograms, `oz` Ounces
-        `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
-        **Distance**
-        `ft` Feet, `me` Meters, `in` Inches, `mm` Millimeters
-        `cm` Centimeters, `mi` Miles, `km` Kilometers
-        **Liquid**
-        `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
-        `cup` Cups, `qt` Quarts, `pint` Pints, `ml` Milliliters
-        **Temperature**
-        `c` Celsius, `f` Fahrenheit, `k` Kelvin
-        
-        **Examples**
-        .conv lb kg 45
-        .conv c 30"""        
-
-        # Check if convertTo is a number/float
-        # If it is, use convertTo as the val
-        # This is because c, f, mi, and km don't require a convertTo
-        try:
-            float(convertTo)
-
-            val = float(convertTo)
-
-            convertTo = self.forceList[convertFrom]
-
-        except ValueError:
-            pass
-
-        if (convertFrom == convertTo):
-            return await ctx.send("You can't convert the same unit")
-
-        # Loop through each list in the dictionary and see if it exists.
-        # if it does, return the index
-
-        validFrom = "" # Converting from
-        validTo = "" # Converting to
-        categoryFrom = "" # Conversion category
-        categoryTo = ""
-        errorMsg = ""
-
-        # Loop through 'valid' dictionary to see if convertFrom and convertTo
-        # match a value in the subdict
-        for cat, vals in self.valid.items():
-
-            # Check to make sure chosen conversions are valid
-            key_list = list(self.valid[cat].keys())
-            val_list = list(self.valid[cat].values())
-
-            for i in range(len(val_list)):
-                if convertFrom in val_list[i]:
-                    validFrom = key_list[i]
-                    categoryFrom = cat
-
-                if convertTo in val_list[i]:
-                    validTo = key_list[i]
-                    categoryTo = cat
-        
-        if validFrom == "":
-            errorMsg = f"Error: `{convertFrom}` is not a valid unit."
-        elif validTo == "":
-            errorMsg = f"Error: `{convertTo}` is not a valid unit."
-        elif categoryFrom != categoryTo or categoryFrom == "" or categoryTo == "":
-            errorMsg = f"Error: Cannot convert from `{categoryFrom}` to `{categoryTo}`."
-        else:
-            final = f"{validFrom} {validTo}"
-
-        # Return error if found
-        if errorMsg != "":
-            return await ctx.send(errorMsg)
-
-        # Here is the massive if/elif statement for each possible conversion
-        
-        calc = self.formula(validFrom, validTo, val)
-
-        # Calc forrmulas here?
-
-        if calc != None:
-            con1 = self.valid[categoryTo][validFrom][0]
-            con2 = self.valid[categoryTo][validTo][0]
-            msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
-        else:
-            msg = "Invalid set of conversions."
-
-        return await ctx.send(f"{msg}")
