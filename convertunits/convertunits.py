@@ -208,7 +208,7 @@ class Convertunits(commands.Cog):
         msg = "**Current Settings**\n\n"
 
         round = await self.config.round()
-        msg += f"round: {round}"
+        msg += f"Round: {round}\n"
 
         msg += "Disabled: "
         disabled = await self.config.disabled()
@@ -224,9 +224,16 @@ class Convertunits(commands.Cog):
         Example: .convset disable k
         """
 
+
+        # Check if command is already disabled
+        disabled = await self.config.disabled()
+        if command in disabled:
+            return ctx.send(f"`{command}` is already disabled.")
+
         # Make sure this is a valid command
         isValid = False
-        for key, subdict in self.valid.items():
+        valid = await self.valid.items()
+        for key, subdict in valid:
             if command in subdict:
                 isValid = True
                 
