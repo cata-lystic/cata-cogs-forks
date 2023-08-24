@@ -221,12 +221,16 @@ class Convertunits(commands.Cog):
         
         current = await self.config.disabled()
 
+        # Make sure this is a valid command
+        if command not in self.valid:
+            return await ctx.send(f"`{command}` is not a valid unit.")
+
         if command in current:
             current.remove(command)
             await self.config.disabled.set(current)
             return await ctx.send(f"`{command}` enabled.")
         else:
-            return await ctx.send(f"`{command} is not disabled.")
+            return await ctx.send(f"`{command}` is not disabled.")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
