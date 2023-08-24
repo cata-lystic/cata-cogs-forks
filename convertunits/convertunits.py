@@ -301,7 +301,7 @@ class Convertunits(commands.Cog):
         rounding = await self.config.round()
 
         if units in formulas:
-            return round(formulas[units], rounding)
+            return float(round(formulas[units], rounding))
         else:
             return None
     
