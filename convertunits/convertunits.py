@@ -18,7 +18,7 @@ class Convertunits(commands.Cog):
 
         default_global = {
             "round": 10,
-            "disabled": {}
+            "disabled": []
         }
 
         self.config.register_global(**default_global)
@@ -202,13 +202,13 @@ class Convertunits(commands.Cog):
         return await ctx.send(f"Round set to {val}")
 
     @convset.command(name='disable')
-    async def disable(self, ctx, command):
+    async def conv_disable(self, ctx, command):
         """Round Output
         Example: .convset disable k
         """
         
         current = await self.config.disabled()
-        current.update(command)
+        current.append(command)
 
         await self.config.disabled.set(current)
         return await ctx.send(f"Unit disabled.")
