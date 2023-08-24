@@ -189,6 +189,7 @@ class Convertunits(commands.Cog):
         
         Test"""
         rounding = self.config.round()
+        ctx.send(f"{rounding}")
 
     @convset.command(name='round')
     async def conv_round(self, ctx, val: int):
