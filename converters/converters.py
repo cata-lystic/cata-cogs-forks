@@ -46,7 +46,7 @@ class Converters(commands.Cog):
         `lb` Pounds, `kg` Kilograms, `oz` Ounces
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
         **Distance**
-        `ft` Feet, `me` Meters, `in` Inches
+        `ft` Feet, `me` Meters, `in` Inches, `mm` Millimeters
         `cm` Centimeters, `mi` Miles, `km` Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
@@ -107,7 +107,8 @@ class Converters(commands.Cog):
                 'in': ['inches', 'in', 'inch'],
                 'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
                 'mi': ['miles', 'mi', 'mile'],
-                'km': ['kilometers', 'km', 'kilometer, kilom']
+                'km': ['kilometers', 'km', 'kilometer, kilom'],
+                'mm': ['millimeters', 'mm', 'millim']
             },
             'liquid': {
                 'gal': ['gallons', 'gal', 'gals', 'gallon'],
@@ -374,6 +375,25 @@ class Converters(commands.Cog):
         elif final == "km in":
             calc = val * 39370.1
 
+        # Millimeters to miles
+        elif final == "mm mi":
+            calc = val / 1609344
+        # Millimeters to kilometers
+        elif final == "mm km":
+            calc = val / 1000000
+        # Millimeters to feet
+        elif final == "mm ft":
+            calc = val * 0.00328084
+        # Millimeters to centimeters
+        elif final == "mm cm":
+            calc = val / 10
+        # Millimeters to inches
+        elif final == "mm in":
+            calc = val * 0.0393701
+        # Millimeters to meters
+        elif final == "mm me":
+            calc = val / 1000
+
         # Gallons to liters
         elif final == "gal lit":
             calc = val * 3.78541
@@ -392,7 +412,6 @@ class Converters(commands.Cog):
         # Gallons to milliliters
         elif final == "gal ml":
             calc = val * 3785.411784
-
 
         # Liters to gallons
         elif final == "lit gal":
