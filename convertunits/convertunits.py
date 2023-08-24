@@ -1,6 +1,6 @@
 import discord
 from redbot.core.bot import Red
-from redbot.core import Config, commands, Context, Command
+from redbot.core import Config, commands
 
 class Convertunits(commands.Cog):
     """Convert Units"""
@@ -80,6 +80,16 @@ class Convertunits(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
+    @commands.command(name="example", help="This is the original help description.")
+    async def example_command(self, ctx):
+        await ctx.send("This is an example command.")
+
+    @commands.command(name="change_help")
+    async def change_help_command(self, ctx):
+        command = self.bot.get_command("example")
+        command.help = "This is the updated help description."
+        await ctx.send("The help description for the 'example' command has been updated.")
+
     @commands.command(aliases=['con', 'convertunits'])
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
@@ -88,7 +98,7 @@ class Convertunits(commands.Cog):
         `lb` Pounds, `kg` Kilograms, `oz` Ounces
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
         **Distance**
-        `ft` Feet, `me` Meters, `in` Inches, `mm` Millimeters
+        `ft` Feet, `me` Meters, `in` InContextches, `mm` Millimeters
         `cm` Centimeters, `mi` Miles, `km` Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
@@ -176,7 +186,7 @@ class Convertunits(commands.Cog):
 
     # Functions
     @commands.command()
-    async def convset(self, ctx: Context, command):
+    async def convset(self, ctx, command):
         """Test"""
         pre_processed = super.format_help(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
