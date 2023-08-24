@@ -59,14 +59,12 @@ class Convertunits(commands.Cog):
 
         # force convertTo to be whichever the opposite of the single value command is
         self.forceList = {
-            'c': 'f',
-            'f': 'c',
-            'mi': 'km',
-            'km': 'mi',
-            'lb': 'kg',
-            'kg': 'lb',
-            'gal': 'lit',
-            'lit': 'gal'
+            'c': 'f', 'f': 'c',         # Celsius/Fahrenheit
+            'mi': 'km', 'km': 'mi',     # Miles/Kilometers
+            'lb': 'kg', 'kg': 'lb',     # Pounds/Kilograms
+            'gal': 'lit', 'lit': 'gal', # Gallons/Liters
+            'in': 'cm', 'cm': 'in',     # Inches/Centimeters
+            'ft': 'me', 'me': 'ft'      # Feet/Meters
         }
         
 
@@ -74,14 +72,9 @@ class Convertunits(commands.Cog):
         """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
-    
 
-    # List aliases
-    @commands.command()
-    async def convs(self, ctx):
-        await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
 
-    @commands.command(aliases=['con'])
+    @commands.command(aliases=['con', 'convertunits'])
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
@@ -159,9 +152,10 @@ class Convertunits(commands.Cog):
         calc = self.formula(validFrom, validTo, val)
 
         if calc != None:
-            plural = 1 if val != 1 else 0
-            con1 = self.valid[categoryTo][validFrom][plural]
-            con2 = self.valid[categoryTo][validTo][plural]
+            plural1 = 1 if val != 1 else 0
+            plural2 = 1 if calc != 1 else 0
+            con1 = self.valid[categoryTo][validFrom][plural1]
+            con2 = self.valid[categoryTo][validTo][plural2]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
