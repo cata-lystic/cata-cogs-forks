@@ -20,6 +20,8 @@ class Convertunits(commands.Cog):
             "round": 2
         }
 
+        self.config.register_global(**default_global)
+
         """
         List of valid units
         
