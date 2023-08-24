@@ -294,6 +294,9 @@ class Converters(commands.Cog):
         # Feet to kilometers
         elif final == "ft km":
             calc = val * 0.0003048
+        # Feet to millimeters
+        elif final == "ft mm":
+            calc = val * 304.8
 
         # Meters to feet
         elif final == "me ft":
@@ -310,6 +313,9 @@ class Converters(commands.Cog):
         # Meters to kilometers
         elif final == "me km":
             calc = val / 1000
+        # Meters to millimeters
+        elif final == "me mm":
+            calc = val * 1609344
 
         # Centimeters to feet
         elif final == "cm ft":
@@ -326,6 +332,9 @@ class Converters(commands.Cog):
         # Centimeters to kilometers
         elif final == "cm km":
             calc = val / 100000
+        # Centimeters to millimeters
+        elif final == "cm mm":
+            calc = val * 10
 
         # Inches to feet
         elif final == "in ft":
@@ -342,6 +351,9 @@ class Converters(commands.Cog):
         # Inches to kilometers
         elif final == "in km":
             calc = val * 0.0000254
+        # Inches to millimeters
+        elif final == "in mm":
+            calc = val * 25.4
 
         # Miles to kilometers
         elif final == "mi km":
@@ -358,6 +370,9 @@ class Converters(commands.Cog):
         # Miles to inches
         elif final == "mi in":
             calc = val * 63360
+        # Miles to millimeters
+        elif final == "mi mm":
+            calc = val * 1609344
 
         # Kilometers to miles
         elif final == "km mi":
@@ -374,6 +389,9 @@ class Converters(commands.Cog):
         # Kilometers to inches
         elif final == "km in":
             calc = val * 39370.1
+        # Kilometers to millimeters
+        elif final == "km mm":
+            calc = val * 1000000
 
         # Millimeters to miles
         elif final == "mm mi":
