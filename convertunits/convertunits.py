@@ -223,9 +223,9 @@ class Convertunits(commands.Cog):
 
         # Make sure this is a valid command
         isValid = False
+        test = ""
         for key, subdict in self.valid.items():
-            if command in subdict:
-                isValid = True
+            test += f"{key} | "
 
         if isValid == False:
             return await ctx.send(f"`{command}` is not a valid unit.")
