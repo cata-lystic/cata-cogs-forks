@@ -168,6 +168,11 @@ class Convertunits(commands.Cog):
 
         return await ctx.send(f"{msg}")
     
+    def format_help_for_context(ctx: Context, command: Command) -> str:
+        # Generate the formatted help text for the command in the given context
+        # ...
+        formatted_help_text = "WUT"
+        return formatted_help_text
 
     # Functions
     @commands.command()
