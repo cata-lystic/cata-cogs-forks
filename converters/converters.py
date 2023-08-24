@@ -49,10 +49,16 @@ class Converters(commands.Cog):
     @commands.group()
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Master converter.
+
+        Convert units
         
-        Weight: lb, kg, oz, gr, ton, tonne
+        Weight
+        `lb` Pounds, `kg` Kilograms, `oz` Ounces, `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
+
+        Temperature
+        `c` Celsius, `f` Fahrenheit
         
-        Temp: c, f"""
+        Example: .conv lb kg 45"""
 
         # Check if convertTo is a number/float
         # If it is, use convertTo as the val
