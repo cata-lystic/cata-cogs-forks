@@ -210,10 +210,10 @@ class Convertunits(commands.Cog):
         round = self.config.round()
         msg += f"round: {round}"
 
-        msg += "Disabled: "
         disabled = self.config.disabled()
-        for x, y in disabled:
-            msg += f"{x} "
+        msg += f"Disabled: {disabled}"
+        #for x, y in disabled:
+        #    msg += f"{x} "
 
         return await ctx.send(msg)
 
