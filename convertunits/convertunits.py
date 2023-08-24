@@ -190,16 +190,13 @@ class Convertunits(commands.Cog):
         Test"""
 
     @convset.command(name='round')
-    async def conv_round(self, ctx, binary):
+    async def conv_round(self, ctx, val: int):
         """Round Output
         Example: .convset round 2
         """
-
-        if (binary != 1 and binary != 0):
-            return await ctx.send("Value must be 1 or 0")
         
-        self.config.round.set(binary)
-        return await ctx.send(f"Round set to {binary}")
+        self.config.round.set(val)
+        return await ctx.send(f"Round set to {val}")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
