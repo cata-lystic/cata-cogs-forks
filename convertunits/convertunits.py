@@ -231,8 +231,7 @@ class Convertunits(commands.Cog):
 
         # Make sure this is a valid command
         isValid = False
-        valid = await self.valid.items()
-        for key, subdict in valid:
+        for key, subdict in self.valid.items():
             if command in subdict:
                 isValid = True
                 
