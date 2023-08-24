@@ -15,7 +15,6 @@ class Convertunits(commands.Cog):
     def __init__(self, bot: Red):
         self.bot = bot
 
-
         """
         List of valid units
         
@@ -156,16 +155,13 @@ class Convertunits(commands.Cog):
         # Return error if found
         if errorMsg != "":
             return await ctx.send(errorMsg)
-
-        # Here is the massive if/elif statement for each possible conversion
         
         calc = self.formula(validFrom, validTo, val)
 
-        # Calc forrmulas here?
-
         if calc != None:
-            con1 = self.valid[categoryTo][validFrom][0]
-            con2 = self.valid[categoryTo][validTo][0]
+            plural = 1 if val != 1 else 0
+            con1 = self.valid[categoryTo][validFrom][plural]
+            con2 = self.valid[categoryTo][validTo][plural]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
