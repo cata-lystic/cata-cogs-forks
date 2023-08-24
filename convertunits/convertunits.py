@@ -79,8 +79,12 @@ class Convertunits(commands.Cog):
         """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
+    
+    async def testing(self, ctx):
+        return "WOOOO"
 
-    @commands.command(name="example", help="This is the original help description.")
+
+    @commands.command(name="example", help=testing())
     async def example_command(self, ctx):
         await ctx.send("This is an example command.")
 
