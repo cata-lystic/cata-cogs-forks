@@ -80,7 +80,7 @@ class Convertunits(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
     
-    async def testing():
+    def testing():
         return "WOOOO"
 
 
