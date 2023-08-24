@@ -55,14 +55,18 @@ class Converters(commands.Cog):
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
         **Distance**
         `ft` Feet, `me` Meters, `in` Inches
-        `cm` Centimeters, `mi` Miles, `km` Kilometers
+        `cm` Centimeters, `mi`* Miles, `km`* Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
         `cup` Cups, `qt` Quarts, `pint` Pints
         **Temperature**
-        `c` Celsius, `f` Fahrenheit
+        `c`* Celsius, `f`* Fahrenheit
         
-        Example: .conv lb kg 45"""
+        Example: .conv lb kg 45
+
+        * = can be used alone
+        Example: .conv c 45 (Converts 45 C to F)"""
+        
 
         # Check if convertTo is a number/float
         # If it is, use convertTo as the val
