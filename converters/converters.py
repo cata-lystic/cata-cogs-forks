@@ -48,24 +48,19 @@ class Converters(commands.Cog):
 
     @commands.command()
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
-        """Master converter.
-
-        Convert units
+        """Convert Units
         
-        Weight
+        **Weight**
         `lb` Pounds, `kg` Kilograms, `oz` Ounces
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
-
-        Temperature
-        `c` Celsius, `f` Fahrenheit
-
-        Distance
+        **Distance**
         `ft` Feet, `me` Meters, `in` Inches
         `cm` Centimeters, `mi` Miles, `km` Kilometers
-
-        Liquid
+        **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
         `cup` Cups, `qt` Quarts, `pint` Pints
+        **Temperature**
+        `c` Celsius, `f` Fahrenheit
         
         Example: .conv lb kg 45"""
 
