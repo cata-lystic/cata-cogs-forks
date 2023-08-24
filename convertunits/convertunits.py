@@ -206,6 +206,15 @@ class Convertunits(commands.Cog):
         """Round Output
         Example: .convset disable k
         """
+
+        # Make sure this is a valid command
+        isValid = False
+        for key, subdict in self.valid.items():
+            if command in subdict:
+                isValid = True
+                
+        if isValid == False:
+            return await ctx.send(f"`{command}` is not a valid unit.")
         
         current = await self.config.disabled()
         current.append(command)
@@ -223,10 +232,10 @@ class Convertunits(commands.Cog):
 
         # Make sure this is a valid command
         isValid = False
-        test = ""
         for key, subdict in self.valid.items():
-            test += f"{key} | "
-
+            if command in subdict:
+                isValid = True
+                
         if isValid == False:
             return await ctx.send(f"`{command}` is not a valid unit.")
 
