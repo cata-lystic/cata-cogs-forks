@@ -80,7 +80,7 @@ class Converters(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
     
-    def formula(self, ctx, convFrom, convTo, val: float):
+    def formula(self, convFrom, convTo, val: float):
 
         # Combine units
         units = f"{convFrom} {convTo}"
