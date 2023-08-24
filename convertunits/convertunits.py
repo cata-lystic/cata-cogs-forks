@@ -159,7 +159,8 @@ class Convertunits(commands.Cog):
 
         disabled = await self.config.disabled()
         if any(s in disabled for s in [validFrom, validTo]):
-            errorMsg = f"Error: {self.valid[s][1]} command is disabled."
+            for s in [validFrom, validTo]:
+                errorMsg = f"Error: {self.valid[s][1]} command is disabled."
         elif validFrom == "":
             errorMsg = f"Error: `{convertFrom}` is not a valid unit."
         elif validTo == "":
