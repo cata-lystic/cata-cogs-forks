@@ -211,7 +211,22 @@ class Convertunits(commands.Cog):
         current.append(command)
 
         await self.config.disabled.set(current)
-        return await ctx.send(f"Unit disabled.")
+        return await ctx.send(f"`{command}` disabled.")
+    
+    @convset.command(name='enable')
+    async def conv_enable(self, ctx, command):
+        """Round Output
+        Example: .convset disable k
+        """
+        
+        current = await self.config.disabled()
+
+        if command in current:
+            current.remove(command)
+            await self.config.disabled.set(current)
+            return await ctx.send(f"`{command}` enabled.")
+        else:
+            return await ctx.send(f"`{command} is not disabled.")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
