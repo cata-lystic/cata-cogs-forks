@@ -103,7 +103,7 @@ class Convertunits(commands.Cog):
         `lb` Pounds, `kg` Kilograms, `oz` Ounces
         `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
         **Distance**
-        `ft` Feet, `me` Meters, `in` InContextches, `mm` Millimeters
+        `ft` Feet, `me` Meters, `in` Inches, `mm` Millimeters
         `cm` Centimeters, `mi` Miles, `km` Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
@@ -210,8 +210,10 @@ class Convertunits(commands.Cog):
         round = self.config.round()
         msg += f"round: {round}"
 
+        msg += "Disabled: "
         disabled = self.config.disabled()
-        msg += (", ".join(map(str, disabled)))
+        for x, y in disabled:
+            msg += f"{x} "
 
         return await ctx.send(msg)
 
