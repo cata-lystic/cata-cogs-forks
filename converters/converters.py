@@ -31,6 +31,41 @@ class Converters(commands.Cog):
         """Convert Help"""
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
+    
+    # List of valid conversions
+    self.valid = {
+        'weight': {
+            'lb': ['pounds', 'lb', 'lbs', 'pound'],
+            'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
+            'oz': ['ounces', 'oz', 'ounce', 'os'],
+            'gr': ['grams', 'gr', 'gram'],
+            'ton': ['tons', 'ton', 'uston'],
+            'tonne': ['tonnes', 'tonne', 'ukton']
+        },
+        'temp': {
+            'c': ['Celsius', 'c', 'celsius', 'cel'],
+            'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
+            'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
+        },
+        'distance': {
+            'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
+            'me': ['meters', 'me', 'meter'],
+            'in': ['inches', 'in', 'inch'],
+            'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
+            'mi': ['miles', 'mi', 'mile'],
+            'km': ['kilometers', 'km', 'kilometer, kilom'],
+            'mm': ['millimeters', 'mm', 'millim']
+        },
+        'liquid': {
+            'gal': ['gallons', 'gal', 'gals', 'gallon'],
+            'lit': ['liters', 'lit', 'liter'],
+            'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
+            'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
+            'cup': ['cups', 'cup'],
+            'qt': ['quarts', 'qt', 'quart'],
+            'pint': ['pints', 'pint', 'pi']
+        }
+    }
 
     # List aliases
     @commands.command()
@@ -86,41 +121,6 @@ class Converters(commands.Cog):
         if (convertFrom == convertTo):
             return await ctx.send("You can't convert the same unit")
 
-        # List of valid conversions
-        valid = {
-            'weight': {
-                'lb': ['pounds', 'lb', 'lbs', 'pound'],
-                'kg': ['kilograms', 'kg', 'ki', 'kgs', 'kilo', 'kilos', 'kilogram'],
-                'oz': ['ounces', 'oz', 'ounce', 'os'],
-                'gr': ['grams', 'gr', 'gram'],
-                'ton': ['tons', 'ton', 'uston'],
-                'tonne': ['tonnes', 'tonne', 'ukton']
-            },
-            'temp': {
-                'c': ['Celsius', 'c', 'celsius', 'cel'],
-                'f': ['Fahrenheit', 'f', 'fahrenheit', 'fah'],
-                'k': ['Kelvin', 'k', 'kelvin', 'kelv', 'kel']
-            },
-            'distance': {
-                'ft': ['feet', 'ft', 'feets', 'foot', 'foots'],
-                'me': ['meters', 'me', 'meter'],
-                'in': ['inches', 'in', 'inch'],
-                'cm': ['centimeters', 'cm', 'centi', 'centimeter'],
-                'mi': ['miles', 'mi', 'mile'],
-                'km': ['kilometers', 'km', 'kilometer, kilom'],
-                'mm': ['millimeters', 'mm', 'millim']
-            },
-            'liquid': {
-                'gal': ['gallons', 'gal', 'gals', 'gallon'],
-                'lit': ['liters', 'lit', 'liter'],
-                'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
-                'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
-                'cup': ['cups', 'cup'],
-                'qt': ['quarts', 'qt', 'quart'],
-                'pint': ['pints', 'pint', 'pi']
-            }
-        }
-
         # Loop through each list in the dictionary and see if it exists.
         # if it does, return the index
 
@@ -132,11 +132,11 @@ class Converters(commands.Cog):
 
         # Loop through 'valid' dictionary to see if convertFrom and convertTo
         # match a value in the subdict
-        for cat, vals in valid.items():
+        for cat, vals in self.valid.items():
 
             # Check to make sure chosen conversions are valid
-            key_list = list(valid[cat].keys())
-            val_list = list(valid[cat].values())
+            key_list = list(self.valid[cat].keys())
+            val_list = list(self.valid[cat].values())
 
             for i in range(len(val_list)):
                 if convertFrom in val_list[i]:
@@ -547,11 +547,9 @@ class Converters(commands.Cog):
             calc = val / 236.5882365
 
 
-
-
         if calc != "":
-            con1 = valid[categoryTo][validFrom][0]
-            con2 = valid[categoryTo][validTo][0]
+            con1 = self.valid[categoryTo][validFrom][0]
+            con2 = self.valid[categoryTo][validTo][0]
             msg = ("> {val} {con1} is equal to {calc} {con2}.").format(val=val, calc=calc, con1=con1, con2=con2)
         else:
             msg = "Invalid set of conversions."
