@@ -207,7 +207,7 @@ class Convertunits(commands.Cog):
         """
         msg = "**Current Settings**\n\n"
 
-        round = self.config.round()
+        round = await self.config.round()
         msg += f"round: {round}"
 
         msg += "Disabled: "
