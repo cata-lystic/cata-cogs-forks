@@ -168,7 +168,7 @@ class Convertunits(commands.Cog):
 
         return await ctx.send(f"{msg}")
     
-    def format_help_for_context(ctx, command) -> str:
+    def format_help(ctx, command) -> str:
         # Generate the formatted help text for the command in the given context
         # ...
         formatted_help_text = "WUT"
@@ -177,7 +177,7 @@ class Convertunits(commands.Cog):
     # Functions
     @commands.command()
     async def convset(self, ctx, something):
-        pre_processed = super().format_help_for_context(ctx)
+        pre_processed = super().format_help(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
     # Formula (Calculate conversion)
