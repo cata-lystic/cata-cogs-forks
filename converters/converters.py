@@ -71,7 +71,11 @@ class Converters(commands.Cog):
                 'c': 'f',
                 'f': 'c',
                 'mi': 'km',
-                'km': 'mi'
+                'km': 'mi',
+                'lb': 'kg',
+                'kg': 'lb',
+                'gal': 'lit',
+                'lit': 'gal'
             }
 
             convertTo = forceList[convertFrom]
@@ -108,6 +112,7 @@ class Converters(commands.Cog):
             'liquid': {
                 'gal': ['gallons', 'gal', 'gals', 'gallon'],
                 'lit': ['liters', 'lit', 'liter'],
+                'ml': ['milliliters', 'ml', 'milliliter', 'millil'],
                 'floz': ['fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
                 'cup': ['cups', 'cup'],
                 'qt': ['quarts', 'qt', 'quart'],
@@ -464,6 +469,25 @@ class Converters(commands.Cog):
         # Pints to quarts
         elif final == "pint qt":
             calc = val / 2
+
+        # Milliliters to gallons
+        elif final == "ml gal":
+            calc = val * 0.000264172
+        # Milliliters to liters
+        elif final == "ml lit":
+            calc = val / 1000
+        # Milliliters to fluid ounces
+        elif final == "ml floz":
+            calc = val * 0.033814
+        # Milliliters to quarts
+        elif final == "ml qt":
+            calc = val / 946.352946
+        # Milliliters to pints
+        elif final == "ml pint":
+            calc = val * 0.0021133764
+        # Milliliters to cups
+        elif final == "ml cup":
+            calc = val / 236.5882365
 
 
 
