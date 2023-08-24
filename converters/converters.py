@@ -46,8 +46,8 @@ class Converters(commands.Cog):
     # .con gal in   // false, gallons and inches can't be converted
 
 
-    @commands.group(aliases=['conv'])
-    async def convert(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
+    @commands.group()
+    async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Master converter.
         
         Weight: lb, kg, oz, gr, ton, tonne
@@ -460,7 +460,7 @@ class Converters(commands.Cog):
 
         return await ctx.send(f"{msg}")
 
-    @convert.command()
+    @conv.command()
     async def todate(self, ctx: commands.Context, timestamp: Union[int, float]):
         """Convert a unix timestamp to a readable datetime."""
         try:
@@ -485,7 +485,7 @@ class Converters(commands.Cog):
         except (ValueError, OverflowError, OSError):
             return await ctx.send(_("`{}` is not a valid timestamp.").format(timestamp))
 
-    @convert.command()
+    @conv.command()
     async def tounix(self, ctx: commands.Context, *, date: str):
         """
         Convert a date to a unix timestamp.
