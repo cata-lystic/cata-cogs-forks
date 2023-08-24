@@ -53,10 +53,19 @@ class Converters(commands.Cog):
         Convert units
         
         Weight
-        `lb` Pounds, `kg` Kilograms, `oz` Ounces, `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
+        `lb` Pounds, `kg` Kilograms, `oz` Ounces
+        `gr` Grams, `ton` Tons (US), `tonne` Tonnes (UK)
 
         Temperature
         `c` Celsius, `f` Fahrenheit
+
+        Distance
+        `ft` Feet, `me` Meters, `in` Inches
+        `cm` Centimeters, `mi` Miles, `km` Kilometers
+
+        Liquid
+        `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
+        `cup` Cups, `qt` Quarts, `pint` Pints
         
         Example: .conv lb kg 45"""
 
