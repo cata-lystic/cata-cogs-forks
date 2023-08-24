@@ -188,7 +188,7 @@ class Convertunits(commands.Cog):
         """Convertunits Settings
         
         Test"""
-        rounding = self.config.round()
+        rounding = await self.config.round()
         ctx.send(f"{rounding}")
 
     @convset.command(name='round')
