@@ -188,6 +188,7 @@ class Convertunits(commands.Cog):
         """Convertunits Settings
         
         Test"""
+        rounding = self.config.round()
 
     @convset.command(name='round')
     async def conv_round(self, ctx, val: int):
@@ -195,7 +196,7 @@ class Convertunits(commands.Cog):
         Example: .convset round 2
         """
         
-        self.config.round.set(val)
+        await self.config.round.set(val)
         return await ctx.send(f"Round set to {val}")
 
     # Formula (Calculate conversion)
