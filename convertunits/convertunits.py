@@ -210,10 +210,9 @@ class Convertunits(commands.Cog):
         round = self.config.round()
         msg += f"round: {round}"
 
-        disabled = self.config.disabled()
-        msg += f"Disabled: {disabled}"
-        #for x, y in disabled:
-        #    msg += f"{x} "
+        msg += "Disabled: "
+        disabled = await self.config.disabled()
+        msg += (", ".join(map(str, disabled)))
 
         return await ctx.send(msg)
 
