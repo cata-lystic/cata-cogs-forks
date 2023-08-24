@@ -85,6 +85,17 @@ class Converters(commands.Cog):
     async def convs(self, ctx):
         await ctx.send(f"# Conversions\n`.c` - Celsius to Fahrenheit\n`.f` - Fahrenheit to Celsius\n`.ft` - Feet to Meters, `.ftcm` to Centimeters, `.ftin` to Inches\n`.lb` - Pounds to Kilograms, `lboz` to Ounces, `.ftgr` to Grams\n`.kg` - Kilograms to Pounds, `kgoz` to Ounces, `.kggr` to Grams\n`.km` - Kilometers to Miles\n`.me` - Meters to Feet, `.mecm` to Centimeters, `.mein` to Inches\n`.mi` - Miles to Kilometers\n\nType `.conv` for the full help menu.")
 
+    @commands.command(aliases=['convtest'])
+    async def convt(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
+
+        formulas = {
+            "lb kg": val * 0.45359237
+        }
+
+        result = f"{convertFrom} {convertTo}"
+        finalresult = formulas[result]
+
+        return await ctx.send(finalresult)
 
     @commands.command(aliases=['con'])
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
