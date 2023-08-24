@@ -178,7 +178,7 @@ class Convertunits(commands.Cog):
     @commands.command()
     async def convset(self, ctx, something):
         """Test"""
-        pre_processed = super().format_help(ctx)
+        pre_processed = super(2).format_help(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
     # Formula (Calculate conversion)
