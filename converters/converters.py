@@ -50,7 +50,7 @@ class Converters(commands.Cog):
         `cm` Centimeters, `mi` Miles, `km` Kilometers
         **Liquid**
         `gal` Gallons, `lit` Liters, `floz` Fluid Ounces
-        `cup` Cups, `qt` Quarts, `pint` Pints
+        `cup` Cups, `qt` Quarts, `pint` Pints, `ml` Milliliters
         **Temperature**
         `c` Celsius, `f` Fahrenheit, `k` Kelvin
         
