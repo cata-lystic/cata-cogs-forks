@@ -2,7 +2,7 @@ import discord
 
 from redbot.core.bot import Red
 from redbot.core import commands
-from redbot.core.i18n import Translator, cog_i18n
+#from redbot.core.i18n import Translator, cog_i18n
 from redbot.core.utils.chat_formatting import humanize_timedelta
 
 from typing import Union
@@ -10,10 +10,10 @@ from datetime import datetime, timezone
 
 import contextlib
 
-_ = Translator("Converters", __file__)
+#_ = Translator("Converters", __file__)
 
 
-@cog_i18n(_)
+#@cog_i18n(_)
 class Converters(commands.Cog):
     """Some converters."""
 
