@@ -15,6 +15,10 @@ class Convertunits(commands.Cog):
     def __init__(self, bot: Red):
         self.bot = bot
 
+        default_global = {
+            "round": 2
+        }
+
         """
         List of valid units
         
@@ -166,7 +170,7 @@ class Convertunits(commands.Cog):
     # Functions
 
     # Formula (Calculate conversion)
-    def formula(self, convFrom, convTo, val: float):
+    async def formula(self, convFrom, convTo, val: float):
 
         # Combine units
         units = f"{convFrom} {convTo}"
@@ -294,8 +298,10 @@ class Convertunits(commands.Cog):
             "ml cup": val / 236.5882365
         }
 
+        rounding = await self.config.round()
+
         if units in formulas:
-            return formulas[units]
+            return round(formulas[units], rounding)
         else:
             return None
     
