@@ -266,6 +266,12 @@ class Converters(commands.Cog):
         # Fahrenheit to Kelvin
         elif final == "f k":
             calc = (val + 459.67) * 5/9
+        # Kelvin to Celsius
+        elif final == "k c":
+            calc = val - 273.15
+        # Kelvin to Fahrenheit
+        elif final == "k f":
+            calc = val * 9/5 - 459.67
 
         # Feet to meters
         elif final == "ft me":
