@@ -181,32 +181,21 @@ class Convertunits(commands.Cog):
             msg = "Invalid set of conversions."
 
         return await ctx.send(f"{msg}")
-    
-    def format_help(ctx, command) -> str:
-        # Generate the formatted help text for the command in the given context
-        # ...
-        formatted_help_text = "WUT"
-        return formatted_help_text
 
     # Functions
     @commands.group(name='convset')
-    async def convset(self, ctx, command):
+    async def convset(self, ctx):
         """Convertunits Settings
         
         Test"""
-        pass
 
     @convset.command(name='round')
-    async def conv_round(self, ctx, val: int):
+    async def conv_round(self, ctx, binary):
         """Round Output
         Example: .convset round 2
         """
 
-        if (val != 1 and val != 0):
-            return await ctx.send("Value must be 1 or 0")
         
-        self.config.round.set(val)
-        return await ctx.send(f"Round set to {val}")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
