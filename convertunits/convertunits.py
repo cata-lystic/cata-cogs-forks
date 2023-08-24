@@ -1,6 +1,6 @@
 import discord
 from redbot.core.bot import Red
-from redbot.core import Config, commands
+from redbot.core import Config, commands, Context, Command
 
 class Convertunits(commands.Cog):
     """Convert Units"""
@@ -176,9 +176,9 @@ class Convertunits(commands.Cog):
 
     # Functions
     @commands.command()
-    async def convset(self, ctx, something):
+    async def convset(self, ctx: Context, command):
         """Test"""
-        pre_processed = super(2).format_help(ctx)
+        pre_processed = super.format_help(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
 
     # Formula (Calculate conversion)
