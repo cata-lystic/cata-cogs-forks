@@ -200,6 +200,22 @@ class Convertunits(commands.Cog):
         
         await self.config.round.set(val)
         return await ctx.send(f"Round set to {val}")
+    
+    @convset.command(name='showsettings')
+    async def conv_showsettings(self, ctx):
+        """Current Settings
+        """
+        msg = "**Current Settings**\n\n"
+
+        round = self.config.round()
+        msg += f"round: {round}"
+
+        disabled = self.config.disabled()
+        msg += (", ".join(map(str, disabled)))
+
+        return await ctx.send(msg)
+
+        
 
     @convset.command(name='disable')
     async def conv_disable(self, ctx, command):
