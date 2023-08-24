@@ -189,11 +189,23 @@ class Convertunits(commands.Cog):
         return formatted_help_text
 
     # Functions
-    @commands.command()
+    @commands.group()
     async def convset(self, ctx, command):
-        """Test"""
-        pre_processed = super.format_help(ctx)
-        return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
+        """Convertunits Settings
+        
+        Test"""
+
+    @convset.command()
+    async def round(self, ctx, val: int):
+        """Round Output
+        Example: .convset round 2
+        """
+
+        if (val != 1 and val != 0):
+            return await ctx.send("Value must be 1 or 0")
+        
+        self.config.round.set(val)
+        return await ctx.send(f"Round set to {val}")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
