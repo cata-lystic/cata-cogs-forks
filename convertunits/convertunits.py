@@ -154,6 +154,7 @@ class Convertunits(commands.Cog):
             return await ctx.send(errorMsg)
         
         calc = self.formula(validFrom, validTo, val)
+        calc = round(calc, 2)
 
         if calc != None:
             plural1 = 1 if val != 1 else 0
@@ -298,10 +299,8 @@ class Convertunits(commands.Cog):
             "ml cup": val / 236.5882365
         }
 
-        rounding = await self.config.round()
-
         if units in formulas:
-            return float(round(formulas[units], rounding))
+            return formulas[units]
         else:
             return None
     
