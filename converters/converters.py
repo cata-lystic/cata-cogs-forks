@@ -46,10 +46,8 @@ class Converters(commands.Cog):
     # .con gal in   // false, gallons and inches can't be converted
 
 
-
-
-    @commands.command()
-    async def con(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
+    @commands.command(aliases=['conv'])
+    async def convert(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Master converter.
         
         Weight: lb, kg, oz, gr, ton, tonne
@@ -461,13 +459,6 @@ class Converters(commands.Cog):
             msg = "Invalid set of conversions."
 
         return await ctx.send(f"{msg}")
-
-
-
-    @commands.group(aliases=["converter"])
-    async def conv(self, ctx: commands.Context):
-        """Some utility converters."""
-
 
     @conv.command()
     async def todate(self, ctx: commands.Context, timestamp: Union[int, float]):
