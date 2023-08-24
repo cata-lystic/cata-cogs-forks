@@ -194,6 +194,7 @@ class Convertunits(commands.Cog):
         """Convertunits Settings
         
         Test"""
+        pass
 
     @convset.command()
     async def round(self, ctx, val: int):
