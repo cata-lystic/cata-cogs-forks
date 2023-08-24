@@ -196,8 +196,8 @@ class Convertunits(commands.Cog):
         Test"""
         pass
 
-    @convset.command()
-    async def round(self, ctx, val: int):
+    @convset.command(name='round')
+    async def conv_round(self, ctx, val: int):
         """Round Output
         Example: .convset round 2
         """
