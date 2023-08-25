@@ -241,7 +241,7 @@ class Convertunits(commands.Cog):
             validList = self.valid
             msg = ""
             for w in validList:
-                for y, z in w:
+                for z in w:
                     msg += (", ".join(map(str, z)))
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
         
