@@ -18,7 +18,7 @@ class Convertunits(commands.Cog):
 
         default_global = {
             "round": 10,
-            "disabled": []
+            "excluded": []
         }
 
         self.config.register_global(**default_global)
@@ -157,9 +157,9 @@ class Convertunits(commands.Cog):
                     validTo = key_list[i]
                     categoryTo = cat
 
-        disabled = await self.config.disabled()
-        if any(s in disabled for s in [validFrom, validTo]):
-            errorMsg = f"Error: One or more chosen units is disabled."
+        excluded = await self.config.excluded()
+        if any(s in excluded for s in [validFrom, validTo]):
+            errorMsg = f"Error: One or more chosen units is excluded."
         elif validFrom == "":
             errorMsg = f"Error: `{convertFrom}` is not a valid unit."
         elif validTo == "":
@@ -211,17 +211,17 @@ class Convertunits(commands.Cog):
         round = await self.config.round()
         msg += f"Round: {round}\n"
 
-        msg += "Disabled: "
-        disabled = await self.config.disabled()
-        msg += (", ".join(map(str, disabled)))
+        msg += "Excluded: "
+        excluded = await self.config.excluded()
+        msg += (", ".join(map(str, excluded)))
 
         return await ctx.send(msg)
 
     
-    # Check if command is already disabled
-    async def isDisabled(self, ctx, command):
-        disabled = await self.config.disabled()
-        if command in disabled:
+    # Check if command is already excluded
+    async def isExcluded(self, ctx, command):
+        excluded = await self.config.excluded()
+        if command in excluded:
             return True
         else:
             return False
@@ -236,16 +236,16 @@ class Convertunits(commands.Cog):
 
         
 
-    @convset.command(name='disable', aliases=['exclude'])
+    @convset.command(name='exclude', aliases=['disable'])
     async def conv_disable(self, ctx, command):
         """Round Output
-        Example: .convset disable k
+        Example: .convset exclude k
         """
 
-        # Check if command is already disabled
-        disabled = await self.config.disabled()
-        if self.isDisabled(self, command) == True:
-            return ctx.send(f"`{command}` is already disabled.")
+        # Check if command is already excluded
+        excluded = await self.config.excluded()
+        if self.isExcluded(self, command) == True:
+            return ctx.send(f"`{command}` is already excluded.")
 
         # Make sure this is a valid command
         isValid = await self.isValid(self, command)
@@ -257,19 +257,19 @@ class Convertunits(commands.Cog):
                 msg += (", ".join(value.keys())+" ")
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
         
-        current = await self.config.disabled()
-        current.append(command)
+        current = await self.config.excluded()
+        current.append(command) # add to 
 
-        await self.config.disabled.set(current)
-        return await ctx.send(f"`{command}` disabled.")
+        await self.config.excluded.set(current)
+        return await ctx.send(f"`{command}` excluded.")
     
-    @convset.command(name='enable', aliases=['include'])
-    async def conv_enable(self, ctx, command):
+    @convset.command(name='include', aliases=['enable'])
+    async def conv_include(self, ctx, command):
         """Round Output
-        Example: .convset disable k
+        Example: .convset include k
         """
         
-        current = await self.config.disabled()
+        current = await self.config.excluded()
 
         # Make sure this is a valid command
         isValid = False
@@ -286,10 +286,10 @@ class Convertunits(commands.Cog):
 
         if command in current:
             current.remove(command)
-            await self.config.disabled.set(current)
-            return await ctx.send(f"`{command}` enabled.")
+            await self.config.excluded.set(current)
+            return await ctx.send(f"`{command}` included.")
         else:
-            return await ctx.send(f"`{command}` is not disabled.")
+            return await ctx.send(f"`{command}` is not excluded.")
 
     # Formula (Calculate conversion)
     async def formula(self, convFrom, convTo, val: float):
