@@ -219,7 +219,7 @@ class Convertunits(commands.Cog):
 
         
 
-    @convset.command(name='disable')
+    @convset.command(name='disable', aliases=['exclude'])
     async def conv_disable(self, ctx, command):
         """Round Output
         Example: .convset disable k
@@ -238,7 +238,7 @@ class Convertunits(commands.Cog):
                 
         # Unit is invalid, show valid units
         if isValid == False:
-            validList = await self.valid()
+            validList = self.valid
             msg = ""
             msg += (", ".join(map(str, validList)))
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
@@ -249,7 +249,7 @@ class Convertunits(commands.Cog):
         await self.config.disabled.set(current)
         return await ctx.send(f"`{command}` disabled.")
     
-    @convset.command(name='enable')
+    @convset.command(name='enable', aliases=['include'])
     async def conv_enable(self, ctx, command):
         """Round Output
         Example: .convset disable k
