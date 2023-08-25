@@ -233,6 +233,12 @@ class Convertunits(commands.Cog):
             if command in subdict:
                 isValid = True
         return isValid
+    
+    async def listValidUnits(self, ctx):
+        msg = ""
+        for key, value in self.valid.items():
+            msg += (", ".join(value.keys())+" ")
+        return msg
 
         
 
@@ -254,15 +260,14 @@ class Convertunits(commands.Cog):
                 
         # Unit is invalid, show valid units
         if isValid == False:
-            msg = ""
-            for key, value in self.valid.items():
-                msg += (", ".join(value.keys())+" ")
-            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
+            units = self.listValidUnits(self)
+            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {units}")
         
+        # Unit is valid, add to excluded list
         current = await self.config.excluded()
-        current.append(command) # add to 
+        current.append(command) # add to list
 
-        await self.config.excluded.set(current)
+        await self.config.excluded.set(current) # save
         return await ctx.send(f"`{command}` excluded.")
     
     @convset.command(name='include', aliases=['enable'])
@@ -274,7 +279,6 @@ class Convertunits(commands.Cog):
         Example: .convset include k
         """
 
-
         # Make sure this is a valid command
         isValid = await self.isValid(command)
 
@@ -285,10 +289,11 @@ class Convertunits(commands.Cog):
                 msg += (", ".join(value.keys())+" ")
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
 
+        # Unit is valid, remove from excluded list
         current = await self.config.excluded()
         if command in current:
-            current.remove(command)
-            await self.config.excluded.set(current)
+            current.remove(command) # remove from list
+            await self.config.excluded.set(current) # save
             return await ctx.send(f"`{command}` included.")
         else:
             return await ctx.send(f"`{command}` is not excluded.")
