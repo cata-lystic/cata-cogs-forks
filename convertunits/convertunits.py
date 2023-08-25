@@ -260,7 +260,7 @@ class Convertunits(commands.Cog):
                 
         # Unit is invalid, show valid units
         if isValid == False:
-            units = self.listValidUnits(self)
+            units = await self.listValidUnits(self)
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {units}")
         
         # Unit is valid, add to excluded list
