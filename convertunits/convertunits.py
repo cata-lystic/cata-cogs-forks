@@ -269,7 +269,7 @@ class Convertunits(commands.Cog):
             msg = ""
             for key, value in self.valid.items():
                 msg += (", ".join(value.keys())+" ")
-        return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
+            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
 
         if command in current:
             current.remove(command)
