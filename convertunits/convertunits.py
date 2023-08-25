@@ -264,9 +264,12 @@ class Convertunits(commands.Cog):
             if command in subdict:
                 isValid = True
 
-        # Unit not valid, show valid units    
+        # Unit is invalid, show valid units
         if isValid == False:
-            return await ctx.send(f"`{command}` is not a valid unit.")
+            msg = ""
+            for key, value in self.valid.items():
+                msg += (", ".join(value.keys())+" ")
+        return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
 
         if command in current:
             current.remove(command)
