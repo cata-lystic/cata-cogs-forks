@@ -239,10 +239,10 @@ class Convertunits(commands.Cog):
         # Unit is invalid, show valid units
         if isValid == False:
             msg = ""
-            for category, units in self.valid.items():
-                for unit in units:
-                    msg += (", ".join(map(str, unit)))
-            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
+            for key, value in self.valid.items():
+                #print(','.join(value.keys()))
+                msg += (", ".join(value.keys()))
+        return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
         
         current = await self.config.disabled()
         current.append(command)
