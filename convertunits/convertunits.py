@@ -236,7 +236,7 @@ class Convertunits(commands.Cog):
 
         # Check if command is already disabled
         disabled = await self.config.disabled()
-        if self.isDisabled(command) == True:
+        if self.isDisabled(self, command) == True:
             return ctx.send(f"`{command}` is already disabled.")
 
         # Make sure this is a valid command
