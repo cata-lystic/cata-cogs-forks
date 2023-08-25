@@ -101,7 +101,7 @@ class Convertunits(commands.Cog):
                 msg += (", ".join(map(str, unit)))
 
 
-    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu())
+    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu(self))
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
