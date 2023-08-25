@@ -240,7 +240,8 @@ class Convertunits(commands.Cog):
         if isValid == False:
             validList = self.valid
             msg = ""
-            msg += (", ".join(map(str, validList)))
+            for x, y in validList:
+                msg += (", ".join(map(str, validList)))
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
         
         current = await self.config.disabled()
