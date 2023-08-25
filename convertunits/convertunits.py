@@ -225,6 +225,14 @@ class Convertunits(commands.Cog):
             return True
         else:
             return False
+    
+    # Check if unit is valid
+    async def isValid(self, ctx, command):
+        isValid = False
+        for key, subdict in self.valid.items():
+            if command in subdict:
+                isValid = True
+        return isValid
 
         
 
@@ -240,10 +248,7 @@ class Convertunits(commands.Cog):
             return ctx.send(f"`{command}` is already disabled.")
 
         # Make sure this is a valid command
-        isValid = False
-        for key, subdict in self.valid.items():
-            if command in subdict:
-                isValid = True
+        isValid = self.isValid(self, command)
                 
         # Unit is invalid, show valid units
         if isValid == False:
