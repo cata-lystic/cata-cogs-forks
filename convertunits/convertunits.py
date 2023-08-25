@@ -34,8 +34,8 @@ class Convertunits(commands.Cog):
         self.valid = {
             'weight': {
                 'lb': ['pound', 'pounds', 'lb', 'lbs'],
-                'kg': ['kilogram', 'kilograms', 'kg', 'kgs', 'kilo', 'kilos'],
                 'oz': ['ounce', 'ounces', 'oz', 'os'],
+                'kg': ['kilogram', 'kilograms', 'kg', 'kgs', 'kilo', 'kilos'],
                 'gr': ['gram', 'grams', 'gr', 'grm'],
                 'ton': ['ton', 'tons', 'uston'],
                 'tonne': ['tonne', 'tonnes', 'ukton']
@@ -47,21 +47,21 @@ class Convertunits(commands.Cog):
             },
             'distance': {
                 'ft': ['foot', 'feet', 'ft', 'feets', 'foots'],
-                'me': ['meter', 'meters', 'me', 'met'],
                 'in': ['inch', 'inches', 'in'],
+                'me': ['meter', 'meters', 'me', 'met'],
                 'cm': ['centimeter', 'centimeters', 'cm', 'centi'],
+                'mm': ['millimeter', 'millimeters', 'mm', 'millim'],
                 'mi': ['mile', 'miles', 'mi'],
-                'km': ['kilometer', 'kilometers', 'km', 'kilom'],
-                'mm': ['millimeter', 'millimeters', 'mm', 'millim']
+                'km': ['kilometer', 'kilometers', 'km', 'kilom']
             },
             'liquid': {
                 'gal': ['gallon', 'gallons', 'gal', 'gals'],
-                'lit': ['liter', 'liters', 'lit'],
-                'ml': ['milliliter', 'milliliters', 'ml', 'millil'],
                 'floz': ['fluid ounce', 'fluid ounces', 'floz', 'flo', 'flz', 'fluidounce', 'fluidounces'],
-                'cup': ['cup', 'cups', 'cp'],
                 'qt': ['quart', 'quarts', 'qt'],
-                'pint': ['pint', 'pints', 'pi', 'pin', 'pnt']
+                'pint': ['pint', 'pints', 'pi', 'pin', 'pnt'],
+                'cup': ['cup', 'cups', 'cp'],
+                'lit': ['liter', 'liters', 'lit'],
+                'ml': ['milliliter', 'milliliters', 'ml', 'millil']
             }
         }
 
@@ -242,7 +242,7 @@ class Convertunits(commands.Cog):
 
         
 
-    @convset.command(name='exclude', aliases=['disable'])
+    @convset.command(name='exclude', aliases=['disable', 'ex', 'dis', 'rem', 'remove'])
     async def conv_disable(self, ctx, command):
         """Exclude unit from available choices.
 
@@ -270,7 +270,7 @@ class Convertunits(commands.Cog):
         await self.config.excluded.set(current) # save
         return await ctx.send(f"`{command}` excluded.")
     
-    @convset.command(name='include', aliases=['enable'])
+    @convset.command(name='include', aliases=['enable', 'en', 'in', 'add', 'inc'])
     async def conv_include(self, ctx, command):
         """Include unit from available choices.
 
@@ -284,10 +284,8 @@ class Convertunits(commands.Cog):
 
         # Unit is invalid, show valid units
         if isValid == False:
-            msg = ""
-            for key, value in self.valid.items():
-                msg += (", ".join(value.keys())+" ")
-            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
+            units = await self.listValidUnits(self)
+            return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {units}")
 
         # Unit is valid, remove from excluded list
         current = await self.config.excluded()
