@@ -217,6 +217,15 @@ class Convertunits(commands.Cog):
 
         return await ctx.send(msg)
 
+    
+    # Check if command is already disabled
+    async def isDisabled(self, ctx, command):
+        disabled = await self.config.disabled()
+        if command in disabled:
+            return True
+        else:
+            return False
+
         
 
     @convset.command(name='disable', aliases=['exclude'])
@@ -227,7 +236,7 @@ class Convertunits(commands.Cog):
 
         # Check if command is already disabled
         disabled = await self.config.disabled()
-        if command in disabled:
+        if self.isDisabled(command) == True:
             return ctx.send(f"`{command}` is already disabled.")
 
         # Make sure this is a valid command
