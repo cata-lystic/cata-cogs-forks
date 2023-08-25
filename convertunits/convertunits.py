@@ -195,8 +195,8 @@ class Convertunits(commands.Cog):
 
     @convset.command(name='round')
     async def conv_round(self, ctx, val: int):
-        """Round Output
-        Example: .convset round 2
+        """Set max decimal point to round up to.
+        Example: .convset round 4
         """
         
         await self.config.round.set(val)
@@ -246,7 +246,6 @@ class Convertunits(commands.Cog):
         """
 
         # Check if command is already excluded
-        excluded = await self.config.excluded()
         if self.isExcluded(self, command) == True:
             return ctx.send(f"`{command}` is already excluded.")
 
@@ -274,14 +273,10 @@ class Convertunits(commands.Cog):
 
         Example: .convset include k
         """
-        
-        current = await self.config.excluded()
+
 
         # Make sure this is a valid command
-        isValid = False
-        for key, subdict in self.valid.items():
-            if command in subdict:
-                isValid = True
+        isValid = await self.isValid(command)
 
         # Unit is invalid, show valid units
         if isValid == False:
@@ -290,6 +285,7 @@ class Convertunits(commands.Cog):
                 msg += (", ".join(value.keys())+" ")
             return await ctx.send(f"`{command}` is not a valid unit.\nUnits: {msg}")
 
+        current = await self.config.excluded()
         if command in current:
             current.remove(command)
             await self.config.excluded.set(current)
