@@ -92,7 +92,7 @@ class Convertunits(commands.Cog):
         command.help = "This is the updated help description."
         await ctx.send("The help description for the 'example' command has been updated.")
 
-    def convHelpMenu(self):
+    def convHelpMenu():
         # List each available unit
         msg = ""
         for category, subdict in self.valid.items():
@@ -101,7 +101,7 @@ class Convertunits(commands.Cog):
                 msg += (", ".join(map(str, unit)))
 
 
-    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu(self))
+    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu())
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
