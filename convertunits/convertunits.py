@@ -102,7 +102,7 @@ class Convertunits(commands.Cog):
         return msg
 
 
-    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu)
+    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu())
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
