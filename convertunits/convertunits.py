@@ -238,7 +238,7 @@ class Convertunits(commands.Cog):
                 
         # Unit is invalid, show valid units
         if isValid == False:
-            validList = self.valid.keys()
+            validList = self.valid.items()
             msg = ""
             for category, units in validList:
                 for unit in units:
