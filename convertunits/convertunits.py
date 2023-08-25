@@ -81,11 +81,8 @@ class Convertunits(commands.Cog):
         pre_processed = super().format_help_for_context(ctx)
         return f"{pre_processed}\n\nAuthor: {self.__author__}\nCog Version: {self.__version__}"
     
-    def testing():
-        return "WOOOO"
 
-
-    @commands.command(name="example", help=testing())
+    @commands.command(name="example")
     async def example_command(self, ctx, something):
         await ctx.send("This is an example command.")
 
@@ -95,7 +92,16 @@ class Convertunits(commands.Cog):
         command.help = "This is the updated help description."
         await ctx.send("The help description for the 'example' command has been updated.")
 
-    @commands.command(aliases=['con', 'convertunits'])
+    def convHelpMenu(self, ctx):
+        # List each available unit
+        msg = ""
+        for category, subdict in self.valid.items():
+            msg += f"Category: {category}"
+            for unit, aliases in subdict.items():
+                msg += (", ".join(map(str, unit)))
+
+
+    @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu())
     async def conv(self, ctx: commands.Context, convertFrom, convertTo, val: float=1):
         """Convert Units
         
