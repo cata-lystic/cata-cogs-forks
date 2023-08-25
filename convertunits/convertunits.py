@@ -248,7 +248,7 @@ class Convertunits(commands.Cog):
             return ctx.send(f"`{command}` is already disabled.")
 
         # Make sure this is a valid command
-        isValid = self.isValid(self, command)
+        isValid = await self.isValid(self, command)
                 
         # Unit is invalid, show valid units
         if isValid == False:
