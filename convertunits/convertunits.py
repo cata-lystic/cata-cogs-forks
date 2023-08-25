@@ -99,6 +99,7 @@ class Convertunits(commands.Cog):
             msg += f"Category: {category}"
             for unit, aliases in subdict.items():
                 msg += (", ".join(map(str, unit)))
+        return msg
 
 
     @commands.command(aliases=['con', 'convertunits'], help=convHelpMenu)
