@@ -238,7 +238,10 @@ class Convertunits(commands.Cog):
 
     @convset.command(name='exclude', aliases=['disable'])
     async def conv_disable(self, ctx, command):
-        """Round Output
+        """Exclude unit from available choices.
+
+        You can remove any unit from being accessible.
+
         Example: .convset exclude k
         """
 
@@ -265,7 +268,10 @@ class Convertunits(commands.Cog):
     
     @convset.command(name='include', aliases=['enable'])
     async def conv_include(self, ctx, command):
-        """Round Output
+        """Include unit from available choices.
+
+        You can include units that you previously excluded here. 
+
         Example: .convset include k
         """
         
