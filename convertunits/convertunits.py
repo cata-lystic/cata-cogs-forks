@@ -287,7 +287,7 @@ class Convertunits(commands.Cog):
         """
 
         # Make sure this is a valid command
-        isValid = await self.isValid(command)
+        isValid = await self.isValid(self, command)
 
         # Unit is invalid, show valid units
         if isValid == False:
