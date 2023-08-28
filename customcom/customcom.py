@@ -706,6 +706,11 @@ class CustomCommands(commands.Cog):
                 raw_response = raw_response.replace("{" + result[0] + "}", arg)
         await ctx.send(raw_response)
 
+        # Check if raw_response ends in delete
+        if raw_response.endswith("delete"):
+            new_response = raw_response.rstrip("delete")
+            await ctx.send(raw_response)
+
     @staticmethod
     def prepare_args(raw_response) -> Mapping[str, Parameter]:
         args = re.findall(r"{(\d+)[^:}]*(:[^.}]*)?[^}]*\}", raw_response)
