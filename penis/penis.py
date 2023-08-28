@@ -136,7 +136,7 @@ class Penis(commands.Cog):
         """
         customs = await self.config.customs()
         userID = str(user.id)
-        originalSize = self.originalSize(self, ctx, user)
+        originalSize = self.originalSize(self, user)
 
         if userID in customs:
             del customs[userID]
