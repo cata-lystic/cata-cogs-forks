@@ -242,7 +242,7 @@ class Penis(commands.Cog):
         return await ctx.send(f"Default leaderboard set to  `{val}`")
     
     @peniset.command(name='defaultleaderboardsort')
-    async def peni_leaderboard_default(self, ctx, val):
+    async def peni_leaderboard_sort(self, ctx, val):
         """Set default leaderboard sorting order.
 
         Example: [p]peniset defaultleaderboardsort large
