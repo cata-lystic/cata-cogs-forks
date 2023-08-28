@@ -15,9 +15,6 @@ class Penis(commands.Cog):
         default_global = {
             "customs": {
                 514556311573364746: "WEEE"
-            },
-            "enlarge": {
-                514556311573364746: 1
             }
         }
 
@@ -69,9 +66,7 @@ class Penis(commands.Cog):
     @commands.group(name='peniset', aliases=['penisset'])
     @checks.is_owner()
     async def peniset(self, ctx):
-        """Convertunits Settings
-        
-        Test"""
+        """Penis Settings"""
 
     @peniset.command(name='custom')
     async def peni_custom(self, ctx, user: discord.Member, *, customMsg = None):
@@ -134,3 +129,20 @@ class Penis(commands.Cog):
             customs[userID] = current
             await self.config.customs.set(customs)
             return await ctx.send(f"{user}'s size has grown to {current}.")
+
+    @peniset.command(name='clear', aliases=['cl'])
+    async def peni_clear(self, ctx, user: discord.Member):
+        """Clear User
+
+        Reset user's penis to its original size.
+
+        Example: [p]peniset clear @User
+        """
+        customs = await self.config.customs()
+        userID = str(user.id)
+
+        if userID in customs:
+            del customs[userID]
+            return await ctx.send(f"{user}'s original size has been set.")
+        else:
+            return await ctx.send(f"{user}'s original size is already set.")
