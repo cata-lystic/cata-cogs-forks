@@ -115,7 +115,7 @@ class Penis(commands.Cog):
         # If user is not in customs yet, calculate what their normal size would be and add amount to it
         if userID in customs:
 
-            current = customs[userID]
+            current = str(customs[userID])
 
             if current.isdigit():
                 current = int(current) + int(amount)
