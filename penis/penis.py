@@ -107,8 +107,8 @@ class Penis(commands.Cog):
 
             # Natural leaderboard (calc original sizes)
             else:
-                dongs[member] = self.originalSize(self, user)
-                listname = "Natural "
+                dongs[member] = self.originalSize(self, member)
+                listName = "Natural "
 
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
         msg = f"`{listName}Penis Leaderboard`\n"
