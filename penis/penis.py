@@ -99,32 +99,6 @@ class Penis(commands.Cog):
         # let's add/change it
         customs.update({userID: str(customMsg)})
         await self.config.customs.set(customs)
+        msgType = "size" if customs[userID].isdigit() else "message"
 
-        await ctx.send(f"{user} ({userID}) custom message set: {customMsg}")
-
-
-        
-        #await self.config.custom.set(val)
-
-
-    # Check if command is already excluded
-    async def isExcluded(self, ctx, command):
-        excluded = await self.config.excluded()
-        if command in excluded:
-            return True
-        else:
-            return False
-    
-    # Check if unit is valid
-    async def isValid(self, ctx, command):
-        isValid = False
-        for key, subdict in self.valid.items():
-            if command in subdict:
-                isValid = True
-        return isValid
-    
-    async def listValidUnits(self, ctx):
-        msg = ""
-        for key, value in self.valid.items():
-            msg += (", ".join(value.keys())+" ")
-        return msg
+        await ctx.send(f"{user} ({userID}) custom {msgType} set: {customMsg}")
