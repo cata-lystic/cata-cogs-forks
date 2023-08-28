@@ -13,9 +13,7 @@ class Penis(commands.Cog):
         self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
 
         default_global = {
-            "customs": {
-                514556311573364746: "WEEE"
-            }
+            "customs": {}
         }
 
         self.config.register_global(**default_global)
