@@ -72,14 +72,14 @@ class Penis(commands.Cog):
         Test"""
 
     @peniset.command(name='custom')
-    async def peni_custom(self, ctx, user: discord.Member, customMsg: Optional['str'] = None):
+    async def peni_custom(self, ctx, user: discord.Member, customMsg = None):
         """Custom Size/Message
 
         You can customize how large a certain user is, or give them a custom string as their size.
         """
 
         # if they didn't put a message, show them current custom message
-        if customMsg == "":
+        if customMsg == "" or customMsg == None:
             if (str(user.id) in customs):
                 current = customs[user.id]
                 return await ctx.send(f"{user} current message: {current}")
