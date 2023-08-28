@@ -13,7 +13,9 @@ class Penis(commands.Cog):
         self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
 
         default_global = {
-            "customs": {}
+            "customs": {
+                "514556311573364746": 29
+            }
         }
 
         self.config.register_global(**default_global)
