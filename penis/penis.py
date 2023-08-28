@@ -84,20 +84,21 @@ class Penis(commands.Cog):
         You can customize how large a certain user is, or give them a custom string as their size.
         """
         customs = await self.config.customs()
+        userID = str(user.id)
 
         # if they didn't put a message, show them current custom message
         if customMsg == "" or customMsg == None:
-            if (user.id in customs):
-                current = customs[user.id]
+            if (userID in customs):
+                current = customs[userID]
                 return await ctx.send(f"{user} current message: {current}")
             else:
                 return await ctx.send(f"{user} does not currently have a message")
 
         # let's add/change it
-        customs.update({user.id: customMsg})
+        customs.update({userID: str(customMsg)})
         await self.config.customs.set(customs)
 
-        await ctx.send(f"{user} ({user.id}) custom message set: {customMsg}")
+        await ctx.send(f"{user} ({userID}) custom message set: {customMsg}")
 
 
         
