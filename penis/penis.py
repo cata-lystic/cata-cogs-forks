@@ -103,7 +103,7 @@ class Penis(commands.Cog):
             
             
     @commands.group(name='peniset', aliases=['penisset'])
-    @checks.is_owner()
+    @checks.mod_or_permissions()
     async def peniset(self, ctx):
         """Penis Settings"""
 
