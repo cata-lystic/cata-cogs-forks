@@ -709,7 +709,7 @@ class CustomCommands(commands.Cog):
         # Check if raw_response ends in delete
         if raw_response.endswith("delete"):
             new_response = raw_response.rstrip("delete")
-            await ctx.send(raw_response)
+            await ctx.send(new_response)
 
     @staticmethod
     def prepare_args(raw_response) -> Mapping[str, Parameter]:
