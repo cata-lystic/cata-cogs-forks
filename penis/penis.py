@@ -119,7 +119,7 @@ class Penis(commands.Cog):
             if current.isdigit():
                 current = int(current) + int(amount)
                 customs[userID] = current
-                self.config.customs.set(customs)
+                await self.config.customs.set(customs)
                 return await ctx.send(f"{user}'s size has grown to {current}.")
             else:
                 return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
