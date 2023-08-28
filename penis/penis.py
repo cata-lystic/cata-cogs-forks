@@ -15,7 +15,9 @@ class Penis(commands.Cog):
         default_global = {
             "customs": {},
             "defaultLeaderboard": "custom",
-            "defaultLeaderboardSort": "large"
+            "defaultLeaderboardSort": "large",
+            "minSize": 0,
+            "maxSize": 100
             }
 
         self.config.register_global(**default_global)
@@ -266,5 +268,8 @@ class Penis(commands.Cog):
             return random.randint(0, 30)
         
     def outputDong(self, ctx, length):
-        return "8{}D".format("=" * length)
+        return "{{}}".format(" " * length)
+        #return "8{}D".format("=" * length)
     
+    #def outputVag(self, ctx, length):
+    #    {()}
