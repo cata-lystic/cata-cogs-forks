@@ -1,7 +1,7 @@
 import discord
 import random
 from redbot.core.bot import Red
-from redbot.core import Config, commands
+from redbot.core import Config, commands, checks
 from redbot.core.utils.chat_formatting import pagify
 
 
@@ -73,6 +73,7 @@ class Penis(commands.Cog):
             await ctx.send(f"{page}")
             
     @commands.group(name='peniset')
+    @checks.is_owner()
     async def peniset(self, ctx):
         """Convertunits Settings
         
