@@ -269,7 +269,7 @@ class Penis(commands.Cog):
         
     def outputDong(self, ctx, length):
         #return "{{({})}}".format(" " * length)
-        return "{{{:^{}}}}".format(" " * length, length)
+        return "{{{:^{}}}}".format(" " * (length - 1), length)
         #return "8{}D".format("=" * length)
     
     #def outputVag(self, ctx, length):
