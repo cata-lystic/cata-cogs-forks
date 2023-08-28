@@ -78,8 +78,14 @@ class Penis(commands.Cog):
 
     @commands.command(name='penisboard')
     # list can be 'custom', 'small' or 'natural'
-    async def penisboard(self, ctx, list="custom", sort="large"):
+    async def penisboard(self, ctx, list=None, sort=None):
         """Penis Leaderboard"""
+
+        # Set defaults if they weren't set
+        if list is None:
+            list = await self.config.defaultLeaderboard()
+        if sort is None:
+            sort = "large"
 
         # Make sure arguments are valid
         if list not in ['custom', 'natural', 'small']:
