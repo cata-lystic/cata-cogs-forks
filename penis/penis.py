@@ -84,7 +84,7 @@ class Penis(commands.Cog):
         for cust in customs:
             
             userID = cust
-            if int(ctx.bot.user.id) == int(user.id):
+            if int(ctx.bot.user.id) == int(userID):
                 continue # don't show bot on leaderboard
             userLength = customs[cust]
             member = guild.get_member(int(userID))
