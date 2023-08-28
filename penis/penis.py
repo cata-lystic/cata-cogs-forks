@@ -53,7 +53,7 @@ class Penis(commands.Cog):
             if ctx.bot.user.id == user.id:
                 dongs[user] = "8{}D".format("=" * 50)
             elif (userID in customs):
-                if (int(customs[userID])):
+                if isinstance(customs[userID], int):
                     length = customs[userID]
                     dongs[user] = "8{}D".format("=" * length)
                 else:
