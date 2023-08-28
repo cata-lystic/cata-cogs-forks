@@ -85,7 +85,7 @@ class Penis(commands.Cog):
         if list is None:
             list = await self.config.defaultLeaderboard()
         if sort is None:
-            sort = "large"
+            sort = await self.config.defaultLeaderboardSort()
 
         # Make sure arguments are valid
         if list not in ['custom', 'natural', 'small']:
