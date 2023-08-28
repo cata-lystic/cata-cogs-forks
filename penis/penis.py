@@ -42,12 +42,13 @@ class Penis(commands.Cog):
         for user in users:
             random.seed(str(user.id))
             userID = str(user.id)
+            userMsg = str(customs[userID])
 
             if ctx.bot.user.id == user.id:
                 dongs[user] = "8{}D".format("=" * 50)
             elif (userID in customs):
-                if customs[userID].isdigit():
-                    length = int(customs[userID])
+                if userMsg.isdigit():
+                    length = int(userMsg)
                     dongs[user] = "8{}D".format("=" * length)
                 else:
                     dongs[user] = customs[userID]
