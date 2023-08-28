@@ -171,6 +171,7 @@ class Penis(commands.Cog):
 
             length = self.originalSize(self, user)
             current = int(length) + int(amount)
+            current = 0 if current < 0 else current # don't let it go below 0
             customs[userID] = current
             await self.config.customs.set(customs)
             return await ctx.send(f"{user}'s size has {adjustment} to {current}.")
