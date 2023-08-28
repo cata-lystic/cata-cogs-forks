@@ -94,7 +94,7 @@ class Penis(commands.Cog):
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
         msg = ""
         for user, dong in dongs:
-            msg += "**{}'s size:**\n{}\n".format(user, dong)
+            msg += "**{}:** {}\n".format(user, dong)
 
         for page in pagify(msg):
             await ctx.send(f"{page}")
