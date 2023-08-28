@@ -117,7 +117,7 @@ class Penis(commands.Cog):
             current = customs[userID]
 
             if current.isdigit():
-                current = current + amount
+                current = int(current) + int(amount)
                 customs[userID] = current
                 self.config.customs.set(customs)
                 return ctx.send(f"{user}'s size has grown to {current}.")
