@@ -70,6 +70,7 @@ class Penis(commands.Cog):
 
         guild = ctx.guild
         output = ""
+        dongs = {}
         
         # remove from dict if isn't a number
         for cust in customs:
@@ -84,11 +85,18 @@ class Penis(commands.Cog):
             # Check if userLength is actually a number, not custom string
             try:
                 int(userLength)
-                output += f"\n{member}: {userLength}"
+                dongs[member] = int(userLength)
             except ValueError:
                 doNothing = True
 
-        await ctx.send(f"{output}")
+
+        dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
+
+        for user, dong in dongs:
+            msg += "**{}'s size:**\n{}\n".format(user, dong)
+
+        for page in pagify(msg):
+            await ctx.send(f"{page}")
 
             
             
