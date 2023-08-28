@@ -103,12 +103,12 @@ class Penis(commands.Cog):
         msg = "`Penis Leaderboard`\n"
         x = 0
         for user, dong in dongs:
-            if x == 30:
+            if x == 10:
                 break
-            msg += "**{}:** {}, ".format(user, dong)
+            msg += "**{}:** {}\n".format(user, dong)
             x += 1
 
-        for page in pagify(msg[:-2]):
+        for page in pagify(msg):
             await ctx.send(f"{page}")
 
             
