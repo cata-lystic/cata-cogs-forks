@@ -143,6 +143,9 @@ class Penis(commands.Cog):
         customs = await self.config.customs()
         userID = str(user.id)
 
+        # Check if growing or shrinking
+        adjustment = "shrinked" if str(num).startswith("-") else "grown"
+
         # Check if user is already in customs
         # If so, check if it's a number or a message
         # If it's a number, add to it
@@ -156,7 +159,7 @@ class Penis(commands.Cog):
                 current = int(current) + int(amount)
                 customs[userID] = current
                 await self.config.customs.set(customs)
-                return await ctx.send(f"{user}'s size has grown to {current}.")
+                return await ctx.send(f"{user}'s size has {adjustment} to {current}.")
             else:
                 return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
         
@@ -166,7 +169,7 @@ class Penis(commands.Cog):
             current = int(length) + int(amount)
             customs[userID] = current
             await self.config.customs.set(customs)
-            return await ctx.send(f"{user}'s size has grown to {current}.")
+            return await ctx.send(f"{user}'s size has {adjustment} to {current}.")
 
     @peniset.command(name='clear', aliases=['cl'])
     async def peni_clear(self, ctx, user: discord.Member):
