@@ -88,13 +88,13 @@ class Penis(commands.Cog):
         # if they didn't put a message, show them current custom message
         if customMsg == "" or customMsg == None:
             if (str(user.id) in customs):
-                current = customs[str(user.id)]
+                current = customs[user.id]
                 return await ctx.send(f"{user} current message: {current}")
             else:
                 return await ctx.send(f"{user} does not currently have a message")
 
         # let's add/change it
-        customs.update({str(user.id): str(customMsg)})
+        customs.update({user.id: customMsg})
         await self.config.customs.set(customs)
 
         await ctx.send(f"{user} ({user.id}) custom message set: {customMsg}")
