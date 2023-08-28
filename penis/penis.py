@@ -92,7 +92,7 @@ class Penis(commands.Cog):
 
         #dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
-        msg = ""
+        msg = "`Penis Leaderboard`\n"
         for user, dong in dongs:
             msg += "**{}:** {}\n".format(user, dong)
 
