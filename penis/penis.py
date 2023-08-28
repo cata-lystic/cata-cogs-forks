@@ -87,18 +87,11 @@ class Penis(commands.Cog):
             else:
                 return await ctx.send(f"{user} does not currently have a message")
 
+        # let's add/change it
+        customs.update({str(user.id): str(customMsg)})
+        await self.config.customs.set(customs)
 
-        # Check if user is already in dict
-        if str(user.id) in customs:
-            await ctx.send(f"{user} ({user.id}) is added")
-        else:
-            await ctx.send(f"{user} ({user.id}) is not added")
-
-            # let's add it
-            customs.update({str(user.id): str(customMsg)})
-            await self.config.customs.set(customs)
-
-            await ctx.send(f"{user} ({user.id}) added with custom message: {customMsg}")
+        await ctx.send(f"{user} ({user.id}) custom message set: {customMsg}")
 
 
         
