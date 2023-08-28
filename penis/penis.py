@@ -90,11 +90,12 @@ class Penis(commands.Cog):
 
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
         msg = "`Penis Leaderboard`\n"
-        x = 1
+        x = 0
         for user, dong in dongs:
             if x == 10:
                 break
             msg += "**{}:** {}\n".format(user, dong)
+            x += 1
 
         for page in pagify(msg):
             await ctx.send(f"{page}")
