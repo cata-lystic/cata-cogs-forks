@@ -81,7 +81,7 @@ class Penis(commands.Cog):
         customs = await self.config.customs()
 
         # Check if user is already in dict
-        if user.id in customs.keys():
+        if str(user.id) in customs:
             await ctx.send(f"{user} ({user.id}) is added")
         else:
             await ctx.send(f"{user} ({user.id}) is not added")
