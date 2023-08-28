@@ -73,8 +73,8 @@ class Penis(commands.Cog):
             await ctx.send(f"{page}")
 
     @commands.command(name='penisboard')
-    # list can be 'custom' or 'natural'
-    async def penisboard(self, ctx, list="custom"):
+    # list can be 'custom', 'small' or 'natural'
+    async def penisboard(self, ctx, list="custom", sort="large"):
         """Penis Leaderboard"""
         customs = await self.config.customs()
 
@@ -110,7 +110,8 @@ class Penis(commands.Cog):
                 dongs[member] = self.originalSize(self, member)
                 listName = "Natural "
 
-        dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
+        sortOrder = True if sort == "large" else False
+        dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=sortOrder)
         msg = f"`{listName}Penis Leaderboard`\n"
         x = 0
         for user, dong in dongs:
