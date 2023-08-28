@@ -62,6 +62,28 @@ class Penis(commands.Cog):
 
         for page in pagify(msg):
             await ctx.send(f"{page}")
+
+    @commands.command(name='penisboard')
+    async def penisboard(self, ctx):
+        """Penis Leaderboard"""
+        customs = await self.config.customs()
+
+        guild = ctx.guild
+        
+        # remove from dict if isn't a number
+        for cust in customs:
+            
+            userID = customs[cust]
+            member = guild.get_member(int(userID))
+
+            if member:
+                nickname = member.nick
+                if nickname is None:
+                    nickname = member.name
+                await ctx.send(f"The current nickname of the user with ID {userID} is: {nickname}")
+            else:
+                await ctx.send("User not found.")
+            
             
     @commands.group(name='peniset', aliases=['penisset'])
     @checks.is_owner()
