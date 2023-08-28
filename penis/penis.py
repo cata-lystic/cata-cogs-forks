@@ -120,13 +120,13 @@ class Penis(commands.Cog):
                 current = int(current) + int(amount)
                 customs[userID] = current
                 self.config.customs.set(customs)
-                return ctx.send(f"{user}'s size has grown to {current}.")
+                return await ctx.send(f"{user}'s size has grown to {current}.")
             else:
-                return ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
+                return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
         
         else:
 
-            ctx.send(f"User not in customs yet, this function doesn't work")
+            return await ctx.send(f"User not in customs yet, this function doesn't work")
 
 
 
