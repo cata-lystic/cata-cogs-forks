@@ -72,7 +72,7 @@ class Penis(commands.Cog):
         Test"""
 
     @peniset.command(name='custom')
-    async def peni_custom(self, ctx, *users: discord.Member):
+    async def peni_custom(self, ctx, user: discord.Member, customMsg):
         """Custom Size/Message
 
         You can customize how large a certain user is, or give them a custom string as their size.
@@ -80,13 +80,17 @@ class Penis(commands.Cog):
 
         customs = await self.config.customs()
 
-        for user in users:
+        # Check if user is already in dict
+        if user.id in customs:
+            await ctx.send(f"{user} ({user.id}) is added")
+        else:
+            await ctx.send(f"{user} ({user.id}) is not added")
 
-            # Check if user is already in dict
-            if user.id in customs.keys():
-                await ctx.send(f"{user} ({user.id}) is added")
-            else:
-                await ctx.send(f"{user} ({user.id}) is not added")
+            # let's add it
+            customs.update({user.id: customMsg})
+            await self.config.customs.set(customs)
+
+            await ctx.send(f"{user} ({user.id}) added with custom message: {customMsg}")
 
 
         
