@@ -88,9 +88,9 @@ class Penis(commands.Cog):
             sort = await self.config.defaultLeaderboardSort()
 
         # Make sure arguments are valid
-        if list not in ['custom', 'natural', 'small']:
+        if str(list) not in ['custom', 'natural', 'small']:
             return await ctx.send("Error: List must be `custom`, `natural`, or `small`")
-        if sort not in ['large', 'small']:
+        if str(sort) not in ['large', 'small']:
             return await ctx.send("Error: Sort must be `large` or `small`")
 
         customs = await self.config.customs()
