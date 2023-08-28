@@ -90,7 +90,8 @@ class Penis(commands.Cog):
                 doNothing = True
 
 
-        dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
+        #dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
+        dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
 
         for user, dong in dongs:
             msg += "**{}'s size:**\n{}\n".format(user, dong)
