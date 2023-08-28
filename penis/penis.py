@@ -37,13 +37,6 @@ class Penis(commands.Cog):
         msg = ""
         state = random.getstate()
 
-        #dorks = {
-        #    1019025452511277116: "8[][][D", # Bean
-        #    441088103826980885: "{()}", # Sophist
-        #    477936660684996639: "~", # Geko
-        #    514556311573364746: "<('‿')>" # Catalyst
-        #}
-
         customs = await self.config.customs()
 
         for user in users:
@@ -72,7 +65,7 @@ class Penis(commands.Cog):
         for page in pagify(msg):
             await ctx.send(f"{page}")
             
-    @commands.group(name='peniset')
+    @commands.group(name='peniset', aliases=['penisset'])
     @checks.is_owner()
     async def peniset(self, ctx):
         """Convertunits Settings
@@ -102,3 +95,44 @@ class Penis(commands.Cog):
         msgType = "size" if customs[userID].isdigit() else "message"
 
         await ctx.send(f"{user} ({userID}) custom {msgType} set: {customMsg}")
+
+    @peniset.command(name='enlarge', aliases=['en'])
+    async def peni_enlarge(self, ctx, user: discord.Member, amount=1):
+        """Enlarge User
+
+        You can add size to a user's penis
+        Example (Add 1): [p]peniset enlarge @User
+        Example (Add 3): [p]peniset enlarge @User 3
+        """
+        customs = await self.config.customs()
+        userID = str(user.id)
+
+        # Check if user is already in customs
+        # If so, check if it's a number or a message
+        # If it's a number, add to it
+        # If it's a message, tell OP they can't enlarge a custom message
+        # If user is not in customs yet, calculate what their normal size would be and add amount to it
+        if userID in customs:
+
+            current = customs[userID]
+
+            if current.isdigit():
+                current = current + amount
+                customs[userID] = current
+                self.config.customs.set(customs)
+                return ctx.send(f"{user}'s size has grown to {current}.")
+            else:
+                return ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
+        
+        else:
+
+            ctx.send(f"User not in customs yet, this function doesn't work")
+
+
+
+        # let's add/change it
+        #customs.update({userID: str(customMsg)})
+        #await self.config.customs.set(customs)
+        #msgType = "size" if customs[userID].isdigit() else "message"#
+
+        #await ctx.send(f"{user} ({userID}) custom {msgType} set: {customMsg}")
