@@ -268,7 +268,8 @@ class Penis(commands.Cog):
             return random.randint(0, 30)
         
     def outputDong(self, ctx, length):
-        return "{{({})}}".format(" " * length)
+        #return "{{({})}}".format(" " * length)
+        return "{{{:^{}}}}".format(" " * length, length)
         #return "8{}D".format("=" * length)
     
     #def outputVag(self, ctx, length):
