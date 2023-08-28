@@ -101,7 +101,7 @@ class Penis(commands.Cog):
                 continue # don't show users that have left guild
 
             # Custom leaderboard (calc custom sizes)
-            if list == "custom":
+            if list == "custom" or list == "small":
 
                 # Check if userLength is actually a number, not custom string
                 try:
@@ -117,7 +117,7 @@ class Penis(commands.Cog):
                 dongs[member] = self.originalSize(self, member)
                 listName = "Natural "
 
-        sortName = "" if sort == "large" else "Small "
+        sortName = "Small " if sort == "small" or list == "small" else ""
         sortOrder = False if sort == "small" or list == "small" else True
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=sortOrder)
         msg = f"`{sortName}{listName}Penis Leaderboard`\n"
