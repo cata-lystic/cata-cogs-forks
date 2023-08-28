@@ -76,6 +76,13 @@ class Penis(commands.Cog):
     # list can be 'custom', 'small' or 'natural'
     async def penisboard(self, ctx, list="custom", sort="large"):
         """Penis Leaderboard"""
+
+        # Make sure arguments are valid
+        if list not in ['custom', 'natural', 'small']:
+            return await ctx.send("Error: List must be `custom`, `natural`, or `small`")
+        if sort not in ['large', 'small']:
+            return await ctx.send("Error: Sort must be `large` or `small`")
+
         customs = await self.config.customs()
 
         guild = ctx.guild
@@ -111,7 +118,7 @@ class Penis(commands.Cog):
                 listName = "Natural "
 
         sortName = "" if sort == "large" else "Small "
-        sortOrder = True if sort == "large" else False
+        sortOrder = False if sort == "small" or list == "small" else True
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=sortOrder)
         msg = f"`{sortName}{listName}Penis Leaderboard`\n"
         x = 0
