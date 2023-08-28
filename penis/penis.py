@@ -139,33 +139,8 @@ class Penis(commands.Cog):
         Example (Add 1): [p]peniset enlarge @User
         Example (Add 3): [p]peniset enlarge @User 3
         """
-        customs = await self.config.customs()
-        userID = str(user.id)
-
-        # Check if user is already in customs
-        # If so, check if it's a number or a message
-        # If it's a number, add to it
-        # If it's a message, tell OP they can't enlarge a custom message
-        # If user is not in customs yet, calculate what their normal size would be and add amount to it
-        if userID in customs:
-
-            current = str(customs[userID])
-
-            if current.isdigit():
-                current = int(current) + int(amount)
-                customs[userID] = current
-                await self.config.customs.set(customs)
-                return await ctx.send(f"{user}'s size has grown to {current}.")
-            else:
-                return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
         
-        else:
-
-            length = self.originalSize(self, user)
-            current = int(length) + int(amount)
-            customs[userID] = current
-            await self.config.customs.set(customs)
-            return await ctx.send(f"{user}'s size has grown to {current}.")
+        self.changeDong(self, user, amount)
 
     @peniset.command(name='clear', aliases=['cl'])
     async def peni_clear(self, ctx, user: discord.Member):
@@ -196,3 +171,38 @@ class Penis(commands.Cog):
         
     def outputDong(self, ctx, length):
         return "8{}D".format("=" * length)
+    
+    async def changeDong(self, ctx, user: discord.Member, amount=1):
+        """Enlarge user's penis size.
+
+        You can add size to a user's penis
+        Example (Add 1): [p]peniset enlarge @User
+        Example (Add 3): [p]peniset enlarge @User 3
+        """
+        customs = await self.config.customs()
+        userID = str(user.id)
+
+        # Check if user is already in customs
+        # If so, check if it's a number or a message
+        # If it's a number, add to it
+        # If it's a message, tell OP they can't enlarge a custom message
+        # If user is not in customs yet, calculate what their normal size would be and add amount to it
+        if userID in customs:
+
+            current = str(customs[userID])
+
+            if current.isdigit():
+                current = int(current) + int(amount)
+                customs[userID] = current
+                await self.config.customs.set(customs)
+                return await ctx.send(f"{user}'s size has grown to {current}.")
+            else:
+                return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
+        
+        else:
+
+            length = self.originalSize(self, user)
+            current = int(length) + int(amount)
+            customs[userID] = current
+            await self.config.customs.set(customs)
+            return await ctx.send(f"{user}'s size has grown to {current}.")
