@@ -151,7 +151,6 @@ class Penis(commands.Cog):
         userID = str(user.id)
 
         if ctx.bot.user.id == user.id:
-            return "8{}D".format("=" * 50)
+            return 50
         else:
-            length = random.randint(0, 30)
-            return "8{}D".format("=" * length)
+            return random.randint(0, 30)
