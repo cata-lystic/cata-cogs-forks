@@ -90,7 +90,7 @@ class Penis(commands.Cog):
 
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
         msg = "`Penis Leaderboard`\n"
-        x = 0
+        x = 1
         for user, dong in dongs:
             if x == 10:
                 break
