@@ -127,13 +127,10 @@ class Penis(commands.Cog):
         
         else:
 
-            return await ctx.send(f"User not in customs yet, this function doesn't work")
+            random.seed(str(user.id))
+            length = random.randint(0, 30)
 
-
-
-        # let's add/change it
-        #customs.update({userID: str(customMsg)})
-        #await self.config.customs.set(customs)
-        #msgType = "size" if customs[userID].isdigit() else "message"#
-
-        #await ctx.send(f"{user} ({userID}) custom {msgType} set: {customMsg}")
+            current = int(length) + int(amount)
+            customs[userID] = current
+            await self.config.customs.set(customs)
+            return await ctx.send(f"{user}'s size has grown to {current}.")
