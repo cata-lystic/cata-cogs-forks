@@ -72,7 +72,7 @@ class Penis(commands.Cog):
         Test"""
 
     @peniset.command(name='custom')
-    async def peni_custom(self, ctx, user: discord.Member, customMsg):
+    async def peni_custom(self, ctx, user: discord.Member, customMsg: Optional['str'] = None):
         """Custom Size/Message
 
         You can customize how large a certain user is, or give them a custom string as their size.
