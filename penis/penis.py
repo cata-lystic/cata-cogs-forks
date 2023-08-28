@@ -37,20 +37,26 @@ class Penis(commands.Cog):
         msg = ""
         state = random.getstate()
 
-        dorks = {
-            1019025452511277116: "8[][][D", # Bean
-            441088103826980885: "{()}", # Sophist
-            477936660684996639: "~", # Geko
-            514556311573364746: "<('‿')>" # Catalyst
-        }
+        #dorks = {
+        #    1019025452511277116: "8[][][D", # Bean
+        #    441088103826980885: "{()}", # Sophist
+        #    477936660684996639: "~", # Geko
+        #    514556311573364746: "<('‿')>" # Catalyst
+        #}
+
+        customs = await self.config.customs()
 
         for user in users:
             random.seed(str(user.id))
 
             if ctx.bot.user.id == user.id:
                 dongs[user] = "8{}D".format("=" * 50)
-            elif (user.id in dorks):
-                dongs[user] = dorks[user.id]
+            elif (user.id in customs):
+                if (int(customs[user.id])):
+                    length = customs[user.id]
+                    dongs[user] = "8{}D".format("=" * length)
+                else:
+                    dongs[user] = customs[user.id]
             else:
                 length = random.randint(0, 30)
                 dongs[user] = "8{}D".format("=" * length)
