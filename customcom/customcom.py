@@ -704,13 +704,16 @@ class CustomCommands(commands.Cog):
                 index = int(result[1]) - low
                 arg = self.transform_arg(result[0], result[2], cc_args[index])
                 raw_response = raw_response.replace("{" + result[0] + "}", arg)
-        await ctx.send(raw_response)
 
-        # Check if raw_response ends in delete
+        # Check if raw_response ends in delete, if so, delete user's command message
         if raw_response.endswith("delete"):
             new_response = raw_response.rstrip("delete")
             await ctx.send(new_response)
             await ctx.message.delete()
+        else: 
+            await ctx.send(raw_response)
+
+        
 
     @staticmethod
     def prepare_args(raw_response) -> Mapping[str, Parameter]:
