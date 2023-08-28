@@ -73,7 +73,8 @@ class Penis(commands.Cog):
             await ctx.send(f"{page}")
 
     @commands.command(name='penisboard')
-    async def penisboard(self, ctx):
+    # list can be 'custom' or 'natural'
+    async def penisboard(self, ctx, list="custom"):
         """Penis Leaderboard"""
         customs = await self.config.customs()
 
@@ -90,17 +91,27 @@ class Penis(commands.Cog):
             member = guild.get_member(int(userID))
 
             if not member:
-                member = "Unknown"
+                continue # don't show users that have left guild
 
-            # Check if userLength is actually a number, not custom string
-            try:
-                int(userLength)
-                dongs[member] = int(userLength)
-            except ValueError:
-                doNothing = True
+            # Custom leaderboard (calc custom sizes)
+            if list == "custom":
+
+                # Check if userLength is actually a number, not custom string
+                try:
+                    int(userLength)
+                    dongs[member] = int(userLength)
+                except ValueError:
+                    doNothing = True
+
+                listName = "" # don't prefix 'Penis Leaderboard' for custom
+
+            # Natural leaderboard (calc original sizes)
+            else:
+                dongs[member] = self.originalSize(self, user)
+                listname = "Natural "
 
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
-        msg = "`Penis Leaderboard`\n"
+        msg = f"`{listName}Penis Leaderboard`\n"
         x = 0
         for user, dong in dongs:
             if x == 10:
