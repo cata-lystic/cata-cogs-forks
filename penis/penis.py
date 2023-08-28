@@ -143,6 +143,7 @@ class Penis(commands.Cog):
 
         if userID in customs:
             del customs[userID]
+            await self.config.customs.set(customs)
             return await ctx.send(f"{user}'s original size has been set.")
         else:
             return await ctx.send(f"{user}'s original size is already set.")
