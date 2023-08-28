@@ -36,12 +36,8 @@ class Penis(commands.Cog):
             random.seed(str(user.id))
             userID = str(user.id)
 
-            # Bot always gets 50 length
-            if ctx.bot.user.id == user.id:
-                dongs[user] = self.outputDong(self, 50) # parse dong
-
             # Check if userID is in customs
-            elif (userID in customs):
+            if (userID in customs):
                 userMsg = str(customs[userID])
 
                 # Check if length is number
@@ -64,11 +60,15 @@ class Penis(commands.Cog):
 
         random.setstate(state)
         #dongs = sorted(dongs.items(), key=lambda x: x[1]) old sorting
+
+        # Sort dongs by longest to shortest
         dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
 
+        # Make text list of each user's size 
         for user, dong in dongs:
             msg += "**{}'s size:**\n{}\n".format(user.display_name, dong)
 
+        # Output results
         for page in pagify(msg):
             await ctx.send(f"{page}")
 
