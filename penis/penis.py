@@ -12,11 +12,7 @@ class Penis(commands.Cog):
         self.bot = bot
         self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
 
-        default_global = {
-            "customs": {
-                "514556311573364746": 29
-            }
-        }
+        default_global = { "customs": {} }
 
         self.config.register_global(**default_global)
 
@@ -140,10 +136,22 @@ class Penis(commands.Cog):
         """
         customs = await self.config.customs()
         userID = str(user.id)
+        originalSize = self.originalSize(self, ctx, user)
 
         if userID in customs:
             del customs[userID]
             await self.config.customs.set(customs)
-            return await ctx.send(f"{user}'s original size has been set.")
+            return await ctx.send(f"{user}'s original size ({originalSize}) has been set.")
         else:
-            return await ctx.send(f"{user}'s original size is already set.")
+            return await ctx.send(f"{user}'s original size ({originalSize}) is already set.")
+
+
+    def originalSize(self, ctx, user: discord.member):
+        random.seed(str(user.id))
+        userID = str(user.id)
+
+        if ctx.bot.user.id == user.id:
+            return "8{}D".format("=" * 50)
+        else:
+            length = random.randint(0, 30)
+            return "8{}D".format("=" * length)
