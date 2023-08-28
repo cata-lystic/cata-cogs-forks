@@ -49,6 +49,10 @@ class Penis(commands.Cog):
                 length = random.randint(0, 30)
                 dongs[user] = self.outputDong(self, length)
 
+                # Set this in the customs dict for leaderboards
+                customs[userID] = length
+                await self.config.customs.set(customs)
+
         random.setstate(state)
         #dongs = sorted(dongs.items(), key=lambda x: x[1]) old sorting
         dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
