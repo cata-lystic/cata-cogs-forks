@@ -172,7 +172,7 @@ class Penis(commands.Cog):
     def outputDong(self, ctx, length):
         return "8{}D".format("=" * length)
     
-    async def changeDong(self, ctx, user: discord.Member, amount=1):
+    async def changeDong(self, ctx, user, amount=1):
         """Enlarge user's penis size.
 
         You can add size to a user's penis
