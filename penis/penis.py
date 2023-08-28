@@ -69,7 +69,6 @@ class Penis(commands.Cog):
         customs = await self.config.customs()
 
         guild = ctx.guild
-        output = ""
         dongs = {}
         
         # remove from dict if isn't a number
@@ -89,11 +88,12 @@ class Penis(commands.Cog):
             except ValueError:
                 doNothing = True
 
-
-        #dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
         dongs = sorted(dongs.items(), key=lambda x: int(x[1]), reverse=True)
         msg = "`Penis Leaderboard`\n"
+        x = 0
         for user, dong in dongs:
+            if x == 10:
+                break
             msg += "**{}:** {}\n".format(user, dong)
 
         for page in pagify(msg):
