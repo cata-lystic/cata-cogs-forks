@@ -36,17 +36,26 @@ class Penis(commands.Cog):
             random.seed(str(user.id))
             userID = str(user.id)
 
+            # Bot always gets 50 length
             if ctx.bot.user.id == user.id:
-                dongs[user] = self.outputDong(self, 50)
+                dongs[user] = self.outputDong(self, 50) # parse dong
+
+            # Check if userID is in customs
             elif (userID in customs):
                 userMsg = str(customs[userID])
-                if userMsg.isdigit():
+
+                # Check if length is number
+                try:
+                    int(userMsg)
                     length = int(userMsg)
-                    dongs[user] = self.outputDong(self, length)
-                else:
+                    dongs[user] = self.outputDong(self, length) # parse dong
+                # Otherwise it's a custom message
+                except ValueError:
                     dongs[user] = customs[userID]
+            # If not, output user's default/original dong size
+            # this is based on a static seed so user's default size will never change
             else:
-                length = random.randint(0, 30)
+                length = self.originalSize(self, user)
                 dongs[user] = self.outputDong(self, length)
 
                 # Set this in the customs dict for leaderboards
@@ -144,28 +153,25 @@ class Penis(commands.Cog):
         userID = str(user.id)
 
         # Check if growing or shrinking
-        adjustment = "shrunk" if str(amount).startswith("-") else "grown"
+        
 
         # Check if user is already in customs
-        # If so, check if it's a number or a message
-        # If it's a number, add to it
-        # If it's a message, tell OP they can't enlarge a custom message
-        # If user is not in customs yet, calculate what their normal size would be and add amount to it
         if userID in customs:
 
-            current = str(customs[userID])
+            current = str(customs[userID]) # current length
 
-            # Check if userLength is actually a number, not custom string
+            # check if current val is a number and not a string
             try:
                 int(current)
                 length = int(current) + int(amount)
+            # if string, tell user this can't be adjust
             except ValueError:
-                doNothing = True
-                return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
-        
+                return await ctx.send(f"{user} has a custom message, you can't adjust them.")
+        # If not, get original size
         else:
             length = self.originalSize(self, user)
         
+        adjustment = "shrunk" if str(amount).startswith("-") else "grown"
         length = 0 if length < 0 else length # don't let it go below 0
         customs[userID] = length
         await self.config.customs.set(customs)
