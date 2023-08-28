@@ -109,7 +109,7 @@ class Penis(commands.Cog):
 
     @peniset.command(name='custom')
     async def peni_custom(self, ctx, user: discord.Member, *, customMsg = None):
-        """Custom Size/Message
+        """Set a custom size or message for a user.
 
         You can customize how large a certain user is, or give them a custom string as their size.
         """
@@ -133,7 +133,7 @@ class Penis(commands.Cog):
 
     @peniset.command(name='enlarge', aliases=['en'])
     async def peni_enlarge(self, ctx, user: discord.Member, amount=1):
-        """Enlarge User
+        """Enlarge user's penis size.
 
         You can add size to a user's penis
         Example (Add 1): [p]peniset enlarge @User
@@ -169,9 +169,7 @@ class Penis(commands.Cog):
 
     @peniset.command(name='clear', aliases=['cl'])
     async def peni_clear(self, ctx, user: discord.Member):
-        """Clear User
-
-        Reset user's penis to its original size.
+        """Reset user's penis to its original size.
 
         Example: [p]peniset clear @User
         """
