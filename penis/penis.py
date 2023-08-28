@@ -144,7 +144,7 @@ class Penis(commands.Cog):
         userID = str(user.id)
 
         # Check if growing or shrinking
-        adjustment = "shrinked" if str(num).startswith("-") else "grown"
+        adjustment = "shrinked" if str(amount).startswith("-") else "grown"
 
         # Check if user is already in customs
         # If so, check if it's a number or a message
