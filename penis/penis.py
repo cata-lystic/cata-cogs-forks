@@ -12,7 +12,11 @@ class Penis(commands.Cog):
         self.bot = bot
         self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
 
-        default_global = { "customs": {} }
+        default_global = {
+            "customs": {},
+            "defaultLeaderboard": "custom",
+            "defaultLeaderboardSort": "large"
+            }
 
         self.config.register_global(**default_global)
 
@@ -215,7 +219,22 @@ class Penis(commands.Cog):
             return await ctx.send(f"{user}'s original size ({originalSize}) has been set.")
         else:
             return await ctx.send(f"{user}'s original size ({originalSize}) is already set.")
+        
+    @peniset.command(name='defaultleaderboard')
+    async def peni_leaderboard_default(self, ctx, val):
+        """Set default leaderboard.
 
+        Example: [p]peniset defaultleaderboard natural
+        Example: [p]peniset defaultleaderboard custom
+        Example: [p]peniset defaultleaderboard small
+        """
+
+        if val not in ['custom', 'natural', 'small']:
+            return await ctx.send("Error: defaultleaderboard can only be `custom`, `natural`, or `small`")
+        
+        await self.config.defaultLeaderboard.set(val)
+        return await ctx.send(f"Default leaderboard set to  `{val}`")
+        
     # Calculate the size if just using the original Python seed for random number.
     def originalSize(self, ctx, user: discord.member):
         random.seed(str(user.id))
