@@ -73,7 +73,7 @@ class Penis(commands.Cog):
         # remove from dict if isn't a number
         for cust in customs:
             
-            userID = customs[cust]
+            userID = cust
             member = guild.get_member(int(userID))
 
             if member:
