@@ -240,6 +240,20 @@ class Penis(commands.Cog):
         
         await self.config.defaultLeaderboard.set(val)
         return await ctx.send(f"Default leaderboard set to  `{val}`")
+    
+    @peniset.command(name='defaultleaderboardsort')
+    async def peni_leaderboard_default(self, ctx, val):
+        """Set default leaderboard sorting order.
+
+        Example: [p]peniset defaultleaderboardsort large
+        Example: [p]peniset defaultleaderboardsort small
+        """
+
+        if val not in ['large', 'small']:
+            return await ctx.send("Error: defaultleaderboardsort can only be `large` or `small`")
+        
+        await self.config.defaultLeaderboardSort.set(val)
+        return await ctx.send(f"Default leaderboard sort set to  `{val}`")
         
     # Calculate the size if just using the original Python seed for random number.
     def originalSize(self, ctx, user: discord.member):
