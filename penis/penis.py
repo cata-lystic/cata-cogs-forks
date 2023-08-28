@@ -87,7 +87,7 @@ class Penis(commands.Cog):
 
         # if they didn't put a message, show them current custom message
         if customMsg == "" or customMsg == None:
-            if (str(user.id) in customs):
+            if (user.id in customs):
                 current = customs[user.id]
                 return await ctx.send(f"{user} current message: {current}")
             else:
