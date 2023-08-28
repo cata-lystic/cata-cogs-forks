@@ -54,7 +54,7 @@ class Penis(commands.Cog):
                 dongs[user] = "8{}D".format("=" * 50)
             elif (userID in customs):
                 if customs[userID].isdigit():
-                    length = customs[userID]
+                    length = int(customs[userID])
                     dongs[user] = "8{}D".format("=" * length)
                 else:
                     dongs[user] = customs[userID]
