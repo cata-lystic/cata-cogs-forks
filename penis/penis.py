@@ -40,7 +40,7 @@ class Penis(commands.Cog):
                 dongs[user] = "8{}D".format("=" * length)
 
         random.setstate(state)
-        #dongs = sorted(dongs.items(), key=lambda x: x[1])
+        #dongs = sorted(dongs.items(), key=lambda x: x[1]) old sorting
         dongs = sorted(dongs.items(), key=lambda x: len(x[1]), reverse=True)
 
         for user, dong in dongs:
