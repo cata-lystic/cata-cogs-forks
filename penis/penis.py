@@ -74,15 +74,20 @@ class Penis(commands.Cog):
         for cust in customs:
             
             userID = cust
+            userLength = customs[cust]
             member = guild.get_member(int(userID))
+            output = ""
 
-            if member:
-                nickname = member.nick
-                if nickname is None:
-                    nickname = member.name
-                await ctx.send(f"The current nickname of the user with ID {userID} is: {nickname}")
-            else:
-                await ctx.send("User not found.")
+            if not member:
+                member = "Unknown"
+
+            # Check if userLength is actually a number, not custom string
+            try:
+                int(userLength)
+                output += f"\n{member}: {userLength}"
+            except ValueError:
+                doNothing = True
+
             
             
     @commands.group(name='peniset', aliases=['penisset'])
