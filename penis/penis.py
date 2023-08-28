@@ -158,23 +158,18 @@ class Penis(commands.Cog):
             # Check if userLength is actually a number, not custom string
             try:
                 int(current)
-                current = int(current) + int(amount)
-                current = 0 if current < 0 else current # don't let it go below 0
-                customs[userID] = current
-                await self.config.customs.set(customs)
-                return await ctx.send(f"{user}'s size has {adjustment} to {current}.")
+                length = int(current) + int(amount)
             except ValueError:
                 doNothing = True
                 return await ctx.send(f"{user} has a custom message, you can't enlarge/shrink them.")
         
         else:
-
             length = self.originalSize(self, user)
-            current = int(length) + int(amount)
-            current = 0 if current < 0 else current # don't let it go below 0
-            customs[userID] = current
-            await self.config.customs.set(customs)
-            return await ctx.send(f"{user}'s size has {adjustment} to {current}.")
+        
+        length = 0 if length < 0 else length # don't let it go below 0
+        customs[userID] = length
+        await self.config.customs.set(customs)
+        return await ctx.send(f"{user}'s size has {adjustment} to {length}.")
 
     @peniset.command(name='clear', aliases=['cl'])
     async def peni_clear(self, ctx, user: discord.Member):
