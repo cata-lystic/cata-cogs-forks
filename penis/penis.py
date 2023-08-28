@@ -37,17 +37,17 @@ class Penis(commands.Cog):
             userID = str(user.id)
 
             if ctx.bot.user.id == user.id:
-                dongs[user] = "8{}D".format("=" * 50)
+                dongs[user] = self.outputDong(self, 50)
             elif (userID in customs):
                 userMsg = str(customs[userID])
                 if userMsg.isdigit():
                     length = int(userMsg)
-                    dongs[user] = "8{}D".format("=" * length)
+                    dongs[user] = self.outputDong(self, length)
                 else:
                     dongs[user] = customs[userID]
             else:
                 length = random.randint(0, 30)
-                dongs[user] = "8{}D".format("=" * length)
+                dongs[user] = self.outputDong(self, length)
 
         random.setstate(state)
         #dongs = sorted(dongs.items(), key=lambda x: x[1]) old sorting
@@ -118,9 +118,7 @@ class Penis(commands.Cog):
         
         else:
 
-            random.seed(str(user.id))
-            length = random.randint(0, 30)
-
+            length = self.originalSize(self, user)
             current = int(length) + int(amount)
             customs[userID] = current
             await self.config.customs.set(customs)
@@ -145,7 +143,7 @@ class Penis(commands.Cog):
         else:
             return await ctx.send(f"{user}'s original size ({originalSize}) is already set.")
 
-
+    # Calculate the size if just using the original Python seed for random number.
     def originalSize(self, ctx, user: discord.member):
         random.seed(str(user.id))
         userID = str(user.id)
@@ -154,3 +152,6 @@ class Penis(commands.Cog):
             return 50
         else:
             return random.randint(0, 30)
+        
+    def outputDong(self, ctx, length):
+        return "8{}D".format("=" * length)
