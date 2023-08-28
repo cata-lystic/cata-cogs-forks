@@ -82,8 +82,12 @@ class Penis(commands.Cog):
         
         # remove from dict if isn't a number
         for cust in customs:
+
+                        # Bot always gets 50 length
             
             userID = cust
+            if ctx.bot.user.id == userID:
+                continue # don't show bot on leaderboard
             userLength = customs[cust]
             member = guild.get_member(int(userID))
 
