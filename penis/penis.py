@@ -13,8 +13,12 @@ class Penis(commands.Cog):
         self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
 
         default_global = {
-            "custom": {},
-            "enlarge": {}
+            "customs": {
+                514556311573364746: "WEEE"
+            },
+            "enlarge": {
+                514556311573364746: 1
+            }
         }
 
         self.config.register_global(**default_global)
@@ -74,7 +78,7 @@ class Penis(commands.Cog):
         You can customize how large a certain user is, or give them a custom string as their size.
         """
 
-        customs = await self.config.custom()
+        customs = await self.config.customs()
 
         for user in users:
 
