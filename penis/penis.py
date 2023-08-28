@@ -69,6 +69,7 @@ class Penis(commands.Cog):
         customs = await self.config.customs()
 
         guild = ctx.guild
+        output = ""
         
         # remove from dict if isn't a number
         for cust in customs:
@@ -76,7 +77,6 @@ class Penis(commands.Cog):
             userID = cust
             userLength = customs[cust]
             member = guild.get_member(int(userID))
-            output = ""
 
             if not member:
                 member = "Unknown"
@@ -87,6 +87,8 @@ class Penis(commands.Cog):
                 output += f"\n{member}: {userLength}"
             except ValueError:
                 doNothing = True
+
+        await ctx.send(f"{output}")
 
             
             
