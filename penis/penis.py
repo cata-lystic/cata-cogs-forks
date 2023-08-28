@@ -1,11 +1,23 @@
 import discord
 import random
-from redbot.core import commands
+from redbot.core.bot import Red
+from redbot.core import Config, commands
 from redbot.core.utils.chat_formatting import pagify
 
 
 class Penis(commands.Cog):
     """Penis related commands."""
+
+    def __init__(self, bot: Red):
+        self.bot = bot
+        self.config = Config.get_conf(self, identifier=18523712923481, force_registration=True)
+
+        default_global = {
+            "custom": {},
+            "enlarge": {}
+        }
+
+        self.config.register_global(**default_global)
 
     @commands.command()
     async def penis(self, ctx, *users: discord.Member):
@@ -49,3 +61,52 @@ class Penis(commands.Cog):
         for page in pagify(msg):
             await ctx.send(f"{page}")
             
+    @commands.group(name='peniset')
+    async def peniset(self, ctx):
+        """Convertunits Settings
+        
+        Test"""
+
+    @peniset.command(name='custom')
+    async def peni_custom(self, ctx, *users: discord.Member):
+        """Custom Size/Message
+
+        You can customize how large a certain user is, or give them a custom string as their size.
+        """
+
+        customs = self.config.custom()
+
+        for user in users:
+
+            # Check if user is already in dict
+            if user.id in customs:
+                await ctx.send(f"{user} is added")
+            else:
+                await ctx.send(f"{user} is not added")
+
+
+        
+        #await self.config.custom.set(val)
+
+
+    # Check if command is already excluded
+    async def isExcluded(self, ctx, command):
+        excluded = await self.config.excluded()
+        if command in excluded:
+            return True
+        else:
+            return False
+    
+    # Check if unit is valid
+    async def isValid(self, ctx, command):
+        isValid = False
+        for key, subdict in self.valid.items():
+            if command in subdict:
+                isValid = True
+        return isValid
+    
+    async def listValidUnits(self, ctx):
+        msg = ""
+        for key, value in self.valid.items():
+            msg += (", ".join(value.keys())+" ")
+        return msg
