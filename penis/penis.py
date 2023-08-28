@@ -74,7 +74,7 @@ class Penis(commands.Cog):
         You can customize how large a certain user is, or give them a custom string as their size.
         """
 
-        customs = self.config.custom()
+        customs = await self.config.custom()
 
         for user in users:
 
