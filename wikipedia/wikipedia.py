@@ -11,7 +11,7 @@ from redbot.core import commands
 from redbot.core.utils.chat_formatting import error, warning
 from redbot.core.utils.menus import DEFAULT_CONTROLS, menu
 
-MAX_DESCRIPTION_LENGTH = 700
+MAX_DESCRIPTION_LENGTH = 675
 
 
 class Wikipedia(commands.Cog):
