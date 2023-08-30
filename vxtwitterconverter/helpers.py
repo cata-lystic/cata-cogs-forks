@@ -35,14 +35,7 @@ def urls_to_string(vx_twit_links: list[str]):
         Formatted output
     """
 
-    return "".join(
-        [
-            "OwO what's this?\n",
-            "*notices your terrible twitter embeds*\n",
-            "Here's a better alternative:\n",
-            "\n".join(vx_twit_links),
-        ]
-    )
+    return "".join(vx_twit_links)
 
 
 def valid(message: Message):
